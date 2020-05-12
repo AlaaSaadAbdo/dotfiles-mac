@@ -1,0 +1,13 @@
+export LANG=en_US.UTF-8
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
+
+
+zplug "$HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting", from:local
+zplug "$HOME/.oh-my-zsh/custom/plugins/zsh-vim-mode", from:local
+zplug "$HOME/.zsh/my_plugins/prompt", from:local, as:theme
+

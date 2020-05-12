@@ -1,0 +1,95 @@
+source <(antibody init)
+ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+antibody bundle robbyrussell/oh-my-zsh
+antibody bundle ~/.zsh/my_plugins/prompt
+antibody bundle "
+  robbyrussell/oh-my-zsh path:plugins/aws
+  robbyrussell/oh-my-zsh path:plugins/bgnotify
+  robbyrussell/oh-my-zsh path:plugins/catimg
+  robbyrussell/oh-my-zsh path:plugins/extract
+  robbyrussell/oh-my-zsh path:plugins/git-extras
+  robbyrussell/oh-my-zsh path:plugins/git
+  robbyrussell/oh-my-zsh path:plugins/gitfast
+  robbyrussell/oh-my-zsh path:plugins/github
+  robbyrussell/oh-my-zsh path:plugins/golang
+  robbyrussell/oh-my-zsh path:plugins/httpie
+  robbyrussell/oh-my-zsh path:plugins/pip
+  robbyrussell/oh-my-zsh path:plugins/systemd
+  robbyrussell/oh-my-zsh path:plugins/tig
+  robbyrussell/oh-my-zsh path:plugins/asdf
+  robbyrussell/oh-my-zsh path:plugins/kubectl
+  rupa/z
+  zsh-users/zsh-completions
+  zsh-users/zsh-autosuggestions
+  /home/mansoala/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+  /home/mansoala/.oh-my-zsh/custom/plugins/fzf-z
+  /home/mansoala/.oh-my-zsh/custom/plugins/you-should-use
+  /home/mansoala/.oh-my-zsh/custom/plugins/zsh-vim-mode
+"
+
+setopt +o nomatch
+# homesick dotfiles
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+# homesick autocompletion
+fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+
+export GOPATH=/home/mansoala/go
+export GOBIN=$GOPATH/bin
+
+export PATH=/home/mansoala/.local/bin:$PATH
+export PATH="$HOME/.tfenv/bin:$PATH"
+export PATH=$PATH:/home/mansoala/.go/bin
+export PATH=$PATH:/home/mansoala/go/bin
+export PATH=$PATH:/home/mansoala/.local/go/bin
+export PATH=/usr/local/tflint/bin:$PATH
+export PATH=$PATH:/home/mansoala/.node_modules/bin
+export PATH=~/.npm-global/bin:$PATH
+export PATH=$PATH:/home/mansoala/node_modules
+export PATH=$PATH:/home/mansoala/.local/bin
+
+source '/home/mansoala/.local/azure-cli/az.completion'
+
+# awless autocompletion
+source <(awless completion zsh)
+
+# helm
+export PATH="$HOME/.bin:$PATH"
+source $HOME/.helmenv/helmenv.sh
+source <(helm completion zsh)
+
+fpath=(~/.zsh/ $fpath)
+
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export NVRC="~/.config/nvim/init.vim"
+export I3RC="~/.config/i3/config"
+# default fzf command
+# ignored in favour of fzf functions at the bottom of the file
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g""'
+export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude ".git" --type f'
+
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='~~'
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
+bindkey '^Tab' autosuggest-accept
+
+
+# History settings
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+export HISTSIZE=100000
+export SAVEHIST=$HISTSIZE
+
+
+source /home/mansoala/.zsh/zshalias
+source /home/mansoala/.zsh/func
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/mansoala/google-cloud-sdk/path.zsh.inc' ]; then . '/home/mansoala/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/mansoala/google-cloud-sdk/completion.zsh.inc'  ]; then . '/home/mansoala/google-cloud-sdk/completion.zsh.inc'; fi

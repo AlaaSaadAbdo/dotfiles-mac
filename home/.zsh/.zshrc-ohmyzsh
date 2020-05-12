@@ -1,0 +1,306 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/home/mansoala/.oh-my-zsh"
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="custom_dst"
+# POWERLEVEL9k Theme
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Disable magic functions
+DISABLE_MAGIC_FUNCTIONS=true
+
+# fasd
+eval "$(fasd --init auto)"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git asdf aws colored-man-pages kubectl zsh-vim-mode you-should-use jsontools fzf-z zsh-autosuggestions fast-syntax-highlighting
+)
+# unset LS_COLORS
+# export LS_COLORS=""
+# cargo
+source "$HOME/.cargo/env"
+
+# homesick dotfiles
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+# homesick autocompletion
+fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+
+source $ZSH/oh-my-zsh.sh
+
+# This plugin has to be sourced outside of the plugins function to work since it needs to overwrite some function names declared in other plugins
+source $ZSH/custom/plugins/zsh-vi-search/zsh-vi-search.zsh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+if [ -f /home/mansoala/.zsh/zshalias ]; then
+    source /home/mansoala/.zsh/zshalias
+else
+    print "404: ~/.zsh/zshalias not found."
+fi
+
+# setopt CORRECT
+setopt +o nomatch
+
+# autoload -Uz compinit
+# compinit
+# # Completion for kitty
+# kitty + complete setup zsh | source /dev/stdin
+
+#alias ssh='~/.change_bg.sh'
+#alias config='/usr/bin/git --git-dir=/home/mansoala/.cfg/ --work-tree=/home/mansoala'
+#alias finf='grep -irnw . -e'
+#alias pip3='python3.6 -m pip install'
+#alias monitors_work='~/.screenlayout/work.sh'
+#alias monitors_home='~/..screenlayout/home.sh'
+#alias monitors_weekly='.screenlayout/weekly.sh'
+#alias wifi_on='nmcli radio wifi on'
+#alias wifi_off='nmcli radio wifi off'
+# porsche
+source /home/mansoala/porsche/git/myct-cloud-helpers/cloud-helpers.sh
+source /home/mansoala/porsche/git/myct-cloud-helpers/cloud-helpers-completion.sh
+
+export GOPATH=/home/mansoala/go
+export GOBIN=$GOPATH/bin
+
+export PATH=/home/mansoala/.local/bin:$PATH
+export PATH="$HOME/.tfenv/bin:$PATH"
+export PATH=$PATH:/home/mansoala/.go/bin
+export PATH=$PATH:/home/mansoala/go/bin
+export PATH=$PATH:/home/mansoala/.local/go/bin
+export PATH=/usr/local/tflint/bin:$PATH
+export PATH=$PATH:/home/mansoala/.node_modules/bin
+export PATH=~/.npm-global/bin:$PATH
+export PATH=$PATH:/home/mansoala/node_modules
+export PATH=$PATH:/home/mansoala/.local/bin
+
+source '/home/mansoala/.local/azure-cli/az.completion'
+
+# awless autocompletion
+source <(awless completion zsh)
+
+# aws cli completion
+source /home/mansoala/.local/bin/aws_zsh_completer.sh
+
+# kubectl completion
+source <(kubectl completion zsh)
+
+# helm
+export PATH="$HOME/.bin:$PATH"
+source $HOME/.helmenv/helmenv.sh
+source <(helm completion zsh)
+
+fpath=(~/.zsh/ $fpath)
+
+# gopass autocompletion
+# source <(gopass completion zsh | head -n -1 | tail -n +2)
+# compdef _gopass gopass
+
+# default editor nvim
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export NVRC="~/.config/nvim/init.vim"
+export I3RC="~/.config/i3/config"
+# default fzf command
+# ignored in favour of fzf functions at the bottom of the file
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g""'
+export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude ".git" --type f'
+
+#export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='~~'
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# source ~/.zsh/fzf-git/*
+
+### PROCESS
+# mnemonic: [K]ill [P]rocess
+# show output of "ps -ef", use [tab] to select one or multiple entries
+# press [enter] to kill selected processes and go back to the process list.
+# or press [escape] to go back to the process list. Press [escape] twice to exit completely.
+
+
+kp() {
+  local pid=$(ps -ef | sed 1d | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[kill:process]'" | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+    kp
+  fi
+}
+
+### PATH
+# mnemonic: [F]ind [P]ath
+# list directories in $PATH, press [enter] on an entry to list the executables inside.
+# press [escape] to go back to directory listing, [escape] twice to exit completely
+
+fp() {
+  local loc=$(echo $PATH | sed -e $'s/:/\\\n/g' | eval "fzf ${FZF_DEFAULT_OPTS} --header='[find:path]'")
+
+  if [[ -d $loc ]]; then
+    echo "$(rg --files $loc | rev | cut -d"/" -f1 | rev)" | eval "fzf ${FZF_DEFAULT_OPTS} --header='[find:exe] => ${loc}' >/dev/null"
+    fp
+  fi
+}
+
+# fh - repeat history
+fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 40% +s --tac | sed 's/ *[0-9]* *//')
+}
+
+function de() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid" && docker exec -ti "$cid" bash
+}
+
+# Select a docker container to start and attach to
+function da() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+# Select a running docker container to stop
+function ds() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker stop "$cid"
+}
+
+vz() {
+  local dir
+  dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+}
+
+# fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
+vZ() {
+  [ $# -gt 0 ] && fasd_cd -d "$*" && return
+  local dir
+  dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+}
+
+vv() {
+  local file
+  file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
+}
+
+# fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
+vV() {
+  [ $# -gt 0 ] && fasd -f -e ${EDITOR} "$*" && return
+  local file
+  file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
+}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/mansoala/google-cloud-sdk/path.zsh.inc' ]; then . '/home/mansoala/google-cloud-sdk/path.zsh.inc'; fi
+
+se() { du -a ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ; }
+vf() { fzf | xargs -r -I % $EDITOR % ;}
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/mansoala/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/mansoala/google-cloud-sdk/completion.zsh.inc'; fi
+
+

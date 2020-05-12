@@ -1,0 +1,106 @@
+source <(antibody init)
+ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+antibody bundle robbyrussell/oh-my-zsh
+antibody bundle ~/.zsh/my_plugins/prompt
+antibody bundle "
+  robbyrussell/oh-my-zsh path:plugins/aws
+  robbyrussell/oh-my-zsh path:plugins/extract
+  robbyrussell/oh-my-zsh path:plugins/safe-paste
+  robbyrussell/oh-my-zsh path:plugins/fasd
+  zsh-users/zsh-completions
+  $HOME/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+  zsh-users/zsh-history-substring-search
+  $HOME/.oh-my-zsh/custom/plugins/fzf-z
+  $HOME/.oh-my-zsh/custom/plugins/you-should-use
+  $HOME/.oh-my-zsh/custom/plugins/zsh-vim-mode
+  # robbyrussell/oh-my-zsh path:plugins/kubectl
+  zigius/expand-ealias.plugin.zsh
+  wfxr/forgit
+  unixorn/git-extra-commands
+  robbyrussell/oh-my-zsh path:plugins/terraform
+  robbyrussell/oh-my-zsh path:plugins/gitfast
+  robbyrussell/oh-my-zsh path:plugins/thefuck
+"
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+export KITTY_CONFIG_DIRECTORY=~/.config/kitty
+export NOTES_CLI_HOME="~/notes"
+export NOTES_CLI_EDITOR=nvim
+FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+# fasd
+# eval "$(fasd --init auto)"
+
+# setopt +o nomatch
+# # homesick dotfiles
+# # export HOMESHICK_DIR=/usr/local/opt/homeshick
+# # source "/usr/local/opt/homeshick/homeshick.sh"
+# source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+# # homesick autocompletion
+# # fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export LC_ALL=en_US.UTF-8
+export PATH=$PATH:$HOME/.work-lib
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
+
+# rbenv
+# export PATH=$PATH:$HOME/.rbenv/shims
+# eval "$(rbenv init -)"
+
+source <(awless completion zsh)
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
+
+# helm
+# export PATH="$HOME/.bin:$PATH"
+# source <(helm completion zsh)
+
+# fpath=(~/.zsh/ $fpath)
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export NVRC="~/.config/nvim/init.vim"
+
+# # default fzf command
+# # ignored in favour of fzf functions at the bottom of the file
+# # export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g""'
+export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude ".git" --type f'
+
+# Use ~~ as the trigger sequence instead of the default **
+export FZF_COMPLETION_TRIGGER='~~'
+
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
+# History settings
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+export HISTSIZE=100000
+export SAVEHIST=$HISTSIZE
+
+# aliases and custom funcs
+source $HOME/.zsh/zshalias
+source $HOME/.zsh/func
+# source $HOME/.zsh/keys
+source $HOME/.zsh/lf_icons
+
+
+bindkey -s '^o' 'lfcd\n'  # zsh
+bindkey '^[[1;3A' history-substring-search-up
+bindkey '^[[1;3B' history-substring-search-down
+
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/amansour/.asdf/installs/terraform/0.12.8/bin/terraform terraform
+source /Users/amansour/porsche/git/myct-cloud-helpers/cloud-helpers.sh
+export PATH=/Users/amansour/Library/Python/3.7/bin:$PATH
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bindkey -M emacs '^^' fuck-command-line
+bindkey -M vicmd '^^' fuck-command-line
+bindkey -M viins '^^' fuck-command-line

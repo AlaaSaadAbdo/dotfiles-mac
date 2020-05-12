@@ -1,0 +1,41 @@
+# mafredri/zsh-async
+# sindresorhus/pure
+
+
+/users/amansour/.zsh/my_plugins/prompt
+/users/amansour/.oh-my-zsh/custom/plugins/zsh-vim-mode
+
+
+zdharma/fast-syntax-highlighting
+zigius/expand-ealias.plugin.zsh
+mollifier/cd-gitroot
+
+robbyrussell/oh-my-zsh path:plugins/git
+robbyrussell/oh-my-zsh path:plugins/gitfast
+robbyrussell/oh-my-zsh path:plugins/asdf
+robbyrussell/oh-my-zsh path:plugins/extract
+# robbyrussell/oh-my-zsh path:plugins/z
+robbyrussell/oh-my-zsh path:plugins/fasd
+
+wookayin/fzf-fasd
+# andrewferrier/fzf-z
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-autosuggestions
+
+wfxr/forgit
+
+# terminal notification
+MichaelAquilina/zsh-auto-notify
+# marzocchi/zsh-notify
+
+# /users/amansour/.oh-my-zsh/custom/plugins/fast-syntax-highlighting
+
+# bonnefoa/kubectl-fzf
+
+# robbyrussell/oh-my-zsh path:plugins/safe-paste
+# robbyrussell/oh-my-zsh path:plugins/terraform
+# robbyrussell/oh-my-zsh path:plugins/thefuck
+# robbyrussell/oh-my-zsh path:plugins/aws
+# robbyrussell/oh-my-zsh path:plugins/kubectl
+# robbyrussell/oh-my-zsh path:plugins/helm

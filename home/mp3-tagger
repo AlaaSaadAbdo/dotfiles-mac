@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+command -v eyeD3 >/dev/null 2>&1 || { echo >&2 "This script requires eyeD3 but it's not installed.  Aborting."; exit 1; }
+
+if [[ ${1: -4} == ".mp3" ]]; then
+  echo "mp3 file found!!"
+  if [[ $1 =~ ^[0-9] ]]; then
+    read -p "file starts with a number, you want to add track number (y/n)?" choice
+    case "$choice" in
+      y|Y )
+          echo "yes"
+          TRACK=$(echo $1 | awk '{print $1}')
+          ARTIST=$(echo $1 | awk -F" - " '{print $1}' | tr -d '[0-9+\-]' | xargs)
+          TITLE=$(echo $1 | cut -f 1 -d "." | awk -F" - " '{print $2}')
+          eyeD3 --artist "$ARTIST" --track "$TRACK" --title "$TITLE" "$1"
+          exit
+      ;;
+      n|N )
+          echo "no"
+      ;;
+      * )
+          echo "invalid"; exit 1
+      ;;
+    esac
+  fi
+
+  ARTIST=$(echo $1 | awk -F" - " '{print $1}')
+  TITLE=$(echo $1 | cut -f 1 -d "." | awk -F" - " '{print $2}')
+  eyeD3 --artist "$ARTIST" --title "$TITLE" "$1"
+  exit
+fi
+
+if [[ -z "$1" ]]; then
+  read -p "no directory was passed, will use current directory (y/n)?" choice
+  case "$choice" in
+    y|Y ) echo "yes"; DIR=`pwd`;;
+    n|N ) echo "no"; exit 1;;
+    * ) echo "invalid"; exit 1;;
+  esac
+elif [[ "$1" == "." ]]; then
+  read -p "will use current directory (y/n)?" choice
+  case "$choice" in
+    y|Y ) echo "yes"; DIR=`pwd`;;
+    n|N ) echo "no"; exit 1;;
+    * ) echo "invalid"; exit 1;;
+  esac
+elif [[ -d $1 ]]; then
+  read -p "will $1 as a the directory (y/n)?" choice
+  case "$choice" in
+    y|Y ) echo "yes"; DIR=$1;;
+    n|N ) echo "no"; exit 1;;
+    * ) echo "invalid"; exit 1;;
+  esac
+else
+  echo No valid directory was passed
+  exit 1
+fi
+
+ALBUM_FOLDER=`echo $DIR | awk -F"/" '{print $NF}'`
+ARTIST=`echo $ALBUM_FOLDER | awk -F" - " '{print $1}'`
+YEAR=`echo $ALBUM_FOLDER | awk -F" - " '{print $2}'`
+ALBUM=`echo $ALBUM_FOLDER | awk -F" - " '{print $3}'`
+# echo artist "$ARTIST"
+# echo year "$YEAR"
+# echo album "$ALBUM"
+
+for abs_filename in "$DIR"/*.mp3; do
+  # echo "$abs_filename"
+  filename=`echo $abs_filename | awk -F"/" '{print $NF}'`
+  TRACK=`echo "$filename" | awk '{print $1}'`
+  TITLE=`echo "$filename" | awk -F"." '{print $1}' | cut -f 1 -d ' ' --complement`
+  # echo track: "$TRACK"
+  # echo title: "$TITLE"
+  eyeD3 --artist "$ARTIST" --album "$ALBUM" --release-year "$YEAR" --track "$TRACK" --title "$TITLE" "$abs_filename"
+done

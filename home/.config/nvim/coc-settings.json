@@ -1,0 +1,65 @@
+{
+  "codeLens.enable": true,
+  "suggest.maxPreviewWidth": 100,
+  "suggest.enablePreselect": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.maxWindowHeight": 20,
+  "git.addGBlameToBufferVar": true,
+  "git.addGBlameToVirtualText": true,
+  "explorer.icon.enableVimDevicons": false,
+  "explorer.previewAction.onHover": false,
+  "explorer.file.autoReveal": true,
+  "git.enableGutters": true,
+  "explorer.file.showHiddenFiles": false,
+  "explorer.sources": [
+    {
+      "name": "buffer",
+      "expand": true
+    },
+    {
+      "name": "file",
+      "expand": true
+    }
+  ],
+  "explorer.keyMappings": {
+    "<space>": "toggleSelection",
+    "C": "cd",
+    "<cr>": ["expandable?", "expandOrCollapse", "open"]
+  },
+  "explorer.presets": {
+    "floating": {
+      "position": "floating"
+   }
+  },
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.column.git.showIgnored": false,
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "list.normalMappings": {
+  "t": "action:tabe",
+  "E": "action:vsplit",
+  "s": "action:split",
+  "d": "expr:GetDeleteAction"
+  },
+    "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"],
+      "initializationOptions": {}
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    }
+  },
+  "snippets.ultisnips.directories": [
+  "UltiSnips",
+  "gosnippets/UltiSnips"
+  ]
+
+}

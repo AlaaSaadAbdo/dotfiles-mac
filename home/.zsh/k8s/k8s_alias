@@ -1,0 +1,137 @@
+# alias kub='print -z $(cat ~/.zsh/k8s | fzf | awk \'{print $2}\' | awk -F\'=\' \'{print $1}\')'
+# This command is used a LOT both below and in daily life
+ealias k='kubectl'
+
+# Execute a kubectl command against all namespaces
+ealias kca='f(){ kubectl "$@" --all-namespaces;  unset -f f; }; f'
+
+# Apply a YML file
+ealias kaf='kubectl apply -f'
+
+# Drop into an interactive terminal on a container
+ealias keti='kubectl exec -ti'
+
+# Manage configuration quickly to switch contexts between local, dev ad staging.
+ealias kcuc='kubectl config use-context'
+ealias kcsc='kubectl config set-context'
+ealias kcdc='kubectl config delete-context'
+ealias kccc='kubectl config current-context'
+
+# List all contexts
+ealias kcgc='kubectl config get-contexts'
+
+# General ealiases
+ealias kdel='kubectl delete'
+ealias kdelf='kubectl delete -f'
+
+# Pod management.
+ealias kgp='kubectl get pods'
+ealias kgpa='kubectl get pods --all-namespaces'
+ealias kgpw='kgp --watch'
+ealias kgpwide='kgp -o wide'
+ealias kep='kubectl edit pods'
+ealias kdp='kubectl describe pods'
+ealias kdelp='kubectl delete pods'
+
+# get pod by label: kgpl "app=myapp" -n myns
+ealias kgpl='kgp -l'
+
+# Service management.
+ealias kgs='kubectl get svc'
+ealias kgsa='kubectl get svc --all-namespaces'
+ealias kgsw='kgs --watch'
+ealias kgswide='kgs -o wide'
+ealias kes='kubectl edit svc'
+ealias kds='kubectl describe svc'
+ealias kdels='kubectl delete svc'
+
+# Ingress management
+ealias kgi='kubectl get ingress'
+ealias kgia='kubectl get ingress --all-namespaces'
+ealias kei='kubectl edit ingress'
+ealias kdi='kubectl describe ingress'
+ealias kdeli='kubectl delete ingress'
+
+# Namespace management
+ealias kgns='kubectl get namespaces'
+ealias kens='kubectl edit namespace'
+ealias kdns='kubectl describe namespace'
+ealias kdelns='kubectl delete namespace'
+ealias kcn='kubectl config set-context $(kubectl config current-context) --namespace'
+
+# ConfigMap management
+ealias kgcm='kubectl get configmaps'
+ealias kgcma='kubectl get configmaps --all-namespaces'
+ealias kecm='kubectl edit configmap'
+ealias kdcm='kubectl describe configmap'
+ealias kdelcm='kubectl delete configmap'
+
+# Secret management
+ealias kgsec='kubectl get secret'
+ealias kgseca='kubectl get secret --all-namespaces'
+ealias kdsec='kubectl describe secret'
+ealias kdelsec='kubectl delete secret'
+
+# Deployment management.
+ealias kgd='kubectl get deployment'
+ealias kgda='kubectl get deployment --all-namespaces'
+ealias kgdw='kgd --watch'
+ealias kgdwide='kgd -o wide'
+ealias ked='kubectl edit deployment'
+ealias kdd='kubectl describe deployment'
+ealias kdeld='kubectl delete deployment'
+ealias ksd='kubectl scale deployment'
+ealias krsd='kubectl rollout status deployment'
+kres(){
+    kubectl set env $@ REFRESHED_AT=$(date +%Y%m%d%H%M%S)
+}
+
+# Rollout management.
+ealias kgrs='kubectl get rs'
+ealias krh='kubectl rollout history'
+ealias kru='kubectl rollout undo'
+
+# Statefulset management.
+ealias kgss='kubectl get statefulset'
+ealias kgssa='kubectl get statefulset --all-namespaces'
+ealias kgssw='kgss --watch'
+ealias kgsswide='kgss -o wide'
+ealias kess='kubectl edit statefulset'
+ealias kdss='kubectl describe statefulset'
+ealias kdelss='kubectl delete statefulset'
+ealias ksss='kubectl scale statefulset'
+ealias krsss='kubectl rollout status statefulset'
+
+# Port forwarding
+ealias kpf="kubectl port-forward"
+
+# Tools for accessing all information
+ealias kga='kubectl get all'
+ealias kgaa='kubectl get all --all-namespaces'
+
+# Logs
+ealias kl='kubectl logs'
+ealias kl1h='kubectl logs --since 1h'
+ealias kl1m='kubectl logs --since 1m'
+ealias kl1s='kubectl logs --since 1s'
+ealias klf='kubectl logs -f'
+ealias klf1h='kubectl logs --since 1h -f'
+ealias klf1m='kubectl logs --since 1m -f'
+ealias klf1s='kubectl logs --since 1s -f'
+
+# File copy
+ealias kcp='kubectl cp'
+
+# Node Management
+ealias kgno='kubectl get nodes'
+ealias keno='kubectl edit node'
+ealias kdno='kubectl describe node'
+ealias kdelno='kubectl delete node'
+
+# PVC management.
+ealias kgpvc='kubectl get pvc'
+ealias kgpvca='kubectl get pvc --all-namespaces'
+ealias kgpvcw='kgpvc --watch'
+ealias kepvc='kubectl edit pvc'
+ealias kdpvc='kubectl describe pvc'
+ealias kdelpvc='kubectl delete pvc'
