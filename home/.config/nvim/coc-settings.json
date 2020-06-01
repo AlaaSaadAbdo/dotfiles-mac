@@ -14,7 +14,7 @@
   "explorer.sources": [
     {
       "name": "buffer",
-      "expand": true
+      "expand": false
     },
     {
       "name": "file",
@@ -24,7 +24,7 @@
   "explorer.keyMappings": {
     "<space>": "toggleSelection",
     "C": "cd",
-    "<cr>": ["expandable?", "expandOrCollapse", "open"]
+   "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"]
   },
   "explorer.presets": {
     "floating": {

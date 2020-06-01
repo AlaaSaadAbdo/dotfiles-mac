@@ -100,6 +100,9 @@ let g:coc_explorer_global_presets = {
 \   '.vim': {
 \     'root-uri': expand('~/.config/nvim/'),
 \   },
+\   'sloscomm': {
+\     'root-uri': expand('~/porsche/git/sloscomm/'),
+\   },
 \   'floating': {
 \     'position': "floating",
 \   },
@@ -117,14 +120,15 @@ let g:coc_explorer_global_presets = {
 \ }
 
 nmap <leader>fc :CocCommand explorer --no-toggle<CR>
-nmap <leader>v  :CocCommand explorer --preset .vim<CR>
-nmap <leader>ff :CocCommand explorer --preset floating<CR>
-nmap <leader>q  :CocCommand explorer <CR>
-nmap <leader>fl :CocCommand explorer --position=floating --floating-position=left-center --floating-width=50 --floating-height=-10<CR>
-nmap <leader>fr :CocCommand explorer --position=floating --floating-position=right-center --floating-width=50 --floating-height=-10<CR>
+nmap <leader>v  :CocCommand explorer --width=40 --preset .vim<CR>
+nmap <leader>ff :CocCommand explorer --width=40 --preset floating<CR>
+nmap <leader>q  :CocCommand explorer --width=40<CR>
+nmap <leader>qf :CocCommand explorer --width=40 --preset sloscomm<CR>
+" nmap <leader>fl :CocCommand explorer --position=floating --floating-position=left-center --floating-width=50 --floating-height=-10<CR>
+" nmap <leader>fr :CocCommand explorer --position=floating --floating-position=right-center --floating-width=50 --floating-height=-10<CR>
 " nmap <leader>s  :CocCommand explorer --preset simplify<CR>
-nmap <leader>a  :CocCommand explorer --preset a<CR>
-nmap <leader>b  :CocCommand explorer --preset b<CR>
+" nmap <leader>a  :CocCommand explorer --preset a<CR>
+" nmap <leader>b  :CocCommand explorer --preset b<CR>
 
 " nmap <leader>s  :CocAction<CR>
 
@@ -135,13 +139,18 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " autocmd FileType startify :CocCommand explorer --no-toggle
 " nnoremap <silent> <leader><space>s  :<C-u>CocList --normal -A snippets<CR>
 
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-]> <Plug>(coc-snippets-expand-jump)
 " 1}}} "
 
 "=== indentline
 " indentline {{{ "
-let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'tagbar', 'coc-explorer', 'startify', 'man']
+let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'tagbar', 'coc-explorer', 'startify', 'man', "fzf", "floaterm"]
 " }}} indentline "
 
 "=== peekaboo
@@ -543,6 +552,8 @@ let g:fzf_colors =
 
 let g:fzf_layout = { 'down': '~60%' }
 
+noremap <leader>fw :Ag <C-r>=expand('<cword>')<CR>
+
 """done by default now by :Files
 " nnoremap <silent> <leader>e :call Fzf_dev()<CR>
 "
@@ -778,3 +789,11 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " }}} == "
+
+"=== ack {{{ "
+cnoreabbrev Ack Ack!
+nnoremap <Leader>wa :Ack! <C-r>=expand('<cword>')<CR>
+let g:ackprg = 'ag --nogroup --nocolor'
+if executable('ag')
+endif
+" }}} a "

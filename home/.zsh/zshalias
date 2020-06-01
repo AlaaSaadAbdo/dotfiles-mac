@@ -141,9 +141,13 @@ ealias pawless="source <(awless completion zsh)"
 alias spass='gopass show $(gopass list -f | fzf )'
 ealias dotfiles="homeshick track dotfiles"
 ealias hs="homeshick"
+alias serve="browser-sync start --server --files ."
+# The command alias to start the browser-sync server
+alias local_serve="browser-sync start --server --files . --no-notify --host $SERVER_IP --port 9000"
 
 ### temp
 ealias corona_status_a="curl 'https://corona-stats.online?source=2'"
 ealias corona_status_b="curl -s -L 'covid19.trackercli.com/germany'"
 ealias de_corona_status_a="curl 'https://corona-stats.online/germany?source=2'"
 ealias de_corona_status_b="curl -s -L 'covid19.trackercli.com/germany'"
+

@@ -7,6 +7,7 @@ Plug 'idbrii/vim-gogo'
 
 " Aesthetics - Main
 Plug 'masukomi/vim-markdown-folding'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'tpope/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -19,13 +20,16 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-journal'
 Plug 'Yggdroot/indentLine'
 Plug 'dstein64/vim-startuptime'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'reedes/vim-lexical'
 Plug 'arzg/vim-colors-xcode'
 
 " Onhold
 Plug 'voldikss/vim-floaterm'
+
+
+Plug 'HerringtonDarkholme/yats.vim'
 
 " TODO Remove if not needed
 " Plug 'mhinz/vim-startify'
@@ -76,6 +80,7 @@ Plug 'dense-analysis/ale'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/vim-easy-align'
+Plug 'mileszs/ack.vim'
 Plug 'alvan/vim-closetag', { 'for': 'HTML' }
 
 " TODO remove after keeping in hold
@@ -126,7 +131,7 @@ set shortmess+=c
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
-autocmd FileType tagbar,man setlocal signcolumn=no
+autocmd FileType tagbar,man,floaterm,fzf,qf setlocal signcolumn=no
 
 " disabled for pairing
 " dynamic hybrid number column (relative outside of insert mode and absolute in insert mode)
@@ -222,13 +227,15 @@ nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
+nmap <leader>bt :FloatermNew --height=0.4 --wintype=window --autoclose=2
 xmap <leader>a gaip*
 nmap <leader>a gaip*
 nmap <leader>d <Plug>(pydocstring)
 nmap <leader>f :GFiles<CR>
 nmap <leader>F :Files<CR>
 nmap <leader>C :Codi!!
-nmap <leader>j :set filetype=journal<CR>
+" disabled in favor of join
+" nmap <leader>j :set filetype=journal<CR>
 nmap <leader>k :ColorToggle<CR>
 nmap <leader>u :UndotreeToggle<CR>
 nmap <leader>c :BD<CR>
@@ -262,13 +269,16 @@ nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
 
+
 " search for something in the history of the repo
 " Glog -Stest -- " search for text in history of git
 " Glog -- diff2  " git the history of file diff2
 
 nnoremap x "_x
-vnoremap x "_x
+vnoremap x "_xa
 
+
+nnoremap <silent> <leader>j :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
 " replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 

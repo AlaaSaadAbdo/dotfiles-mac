@@ -122,4 +122,7 @@ export HOMESHICK_DIR=/usr/local/opt/homeshick
 source "/usr/local/opt/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 
+# to serve local server to check from othre devices
+# export SERVER_IP=`ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2`
+
 # zprof

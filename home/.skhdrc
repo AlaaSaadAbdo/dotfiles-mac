@@ -14,10 +14,10 @@ shift + cmd - up : yabai -m window --swap north
 shift + cmd - right : yabai -m window --swap east
 
 # move window
-# shift + alt - left : yabai -m window --warp west
-# shift + alt - down : yabai -m window --warp south
-# shift + alt - up : yabai -m window --warp north
-# shift + alt - right : yabai -m window --warp east
+shift + alt - left : yabai -m window --warp west
+shift + alt - down : yabai -m window --warp south
+shift + alt - up : yabai -m window --warp north
+shift + alt - right : yabai -m window --warp east
 
 # balance size of windows
 shift + alt - 0 : yabai -m space --balance
@@ -178,4 +178,4 @@ ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # ctrl + alt + cmd - s : brew services restart skhd
 
-ctrl + cmd - m : ~/.config/yabai/toggle_monocle_mode
+ctrl + cmd - n : ~/.config/yabai/toggle_monocle_mode
