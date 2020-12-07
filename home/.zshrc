@@ -47,7 +47,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 HISTFILE=~/.zsh_history
 
 source ~/.zsh_plugins.sh
-source $HOME/.zsh/k8s/k8s_alias
+# source $HOME/.zsh/k8s/k8s_alias
 source $HOME/.zsh/zshalias
 source $HOME/.zsh/func
 source $HOME/.zsh/lf_icons
@@ -125,4 +125,30 @@ fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 # to serve local server to check from othre devices
 # export SERVER_IP=`ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2`
 
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+# POS
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin/:$PATH"
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin/:$PATH"
+export PATH="/usr/local/opt/findutils/libexec/gnubin/:$PATH"
+export PATH="/usr/local/opt/gawk/libexec/gnubin/:$PATH"
+export PATH="/usr/local/opt/gnu-indent/libexec/gnubin/:$PATH"
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+export PATH="/usr/local/opt/gnutls/bin:$PATH"
+
+export PATH="/usr/local/sbin:$PATH"
+source ~/.config/pos-aws-commons/configured-assume-role
+
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+
 # zprof
+source ~/.config/pos-aws-commons/configured-assume-role

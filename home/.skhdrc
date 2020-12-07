@@ -1,5 +1,5 @@
 # open terminal
-cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --listen-on unix:/tmp/mykitty --single-instance -d ~
 
 # focus window
 alt - left : yabai -m window --focus west
@@ -44,11 +44,13 @@ cmd + alt - n : yabai -m space --create && \
 
 # destroy desktop
 cmd + alt - w : yabai -m space --destroy
+# cmd + ctrl - w : yabai -m space --destroy
+
+# cmd + alt - x : yabai -m space --focus recent
+# cmd + alt - z : yabai -m space --focus prev
+# cmd + alt - c : yabai -m space --focus next
 
 # fast focus desktop
-cmd + alt - x : yabai -m space --focus recent
-cmd + alt - z : yabai -m space --focus prev
-cmd + alt - c : yabai -m space --focus next
 cmd - 1 : yabai -m space --focus 1
 cmd - 2 : yabai -m space --focus 2
 cmd - 3 : yabai -m space --focus 3
@@ -61,13 +63,15 @@ cmd - 9 : yabai -m space --focus 9
 cmd - 0 : yabai -m space --focus 10
 
 # move space to display 2
+cmd + alt - 1 : yabai -m space --display 1
 cmd + alt - 2 : yabai -m space --display 2
 
+# shift + cmd - x : yabai -m window --space recent; yabai -m space --focus recent
+#
+# shift + cmd - z : yabai -m window --space prev; yabai -m space --focus prev
+# shift + cmd - c : yabai -m window --space next; yabai -m space --focus next
 
 # send window to desktop and follow focus
-shift + cmd - x : yabai -m window --space recent; yabai -m space --focus recent
-shift + cmd - z : yabai -m window --space prev; yabai -m space --focus prev
-shift + cmd - c : yabai -m window --space next; yabai -m space --focus next
 shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
 shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
 shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
@@ -81,6 +85,7 @@ shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
 # send window to desktop without follow focus
 shift + alt - 1 : yabai -m window --space  1
+
 shift + alt - 2 : yabai -m window --space  2
 shift + alt - 3 : yabai -m window --space  3
 shift + alt - 4 : yabai -m window --space  4
@@ -114,17 +119,22 @@ shift + ctrl - s : yabai -m window --move rel:0:20
 shift + ctrl - w : yabai -m window --move rel:0:-20
 shift + ctrl - d : yabai -m window --move rel:20:0
 
-# increase window size
-shift + alt - a : yabai -m window --resize left:-20:0
-shift + alt - s : yabai -m window --resize bottom:0:20
-shift + alt - w : yabai -m window --resize top:0:-20
-shift + alt - d : yabai -m window --resize right:20:0
+# resize window
+cmd + alt - h : \
+    yabai -m window --resize left:-20:0 ; \
+    yabai -m window --resize right:-20:0
 
-# decrease window size
-shift + cmd - a : yabai -m window --resize left:20:0
-shift + cmd - s : yabai -m window --resize bottom:0:-20
-shift + cmd - w : yabai -m window --resize top:0:20
-shift + cmd - d : yabai -m window --resize right:-20:0
+cmd + alt - j : \
+    yabai -m window --resize bottom:0:20 ; \
+    yabai -m window --resize top:0:20
+
+cmd + alt - k : \
+    yabai -m window --resize top:0:-20 ; \
+    yabai -m window --resize bottom:0:-20
+
+cmd + alt - l : \
+    yabai -m window --resize right:20:0 ; \
+    yabai -m window --resize left:20:0
 
 # set insertion point in focused container
 ctrl + alt - h : yabai -m window --insert west
@@ -166,16 +176,54 @@ alt - t : yabai -m window --toggle float;\
 # toggle sticky
 alt - s : yabai -m window --toggle sticky
 
-# toggle sticky, float and resize to picture-in-picture size
-alt - p : yabai -m window --toggle sticky;\
-          yabai -m window --grid 5:5:4:0:1:1
+# toggle topmost
+alt - o : yabai -m window --toggle topmost
 
-# change layout of desktop
+
+# # toggle sticky, float and resize to picture-in-picture size
+# alt - p : yabai -m window --toggle sticky;\
+#           yabai -m window --toggle topmost;\
+#           yabai -m window --grid 5:5:4:0:1:1
+
+# toggle sticky, float and resize to picture-in-picture size
+alt - p : yabai -m window --toggle sticky && yabai -m window --grid 5:5:4:0:1:1i && yabai -m window --toggle topmost
+# alt - p : yabai -m window --toggle sticky && \
+#           yabai -m window --toggle pip
+
+
+# change layout of desktop to bsp
 ctrl + alt - a : yabai -m space --layout bsp
+
+# change layout of desktop to float
 ctrl + alt - d : yabai -m space --layout float
 
+# restart yabai
+# ctrl + alt + cmd - r : brew services restart yabai
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
 
 # ctrl + alt + cmd - s : brew services restart skhd
 
-ctrl + cmd - n : ~/.config/yabai/toggle_monocle_mode
+# toggle monocle mode
+# ctrl + cmd - n : ~/.config/yabai/toggle_monocle_mode
+
+# delete empty spaces
+ctrl + alt + cmd - backspace : ~/.config/yabai/clean_empty_spaces.sh
+
+# # delete empty spaces + create a new one
+# ctrl + cmd - t : ~/.config/yabai/delete_empty_spaces_new_space
+
+# Focus window up/down in stack
+# ctrl - n : yabai -m window --focus stack.next
+# ctrl - p : yabai -m window --focus stack.prev
+
+# Note that this only works when the active window does *not* already belong to a stack
+# Add the active window  to the window or stack to the {direction}
+cmd + ctrl - left  : yabai -m window west --stack $(yabai -m query --windows --window | jq -r '.id')
+cmd + ctrl - down  : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
+cmd + ctrl - up    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
+cmd + ctrl - right : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
+
+.blacklist [
+"intellij idea"
+]

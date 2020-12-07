@@ -1,5 +1,7 @@
 {
   "codeLens.enable": true,
+  "typescript.referencesCodeLens.enable": true,
+  "typescript.implementationsCodeLens.enable": true,
   "suggest.maxPreviewWidth": 100,
   "suggest.enablePreselect": false,
   "diagnostic.checkCurrentLine": true,
@@ -10,6 +12,7 @@
   "explorer.previewAction.onHover": false,
   "explorer.file.autoReveal": true,
   "git.enableGutters": true,
+  "python.jediEnabled": false,
   "explorer.file.showHiddenFiles": false,
   "explorer.sources": [
     {
@@ -46,7 +49,8 @@
   },
     "languageserver": {
     "terraform": {
-      "command": "terraform-lsp",
+      "command": "terraform-ls",
+      "args":["serve"],
       "filetypes": ["terraform"],
       "initializationOptions": {}
     },
@@ -57,9 +61,34 @@
       "ignoredRootPaths": ["~"]
     }
   },
+  "tsserver.npm": "/Users/amansour/.asdf/shims/npm",
+  // "tsserver.log": "verbose",
+  // "tsserver.trace.server": "verbose",
   "snippets.ultisnips.directories": [
   "UltiSnips",
   "gosnippets/UltiSnips"
-  ]
+  ],
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "coc.preferences.formatOnTypeFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+    "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "coc.preferences.formatOnInsertLeave": true,
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+  "eslint.packageManager":"yarn",
+  "go.goplsPath": "/Users/amansour/go/bin/gopls",
+  "go.goplsOptions": {
+    "completeUnimported": true
+  }
 
 }

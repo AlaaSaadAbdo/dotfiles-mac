@@ -1,11 +1,20 @@
 """ Vim-Plug
 call plug#begin()
 
+" Plug 'junegunn/rainbow_parentheses.vim'
+" " let g:rainbow#max_level = 16
+" let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{','}']]
+" Plug 'jaxbot/semantic-highlight.vim'
+" let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
+" Plug 'sheerun/vim-polyglot'
+
 " Presentation
 Plug 'idbrii/vim-remarkjs'
 Plug 'idbrii/vim-gogo'
 
 " Aesthetics - Main
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'masukomi/vim-markdown-folding'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'mzlogin/vim-markdown-toc'
@@ -20,22 +29,20 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-journal'
 Plug 'Yggdroot/indentLine'
 Plug 'dstein64/vim-startuptime'
-" Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'reedes/vim-lexical'
-Plug 'arzg/vim-colors-xcode'
 
-" Onhold
+" Trial
+Plug 'gyim/vim-boxdraw'
+Plug 'vim-scripts/DrawIt'
 Plug 'voldikss/vim-floaterm'
-
-
+Plug 'knubie/vim-kitty-navigator'
 Plug 'HerringtonDarkholme/yats.vim'
-
-" TODO Remove if not needed
-" Plug 'mhinz/vim-startify'
-" Plug 'junegunn/rainbow_parentheses.vim'
-" Plug 'morhetz/gruvbox'
-" Plug 'junegunn/vim-peekaboo'
+Plug 'thinca/vim-qfreplace'
+Plug 'yegappan/greplace'
+" Plug 'gyim/vim-boxdraw'
+Plug 'psliwka/vim-smoothie'
+Plug 'djoshea/vim-autoread'
 
 " Functionalities
 Plug 'prabirshrestha/async.vim'
@@ -48,7 +55,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'alok/notational-fzf-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neomake/neomake'
-Plug 'rizzatti/dash.vim'
 Plug 'qpkorr/vim-bufkill'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch.vim'
@@ -64,12 +70,11 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'will133/vim-dirdiff'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/Colorizer'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'metakirby5/codi.vim'
@@ -78,28 +83,10 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'hashivim/vim-terraform'
 Plug 'dense-analysis/ale'
 Plug 'juliosueiras/vim-terraform-completion'
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 Plug 'junegunn/vim-easy-align'
 Plug 'mileszs/ack.vim'
 Plug 'alvan/vim-closetag', { 'for': 'HTML' }
-
-" TODO remove after keeping in hold
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'mattn/vim-lsp-settings'
-" Plug 'ekalinin/Dockerfile.vim'
-" Plug 'scrooloose/nerdtree'
-" Plug 'SirVer/ultisnips'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zchee/deoplete-jedi'
-" Plug 'lighttiger2505/deoplete-vim-lsp'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'tsony-tsonev/nerdtree-git-plugin', { 'on': 'NERDTreeToggle'}
-" Plug 'alex-tu-cc/vim-UltiSnips'
-" Plug 'elzr/vim-json'
-" Plug 'vim-scripts/loremipsum'
-" Plug 'chrisbra/sudoedit.vim'
-" Plug 'ervandew/supertab'
 
 call plug#end()
 
@@ -152,32 +139,25 @@ syntax on
 set nocompatible
 filetype plugin on
 set background=dark
-" color gruvbox
 colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'hard'
 highlight Comment cterm=italic gui=italic
 highlight Whitespace ctermfg=3 guifg=3
 highlight Normal guibg=NONE ctermbg=NONE
 highlight LineNr guibg=NONE ctermbg=NONE
 
-" set cursorcolumn
-set cursorline
-
-" set autowrite                   " Automatically save before :next, :make etc.
-set splitright                  " Vertical windows should be split to right
-set splitbelow                  " Horizontal windows should split to bottom
-set showcmd                     " Show me what I'm typing
-set autoread                    " Automatically read changed files
-" Enter automatically into the files directory
-" autocmd BufEnter * silent! lcd %:p:h
-
+set cursorline " set cursorcolumn
+set autowrite  " Automatically save before :next, :make etc.
+set splitright " Vertical windows should be split to right
+set splitbelow " Horizontal windows should split to bottom
+set showcmd    " Show me what I'm typing
+set autoread   " Automatically read changed files
 
 """ Other Configurations
 filetype plugin indent on
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd noshowmode
-set list listchars=trail:»,tab:»-
+set list listchars=trail:·,tab:»-
 set linebreak
 set conceallevel=0
 autocmd BufReadPre,FileReadPre * :hi TrailSpace guifg=#b16286
@@ -189,6 +169,7 @@ set wrap breakindent
 set encoding=utf-8
 set number
 set title
+set diffopt+=vertical
 " disable auto comment on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set shortmess-=S
@@ -221,13 +202,13 @@ endfunction
 """ Custom Mappings
 
 let mapleader=","
-nmap <leader>w :TagbarToggle<CR>
-nmap <leader>ft :TagbarOpen fj<CR>
+" nmap <leader>w :TagbarToggle<CR>
+" nmap <leader>ft :TagbarOpen fj<CR>
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
-nmap <leader>bt :FloatermNew --height=0.4 --wintype=window --autoclose=2
+nmap <leader>bt :FloatermNew --height=0.4 --wintype=window --autoclose=2<CR>
 xmap <leader>a gaip*
 nmap <leader>a gaip*
 nmap <leader>d <Plug>(pydocstring)
@@ -236,13 +217,14 @@ nmap <leader>F :Files<CR>
 nmap <leader>C :Codi!!
 " disabled in favor of join
 " nmap <leader>j :set filetype=journal<CR>
-nmap <leader>k :ColorToggle<CR>
+" nmap <leader>k :ColorToggle<CR>
 nmap <leader>u :UndotreeToggle<CR>
 nmap <leader>c :BD<CR>
-nmap <leader>Z :Dash<CR>
+" nmap <leader>Z :Dash<CR>
 nmap <leader>NV :NV<CR>
-" nmap <Leader>b :Buffers<CR>
-" nmap <Leader>H :History<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>H :History<CR>
+nmap <Leader>W :Windows<CR>
 " nmap <Leader>z :NERDTreeFocus<cr>R<c-w><c-p>
 " nmap <leader>q :NERDTreeToggle<CR>
 " nmap <leader>fn :NERDTreeFocus<CR>
@@ -302,10 +284,19 @@ noremap pumvisible() ? "\" : " "
 
 " vimdiff test
 " highlight! link DiffText MatchParen
-
+autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal foldmethod=syntax
+" set foldcolumn=1 "defines 1 col at window left, to indicate folding
+let javaScript_fold=1 "activate folding by JS syntax
 set foldmethod=marker
 set foldlevel=99
 
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " Search current word in google
 nnoremap <silent> <leader>sg :!Open "http://google.com/search?q="<cword><cr>

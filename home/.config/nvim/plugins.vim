@@ -92,9 +92,19 @@ nnoremap <silent> <Leader>I :call <SID>MkdxFzfQuickfixHeaders()<Cr>
 " COC {{{1 "
 inoremap <silent> <C-right> <C-R>=coc#start({'source': 'snippets'})<CR>
 inoremap <silent><expr> <c-space> coc#refresh()
-nmap ge :CocCommand explorer<CR>
-nmap gE :CocCommand explorer --position=right<CR>
-" nmap <space>t :CocCommand explorer --position=tab<CR>
+" nmap ge :CocCommand explorer<CR>
+" nmap gE :CocCommand explorer --position=right<CR>
+
+" hide floating windows (in case they are stuck)
+
+" Run jest for current project
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
+
+" Run jest for current file
+command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+
+" Run jest for current test
+nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 let g:coc_explorer_global_presets = {
 \   '.vim': {
@@ -120,43 +130,46 @@ let g:coc_explorer_global_presets = {
 \ }
 
 nmap <leader>fc :CocCommand explorer --no-toggle<CR>
-nmap <leader>v  :CocCommand explorer --width=40 --preset .vim<CR>
-nmap <leader>ff :CocCommand explorer --width=40 --preset floating<CR>
-nmap <leader>q  :CocCommand explorer --width=40<CR>
-nmap <leader>qf :CocCommand explorer --width=40 --preset sloscomm<CR>
-" nmap <leader>fl :CocCommand explorer --position=floating --floating-position=left-center --floating-width=50 --floating-height=-10<CR>
-" nmap <leader>fr :CocCommand explorer --position=floating --floating-position=right-center --floating-width=50 --floating-height=-10<CR>
-" nmap <leader>s  :CocCommand explorer --preset simplify<CR>
-" nmap <leader>a  :CocCommand explorer --preset a<CR>
-" nmap <leader>b  :CocCommand explorer --preset b<CR>
-
-" nmap <leader>s  :CocAction<CR>
+nmap <leader>v  :CocCommand explorer --width=35 --preset .vim<CR>
+nmap <leader>ff :CocCommand explorer --width=35 --preset floating<CR>
+nmap <leader>q  :CocCommand explorer --width=35<CR>
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
-" autocmd BufRead,BufNewFile coc-setting.json syntax match Comment +\/\/.\+$+
+" autocmd FileType json set conceallevel=0
+" au BufNewFile,BufRead *.json set conceallevel=0
 
-
-" autocmd FileType startify :CocCommand explorer --no-toggle
-" nnoremap <silent> <leader><space>s  :<C-u>CocList --normal -A snippets<CR>
-
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+" highlighg symbol with coc-highlight (slower thant word plugin)
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-]> <Plug>(coc-snippets-expand-jump)
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>do <Plug>(coc-codeaction)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> <space>p :call CocAction('doHover')<CR>
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+nnoremap <silent> <space>e :<C-u>CocList extentions<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+nnoremap <space>hh :call coc#util#float_hide()<CR>
 " 1}}} "
 
 "=== indentline
 " indentline {{{ "
-let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'tagbar', 'coc-explorer', 'startify', 'man', "fzf", "floaterm"]
+let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'tagbar', 'coc-explorer', 'startify', 'man', "fzf", "floaterm", "json", "help"]
+let g:indentLine_leadingSpaceChar = '·'
 " }}} indentline "
-
-"=== peekaboo
-" peekaboo {{{ "
-" let g:peekaboo_window=50
-" }}} peekaboo "
 
 "=== vim-lexical
 " vim-lexical {{{ "
@@ -171,11 +184,10 @@ augroup END
 
 "===== markdown
 " markdown {{{ "
-let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
-" }}}"
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 let g:markdown_syntax_conceal = 0
 let g:markdown_minlines = 100
+" }}}"
 
 "=== current_word
 " current_word {{{1 "
@@ -257,8 +269,8 @@ autocmd BufAdd NERD_tree* :let b:vim_current_word_disabled_in_this_buffer = 1
 "
 " "=== vim-lsp
 " " config
-" let g:lsp_diagnostics_enabled = 0
-" let g:go_def_mapping_enabled = 0
+let g:lsp_diagnostics_enabled = 0
+let g:go_def_mapping_enabled = 0
 "
 " " let coc take care of lsp
 " 1}}} "
@@ -355,72 +367,6 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 " i}}} "
 
-"=== Tagbar
-" tagbar {{{1 "
-let g:tagbar_show_linenumbers = 0
-let g:tagbar_width=45
-let g:tagbar_type_go = {
-      \ 'ctagstype' : 'go',
-      \ 'kinds'     : [
-          \ 'p:package',
-          \ 'i:imports:1',
-          \ 'c:constants',
-          \ 'v:variables',
-          \ 't:types',
-          \ 'n:interfaces',
-          \ 'w:fields',
-          \ 'e:embedded',
-          \ 'm:methods',
-          \ 'r:constructor',
-          \ 'f:functions'
-  \ ],
-  \ 'sro' : '.',
-  \ 'kind2scope' : {
-      \ 't' : 'ctype',
-      \ 'n' : 'ntype'
-  \ },
-  \ 'scope2kind' : {
-      \ 'ctype' : 't',
-      \ 'ntype' : 'n'
-  \ },
-  \ 'ctagsbin'  : 'gotags',
-  \ 'ctagsargs' : '-sort -silent'
-\ }
-" 1}}} "
-
-" check if needed TODO after sometime evaluate against coc-explorer
-"=== nerdtree
-" nerdtree {{{1 "
-" " let NERDTreeShowHidden=1
-" let NERDTreeShowLineNumbers=0
-" " let NERDTreeChDirMode = 2 # disabled for vim-rooter
-" let NERDTreeShowBookmarks=1
-" let g:NERDTreeWinSize=35
-" let NERDTreeAutoDeleteBuffer = 1
-" let NERDTreeStatusline = "%{ getcwd() }"
-" " let NERDTreeQuitOnOpen = 1
-" " let NERDTreeMinimalUI = 1
-" let NERDTreeDirArrows = 0
-" if exists("g:NERDTree") && g:NERDTree.IsOpen()
-"   autocmd BufWritePost * NERDTreeFocus | execute 'normal R' | wincmd p
-" endif
-" autocmd BufAdd NERD_tree* set nocursorcolumn
-" "no buffers in nerdtree
-" nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
-" autocmd FileType nerdtree let t:nerdtree_winnr = bufwinnr('%')
-" autocmd BufWinEnter * call PreventBuffersInNERDTree()
-" function! PreventBuffersInNERDTree()
-"   if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree'
-"     \ && exists('t:nerdtree_winnr') && bufwinnr('%') == t:nerdtree_winnr
-"     \ && &buftype == '' && !exists('g:launching_fzf')
-"     let bufnum = bufnr('%')
-"     close
-"     exe 'b ' . bufnum
-"   endif
-"   if exists('g:launching_fzf') | unlet g:launching_fzf | endif
-" endfunction
-" 1}}} "
-
 "=== nerdcommenter
 " nerdcommenter {{{1 "
 " Add spaces after comment delimiters by default
@@ -438,13 +384,6 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDCustomDelimiters = { 'helm': { 'left': '#','right': '' }, 'json': { 'left': '//', 'right': '' } }
 " 1}}} "
 
-" under evaluation vs coc-snippets TODO
-" ultisnips {{{1 "
-" "=== Ultisnips
-" let g:UltiSnipsSnippetDirectories=['/Users/amansour/.config/nvim/plugged/vim-snippets/UltiSnips', '/Users/amansour/.config/nvim/plugged/vim-kubernetes/UltiSnips']
-" let g:UltiSnipsExpandTrigger="<C-]>"
-" 1}}} "
-
 "=== vim-terraform
 " terraform {{{1 "
 "Allow vim-terraform to align settings automatically with Tabularize.
@@ -460,14 +399,17 @@ let g:terraform_fmt_on_save=1
 let g:ale_completion_enabled = 0
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'typescript': [],
 \   'terraform' : ['terraform'],
 \}
 let b:ale_fixers = {
 \   'markdown': ['remove_trailing_lines'],
+\   'typescript' : [],
 \   'terraform' : ['terraform'],
 \}
 let b:ale_linters ={
 \   'markdown': ['mdl'],
+\   'typescript' : [],
 \   'terraform' : ['terraform', 'tflint'],
 \   'yaml' : [],
 \   'yml' : [],
@@ -475,11 +417,17 @@ let b:ale_linters ={
 \ }
 let g:ale_linters ={
 \   'markdown': ['mdl'],
+\   'typescript' : [],
 \   'terraform' : ['terraform', 'tflint'],
 \   'yaml' : [],
 \   'yml' : [],
 \   'ruby': [],
 \ }
+
+" let g:ale_typescript_prettier_use_local_config = 1
+
+let g:ale_linters_explicit = 1
+
 let g:airline#extensions#ale#enabeled = 1
 "let g:ale_cursor_detail = 1
 let g:ale_close_preview_on_insert = 1
@@ -553,92 +501,6 @@ let g:fzf_colors =
 let g:fzf_layout = { 'down': '~60%' }
 
 noremap <leader>fw :Ag <C-r>=expand('<cword>')<CR>
-
-"""done by default now by :Files
-" nnoremap <silent> <leader>e :call Fzf_dev()<CR>
-"
-" " ripgrep
-" if executable('rg')
-"   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-"   set grepprg=rg\ --vimgrep
-"   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-" endif
-"
-" " Files + devicons
-" function! Fzf_dev()
-"   let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'"'
-"
-"   function! s:files()
-"     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-"     return s:prepend_icon(l:files)
-"   endfunction
-"
-"   function! s:prepend_icon(candidates)
-"     let l:result = []
-"     for l:candidate in a:candidates
-"       let l:filename = fnamemodify(l:candidate, ':p:t')
-"       let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-"       call add(l:result, printf('%s %s', l:icon, l:candidate))
-"     endfor
-"
-"     return l:result
-"   endfunction
-"
-"   function! s:edit_file(item)
-"     let l:pos = stridx(a:item, ' ')
-"     let l:file_path = a:item[pos+1:-1]
-"     execute 'silent e' l:file_path
-"   endfunction
-"
-"   call fzf#run({
-"         \ 'source': <sid>files(),
-"         \ 'sink':   function('s:edit_file'),
-"         \ 'options': '-m ' . l:fzf_files_options,
-"         \ 'down':    '60%' })
-" endfunction
-" 1}}} "
-
-" check vs coc TODO
-"=== Deoplete
-" Fold description {{{1 "
-" call deoplete#custom#option('auto_complete', v:false)
-" inoremap <silent><expr> <C-Space> deoplete#manual_complete()
-" " Disable documentation window
-" "set completeopt-=preview
-" set completeopt=menuone,noselect,preview
-" " (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
-" let g:terraform_completion_keys = 1
-"
-" " (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
-" let g:terraform_registry_module_completion = 1
-"
-" " call deoplete#custom#option('auto_complete', v:false)
-" let g:deoplete#omni_patterns = {}
-" let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-"
-" let g:deoplete#enable_at_startup = 1
-" call deoplete#initialize()
-"
-" " (Optional)Hide Info(Preview) window after completions
-" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" 1}}} "
-
-"=== Supertab
-" supertab {{{1 "
-" let g:SuperTabDefaultCompletionType = "context"
-" autocmd FileType *
-"   \ if &omnifunc != '' |
-"   \   call SuperTabChain(&omnifunc, "<c-p>") |
-"   \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
-"   \ endif
-" 1}}} "
-
-"=== EasyAlign
-" easyalign {{{1 "
-" xmap ga <Plug>(EasyAlign)
-" nmap ga <Plug>(EasyAlign)
-" 1}}} "
 
 "=== undotree
 " undotree {{{1 "
@@ -757,6 +619,7 @@ let g:vimwiki_list = [
                         \{'path': '~/notes/VimWiki/prsh.wiki'},
                         \{'path': '~/notes/VimWiki/personal.wiki'}
                    \]
+let g:vimwiki_global_ext = 0
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 :autocmd FileType vimwiki map <leader>d :VimwikiMakeDiaryNote
 function! ToggleCalendar()
@@ -797,3 +660,19 @@ let g:ackprg = 'ag --nogroup --nocolor'
 if executable('ag')
 endif
 " }}} a "
+
+" vim kitty navigation {{{ "
+
+" let g:kitty_navigator_no_mappings = 1
+"
+" nnoremap <silent> <C-h> :kittynavigateleft<cr>
+" nnoremap <silent> <C-j> :kittynavigatedown<cr>
+" nnoremap <silent> <C-k> :kittynavigateup<cr>
+" nnoremap <silent> <C-l> :kittynavigateright<cr>
+
+" }}} vim kitty navigation "
+
+" gitgutter {{{ "
+nmap <Leader>hq :GitGutterQuickFix\|copen<CR>
+set foldtext=gitgutter#fold#foldtext()
+" }}} gitgutter "

@@ -1,27 +1,3 @@
-# typeset -a ealiases
-# ealiases=()
-
-# function ealias()
-# {
-#     alias $1
-#     ealiases+=(${1%%\=*})
-# }
-
-# function expand-ealias()
-# {
-#     if [[ $LBUFFER =~ "\<(${(j:|:)ealiases})\$" ]]; then
-#         zle _expand_alias
-#         zle expand-word
-#     fi
-#     zle magic-space
-# }
-
-# zle -N expand-ealias
-
-# bindkey -M viins ' '        expand-ealias
-# bindkey -M viins '^ '       magic-space     # control-space to bypass completion
-# bindkey -M isearch " "      magic-space     # normal space during searches
-
 alias -- -='cd -'
 alias 1='cd -'
 alias 2='cd -2'
@@ -38,116 +14,90 @@ alias _expand=_bash_expand
 alias d='dirs -v | head -10'
 alias finf='grep -irnw . -e'
 alias g=git
-ealias gad='git add'
-ealias gst='git status'
-ealias gapa='git add --patch'
-# alias gcf='git config --list'
-ealias gcl='git clone --recursive'
 alias gcm='git checkout master'
-ealias gcmsg='git commit -m'
-ealias gitc='git commit'
 alias 'gcn!'='git commit -v --no-edit --amend'
-# alias gd='git diff'
 alias gf='git fetch'
 alias gfa='git fetch --all --prune'
 alias gfo='git fetch origin'
 alias ggpull='git pull origin $(git_current_branch)'
 alias gl='git pull'
-ealias gp='git push'
 alias gpd='git push --dry-run'
-ealias gup='git pull --rebase'
-ealias gupv='git pull --rebase -v'
 alias kcuc='k config use-context'
 alias l='exa -abghHl'
-ealias md='mkdir -p'
 alias which-command=whence
-alias wifi_off='nmcli radio wifi off'
-alias wifi_on='nmcli radio wifi on'
-alias eth_off='sudo ip link set down enx1065309379db'
-alias eth_on='sudo ip link set up enx1065309379db'
-alias chrome='google-chrome'
-alias chrome-incognito='google-chrome --incognito'
-alias PLT_on='~/.config/i3/scripts/PLT_on'
-alias PLT_off='~/.config/i3/scripts/PLT_off'
-alias UE_HOME_on='~/.config/i3/scripts/UE_HOME_on'
-alias UE_HOME_off='~/.config/i3/scripts/UE_HOME_off'
-alias setbg="~/Pictures/wallpaper/wc.sh"
-alias disable_dualpointer="~/.config/i3/scripts/disable_dualpointer"
-alias autorandr="~/.config/autorandr/autorandr"
-alias dog="pygmentize -g"
-alias oranger='gnome-terminal -- ranger'
-alias redunst='~/.config/dunst/redunst'
-alias recopyq='~/.config/i3/scripts/recopyq'
+alias ovim="\vim"
+alias nvrc="nvim ~/.config/nvim/init.vim"
+alias nvplug="nvim ~/.config/nvim/plugins.vim"
+alias kssh='kitty +kitten ssh'
+alias weather="curl wttr.in"
+alias lnote="notes ls | fzf --preview 'bat --style=numbers --color=always {}' --preview-window wrap | xargs -o nvim"
+alias ldaily="notes list -c prsh/daily |  fzf --preview 'bat --style=numbers --color=always {}' --ansi --bind='ctrl-alt-k:preview-up,ctrl-alt-p:preview-up' --bind='ctrl-alt-j:preview-down,ctrl-alt-n:preview-down' --bind='ctrl-r:toggle-all' --bind='ctrl-s:toggle-sort' --bind='?:toggle-preview' --bind='ctrl-alt-w:toggle-preview-wrap' --preview-window='right:60%' --preview-window wrap | xargs -o nvim"
+alias kitty_color="\ls ~/.config/kitty/kitty-themes/themes | fzf | xargs -I {} kitty @ set-colors -a "~/.config/kitty/kitty-themes/themes/{}""
+alias gpullall='find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin master \;'
+alias atv="~/notes/.scripts/vimwikitickets.sh"
+alias sso=". ~/.prsh_sso/sso_onelogin.sh"
+alias kgd="git difftool --no-symlinks --dir-diff"
+alias kdiff="kitty +kitten diff"
+alias fk="fuck"
+alias cdu="cd-gitroot"
+alias tf="~/notes/.scripts/todo_finder.sh"
+alias krc="nvim ~/.config/kitty/kitty.conf"
+alias spass='gopass show $(gopass list -f | fzf )'
+alias serve="browser-sync start --server --files ."
+# The command alias to start the browser-sync server
+alias local_serve="browser-sync start --server --files . --no-notify --host $SERVER_IP --port 9000"
+
+ealias dotfiles="homeshick track dotfiles"
+ealias pawless="source <(awless completion zsh)"
+ealias gad='git add'
+ealias gst='git status'
+ealias gapa='git add --patch'
+ealias gcl='git clone --recursive'
+ealias gcmsg='git commit -m'
+ealias gitc='git commit'
+ealias gp='git push'
+ealias gup='git pull --rebase'
+ealias gupv='git pull --rebase -v'
+ealias md='mkdir -p'
 ealias vim="nvim"
 ealias vi="nvim"
 ealias v="nvim"
-alias oldvim="\vim"
 ealias vimdiff='nvim -d'
-alias nvrc="nvim ~/.config/nvim/init.vim"
-alias nvplug="nvim ~/.config/nvim/plugins.vim"
-# alias  rm='echo "This is not the command you are looking for."; false'
 ealias tp="trash-put"
 ealias prsh='cd ~/porsche'
 ealias e_alias="nvim ~/.zsh/zshalias"
 ealias e_zshrc="nvim ~/.zshrc"
 ealias dotfiles="homeshick track dotfiles"
-ealias hs="homeshick"
 ealias agvim='nvim -c "Ag"'
 ealias ltree='exa -bghHl --tree'
 ealias ls="exa"
-alias exz="~/.scripts/extract"
 ealias git-pull-all="npx git-pull-all"
 ealias forro="cd ~/alaa/Forró"
 ealias raw_forro="cd ~/alaa/Forró/Music/raw"
 ealias ytdl_mp3="youtube-dl --extract-audio --audio-format mp3"
-alias mp3-tagger="~/.config/i3/cust_scripts/mp3-tagger"
-#alias kitty="/home/mansoala/.local/kitty.app/bin/kitty -c ~/.config/kitty/kitty.conf"
-#ealias noconfkitty="~/.local/kitty.app/bin/kitty"
 ealias gtop='gotop -b'
-alias fm='vifmrun'
-alias kssh='kitty +kitten ssh'
-alias monitors="exa ~/.screenlayout | rofi -dmenu -i -theme ~/.config/rofi/rofi_menu | xargs -I{} sh -c /home/mansoala/.screenlayout/{}"
-alias weather="curl wttr.in"
 ealias qrscan="zbarimg path/to/image | awk -F'secret=' '{print $2}' | awk -F'&' '{print $1}' | pbcopy"
 ealias daily="~/notes/.scripts/notes.sh prsh/daily daily diary,daily"
-# ealias ydaily="nvim ~/notes/prsh/daily/\[daily\]-$(date -v -1d +%A-%d-%B%y).md"
-alias lnote="notes ls | fzf --preview 'bat --style=numbers --color=always {}' --preview-window wrap | xargs -o nvim"
-alias ldaily="notes list -c prsh/daily |  fzf --preview 'bat --style=numbers --color=always {}' --ansi --bind='ctrl-alt-k:preview-up,ctrl-alt-p:preview-up' --bind='ctrl-alt-j:preview-down,ctrl-alt-n:preview-down' --bind='ctrl-r:toggle-all' --bind='ctrl-s:toggle-sort' --bind='?:toggle-preview' --bind='ctrl-alt-w:toggle-preview-wrap' --preview-window='right:60%' --preview-window wrap | xargs -o nvim"
 ealias p_git="ssh-add -D; ssh-add -K ~/.ssh/id_rsa_personal"
 ealias w_git="ssh-add -D; ssh-add -K ~/.ssh/id_rsa"
 ealias p_gopass="gopass new --store personal"
 ealias sync_p_gopass="p_git; gopass git push origin master --store personal; w_git"
-alias kitty_color="\ls ~/.config/kitty/kitty-themes/themes | fzf | xargs -I {} kitty @ set-colors -a "~/.config/kitty/kitty-themes/themes/{}""
-alias aon="~/.expect/script.exp_1"
-alias o_notes='cd ~/notes; nvim "+NERDTreeToggle"'
-ealias gslos="cd ~/porsche/git/sloscomm"
 ealias fzf_git='git show $(git log --pretty=oneline | fzf | cut -d=" " -f1)'
-alias nnote='~/notes/.scripts/notes.sh'
 ealias vnote='nvim "+NV"'
-alias gpullall='find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull origin master \;'
 ealias ati="~/notes/.scripts/tickets.sh"
-alias atv="~/notes/.scripts/vimwikitickets.sh"
-alias sso=". ~/.prsh_sso/sso_onelogin.sh"
-alias kgd="git difftool --no-symlinks --dir-diff"
-alias kdiff="kitty +kitten diff"
-alias weekly_tickets='~/notes/.scripts/vimwikitickets.sh w'
-alias fk="fuck"
-alias cdu="cd-gitroot"
-alias tf="~/notes/.scripts/todo_finder.sh"
-alias krc="nvim ~/.config/kitty/kitty.conf"
-ealias oneshop_email="aws s3 sync s3://techincal-user-email-irl/incoming/tools.sloscomm.aws.porsche.cloud ~/porsche/OneShop/techincal-user-email/new; mutt -f /Users/amansour/porsche/OneShop/techincal-user-email"
-ealias kplug="source <(kubectl completion zsh); source ~/.zsh/my_plugins/k-fzf/.kubectl_fzf.plugin.zsh"
-ealias pawless="source <(awless completion zsh)"
-alias spass='gopass show $(gopass list -f | fzf )'
-ealias dotfiles="homeshick track dotfiles"
-ealias hs="homeshick"
-alias serve="browser-sync start --server --files ."
-# The command alias to start the browser-sync server
-alias local_serve="browser-sync start --server --files . --no-notify --host $SERVER_IP --port 9000"
+ealias yrc="nvim ~/.config/yabai/yabairc"
 
-### temp
-ealias corona_status_a="curl 'https://corona-stats.online?source=2'"
-ealias corona_status_b="curl -s -L 'covid19.trackercli.com/germany'"
-ealias de_corona_status_a="curl 'https://corona-stats.online/germany?source=2'"
-ealias de_corona_status_b="curl -s -L 'covid19.trackercli.com/germany'"
+## temp
+alias corona_status_a="curl 'https://corona-stats.online?source=2'"
+alias corona_status_b="curl -s -L 'covid19.trackercli.com/germany'"
+alias de_corona_status_a="curl 'https://corona-stats.online/germany?source=2'"
+alias de_corona_status_b="curl -s -L 'covid19.trackercli.com/germany'"
+alias vpnc='cd /Applications/PorscheVPN && sudo ./connect.sh -u UJG32WX'
 
+# alias  rm='echo "This is not the command you are looking for."; false'
+# ealias hs="homeshick"
+# ealias ydaily="nvim ~/notes/prsh/daily/\[daily\]-$(date -v -1d +%A-%d-%B%y).md"
+# alias nnote='~/notes/.scripts/notes.sh'
+# alias gd='git diff'
+# alias gcf='git config --list'
+# ealias hs="homeshick"
