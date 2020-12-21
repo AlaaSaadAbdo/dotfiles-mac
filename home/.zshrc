@@ -1,15 +1,15 @@
 # zmodload zsh/zprof
 
-autoload compinit && compinit
+# autoload compinit && compinit
 
 # load zcompdump only when it's not there
 
-# autoload -Uz compinit
-# if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-#   compinit
-# else
-#   compinit -C
-# fi
+autoload -Uz compinit
+if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
 autoload -U colors && colors
 export ZSH=~/.zsh
@@ -31,6 +31,9 @@ setopt auto_pushd
 unsetopt pushd_ignore_dups
 setopt pushdminus
 
+# Comment
+setopt interactivecomments
+
 # Completion
 setopt auto_menu
 setopt always_to_end
@@ -47,7 +50,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 HISTFILE=~/.zsh_history
 
 source ~/.zsh_plugins.sh
-# source $HOME/.zsh/k8s/k8s_alias
+
 source $HOME/.zsh/zshalias
 source $HOME/.zsh/func
 source $HOME/.zsh/lf_icons
@@ -90,27 +93,15 @@ bindkey -s '^o' 'lfcd\n'  # zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /Users/amansour/.asdf/installs/terraform/0.12.8/bin/terraform terraform
 export PATH=/Users/amansour/Library/Python/3.7/bin:$PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source /Users/amansour/porsche/git/myct/myct-cloud-helpers/cloud-helpers.sh
-export PATH=/Users/amansour/.prsh-myct-tools/bin:$PATH
-
-# OneShop
-# source <(kubectl completion zsh)
-# source ~/.zsh/my_plugins/k-fzf/.kubectl_fzf.plugin.zsh
-
-# export FZFZ_RECENT_DIRS_TOOL="z"
-# export FZFZ_EXTRA_DIRS="~/porsche"
-# export FZFZ_EXCLUDE_PATTERN="*\.git*"
-
 fpath=(~/.zsh $fpath)
 
 export AUTO_NOTIFY_THRESHOLD=20
-
+export KEYTIMEOUT=15
 
 # eval $(thefuck --alias)
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
@@ -121,9 +112,6 @@ export MANPAGER="nvim -c 'set ft=man' -"
 export HOMESHICK_DIR=/usr/local/opt/homeshick
 source "/usr/local/opt/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-
-# to serve local server to check from othre devices
-# export SERVER_IP=`ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2`
 
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
@@ -141,14 +129,20 @@ export PATH="/usr/local/opt/gawk/libexec/gnubin/:$PATH"
 export PATH="/usr/local/opt/gnu-indent/libexec/gnubin/:$PATH"
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 export PATH="/usr/local/opt/gnutls/bin:$PATH"
+source ~/.config/pos-aws-commons/configured-assume-role
 
 export PATH="/usr/local/sbin:$PATH"
-source ~/.config/pos-aws-commons/configured-assume-role
 
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
+FORGIT_FZF_DEFAULT_OPTS="
+--cycle
+--reverse
+--height '80%'
+--ansi
+"
+
 # zprof
-source ~/.config/pos-aws-commons/configured-assume-role

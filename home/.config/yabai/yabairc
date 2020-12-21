@@ -58,16 +58,22 @@ yabai -m rule --add app="^QuickTime Player$" manage=off
 yabai -m rule --add app="^Hue Sync$" manage=off
 yabai -m rule --add app="^MenuBar Stats$" manage=off
 yabai -m rule --add app="^iGlance$" manage=off
+yabai -m rule --add app="^ObinsKit$" manage=off
+yabai -m rule --add app="^OS X Color Panel$" manage=off
+yabai -m rule --add app="^Digital Colour Meter$" manage=off
 # yabai -m rule --add app="^Lunar$" manage=off
 # yabai -m rule --add app="^zoom.us$" manage=off
 
 yabai -m rule --add title="zoom floating video window" manage=off
 yabai -m rule --add title="zoom share statusbar window" manage=off
 yabai -m rule --add title="Microsoft Teams Notification" manage=off
+yabai -m rule --add title="Microsoft Teams Call in progress Meeting*." manage=off
 
 yabai -m rule --add title="zoom floating video window" mouse_follows_focus=off
-yabai -m rule --add title="zoom share statusbar window" mouse_follows_focus=off
+yabai -m rule --add title="zoom share*." mouse_follows_focus=off
 yabai -m rule --add title="Microsoft Teams Notification" mouse_follows_focus=off
+yabai -m rule --add title="Microsoft Teams Call*." mouse_follows_focus=off
+
 
 # yabai -m rule --add app="^IntelliJ IDEA$" manage=off
 # yabai -m rule --add app="^IntelliJ IDEA$" title="/Users/amansour/porsche/git/pos/" manage=on
@@ -77,7 +83,7 @@ yabai -m rule --add title='.*Welcome*.|Checkout*.|.*Configurations|Choose*.|Impo
 # yabai -m rule --add app="^Discord$" grid=6:6:1:1:3:3 manage=off
 # yabai -m rule --add app="^kitty$" space=^2
 # yabai -m rule --add app="^Slack$" space=^4
-# yabai -m rule --add app="^zoom.us$" space=^3
+# yabai -m rule --add title="^Zoom Meeting$" space=^3
 
 
 # yabai -m signal --add event='space_changed' action="sh ~/.config/yabai/clean_empty_spaces.sh"
@@ -88,5 +94,7 @@ yabai -m signal --add event='window_destroyed' action="~/.config/yabai/focus_und
 yabai -m signal --add event='window_minimized' action="~/.config/yabai/focus_under_mouse"
 yabai -m signal --add event='application_hidden' action="~/.config/yabai/focus_under_mouse"
 yabai -m signal --add event='space_changed' action="~/.config/yabai/focus_under_mouse"
+yabai -m signal --add event='space_changed' action="~/.config/yabai/ignore_Teams"
+yabai -m signal --add event='space_changed' action="~/.config/yabai/ignore_Zoom"
 
 echo "yabai configuration loaded.."

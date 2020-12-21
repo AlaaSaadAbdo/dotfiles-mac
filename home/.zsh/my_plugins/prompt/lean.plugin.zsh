@@ -89,6 +89,9 @@ prompt_lean_precmd() {
     MODE_CURSOR_VICMD="#5C6370 blinking block"
     MODE_CURSOR_VIINS="#98C379 blinking bar"
     MODE_CURSOR_SEARCH="#C678DD steady underline"
+    MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #EA6962"
+    MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady block"
+    MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL steady block"
 
     MODE_INDICATOR_VIINS='%F{15}[%F{7}I%F{15}]%f'
     MODE_INDICATOR_VICMD='%F{10}[%F{2}N%F{10}]%f'
@@ -97,11 +100,21 @@ prompt_lean_precmd() {
     MODE_INDICATOR_VISUAL='%F{12}[%F{4}V%F{12}]%f'
     MODE_INDICATOR_VLINE='%F{12}[%F{4}V-L%F{12}]%f'
 
+    ZSH_THEME_GIT_PROMPT_PREFIX=" "
+    ZSH_THEME_GIT_PROMPT_SUFFIX=""
+    # ZSH_GIT_PROMPT_SHOW_UPSTREAM="full"
+    ZSH_GIT_PROMPT_SHOW_STASH=1
+    ZSH_GIT_PROMPT_FORCE_BLANK=1
+    ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}⟳"
+    ZSH_THEME_GIT_PROMPT_BEHIND="↓"
+    ZSH_THEME_GIT_PROMPT_AHEAD="↑"
+
+
     setopt promptsubst
     local vcs_info_str='$vcs_info_msg_0_' # avoid https://github.com/njhartwell/pw3nage
-    PROMPT="$prompt_lean_user%f@$prompt_lean_host%f:%F{"$COLOR2"}`prompt_lean_pwd`%F{"$COLOR1"}$vcs_info_str%F{"$COLOR4"}`prompt_lean_git_dirty`
-${MODE_INDICATOR_PROMPT}%f`$PROMPT_LEAN_LEFT`%f%(?.%F{"$COLOR8"}.%B%F{203}%K{234})❯ %f%k%b"
-    RPROMPT="%B%(?.%F{green}.%F{red})%?%f%b%{$fg[green]%} %F{"$COLOR3"}`prompt_lean_cmd_exec_time`%f[%*]%`$PROMPT_LEAN_RIGHT`"
+    PROMPT='$prompt_lean_user%f@$prompt_lean_host%f:%F{'$COLOR2'}`prompt_lean_pwd`%F{'$COLOR1'}$vcs_info_str%F{'$COLOR4'}%f`gitprompt`
+${MODE_INDICATOR_PROMPT}%f`$PROMPT_LEAN_LEFT`%f%(?.%F{'$COLOR8'}.%B%F{203})❯ %f%k%b'
+    RPROMPT='%B%(?.%F{green}.%F{red})%?%f%b%{$fg[green]%} %F{"$COLOR3"}`prompt_lean_cmd_exec_time`%f[%*]%`$PROMPT_LEAN_RIGHT`'
 
     unset cmd_timestamp # reset value since `preexec` isn't always triggered
 }

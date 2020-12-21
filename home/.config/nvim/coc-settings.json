@@ -6,8 +6,8 @@
   "suggest.enablePreselect": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.maxWindowHeight": 20,
-  "git.addGBlameToBufferVar": true,
-  "git.addGBlameToVirtualText": true,
+  "git.addGBlameToBufferVar": false,
+  "git.addGBlameToVirtualText": false,
   "explorer.icon.enableVimDevicons": false,
   "explorer.previewAction.onHover": false,
   "explorer.file.autoReveal": true,
@@ -24,7 +24,7 @@
       "expand": true
     }
   ],
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "<space>": "toggleSelection",
     "C": "cd",
    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"]
@@ -35,48 +35,27 @@
    }
   },
   "explorer.icon.enableNerdfont": true,
-  "explorer.file.column.git.showIgnored": false,
-  "git.addedSign.hlGroup": "GitGutterAdd",
-  "git.changedSign.hlGroup": "GitGutterChange",
-  "git.removedSign.hlGroup": "GitGutterDelete",
-  "git.topRemovedSign.hlGroup": "GitGutterDelete",
-  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "list.normalMappings": {
-  "t": "action:tabe",
-  "E": "action:vsplit",
-  "s": "action:split",
-  "d": "expr:GetDeleteAction"
-  },
+  "explorer.file.git.showUntrackedFiles":true,
     "languageserver": {
     "terraform": {
       "command": "terraform-ls",
       "args":["serve"],
-      "filetypes": ["terraform"],
-      "initializationOptions": {}
-    },
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"],
-      "ignoredRootPaths": ["~"]
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
     }
   },
   "tsserver.npm": "/Users/amansour/.asdf/shims/npm",
-  // "tsserver.log": "verbose",
-  // "tsserver.trace.server": "verbose",
   "snippets.ultisnips.directories": [
   "UltiSnips",
   "gosnippets/UltiSnips"
   ],
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "coc.preferences.formatOnTypeFiletypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-    "coc.preferences.formatOnSaveFiletypes": [
+  "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
     "typescript",
@@ -84,11 +63,23 @@
   ],
   "coc.preferences.formatOnInsertLeave": true,
   "tsserver.formatOnType": true,
-  "coc.preferences.formatOnType": true,
+  // "coc.preferences.formatOnType": true,
   "eslint.packageManager":"yarn",
   "go.goplsPath": "/Users/amansour/go/bin/gopls",
   "go.goplsOptions": {
     "completeUnimported": true
-  }
-
+  },
+  "cssmodules.camelCase":true,
+  "cssmodules.hintName": "cssmodules",
+  "markdownlint.config" : {
+    "default": true,
+    "line_length": false
+  },
+  "suggest.snippetIndicator": "~"
+  // "tabnine.priority": 4,
+  // "suggest.languageSourcePriority": 1,
+  // "coc.source.buffer.priority": 1,
+  // "coc.source.file.priority": 2,
+  // "coc.source.around.priority": 3,
+  // "snippets.priority": 5
 }

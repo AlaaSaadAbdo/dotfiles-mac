@@ -1,31 +1,30 @@
 """ Vim-Plug
 call plug#begin()
 
-" Plug 'junegunn/rainbow_parentheses.vim'
-" " let g:rainbow#max_level = 16
-" let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{','}']]
-" Plug 'jaxbot/semantic-highlight.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 " let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 
 " Presentation
 Plug 'idbrii/vim-remarkjs'
 Plug 'idbrii/vim-gogo'
 
+Plug 'junegunn/gv.vim'
+
+Plug 'sainnhe/gruvbox-material'
+
+" Plug '907th/vim-auto-save'
+
 " Aesthetics - Main
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'masukomi/vim-markdown-folding'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'tpope/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'clarke/vim-renumber'
-Plug 'rafi/awesome-vim-colorschemes'
 Plug 'dominikduda/vim_current_word'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-journal'
 Plug 'Yggdroot/indentLine'
 Plug 'dstein64/vim-startuptime'
@@ -40,19 +39,47 @@ Plug 'knubie/vim-kitty-navigator'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'thinca/vim-qfreplace'
 Plug 'yegappan/greplace'
-" Plug 'gyim/vim-boxdraw'
 Plug 'psliwka/vim-smoothie'
 Plug 'djoshea/vim-autoread'
 
 " Functionalities
 Plug 'prabirshrestha/async.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'SidOfc/mkdx'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+  let g:coc_global_extensions = [
+        \ 'coc-json',
+        \ 'coc-git',
+        \ 'coc-tsserver',
+        \ 'coc-tabnine',
+        \ 'coc-styled-components',
+        \ 'coc-snippets',
+        \ 'coc-prettier',
+        \ 'coc-pairs',
+        \ 'coc-lists',
+        \ 'coc-jest',
+        \ 'coc-highlight',
+        \ 'coc-git',
+        \ 'coc-floaterm',
+        \ 'coc-explorer',
+        \ 'coc-eslint',
+        \ 'coc-cssmodules',
+        \ 'coc-bookmark',
+        \ 'coc-yaml',
+        \ 'coc-solargraph',
+        \ 'coc-python',
+        \ 'coc-markdownlint',
+        \ 'coc-json',
+        \ 'coc-html',
+        \ 'coc-go',
+        \ 'coc-docker',
+        \ 'coc-css'
+        \ ]
+Plug 'antoinemadec/coc-fzf'
 Plug 'towolf/vim-helm'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tbabej/taskwiki'
 Plug 'vimwiki/vimwiki'
-Plug 'alok/notational-fzf-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
@@ -67,14 +94,12 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
 Plug 'will133/vim-dirdiff'
-" Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'metakirby5/codi.vim'
@@ -83,12 +108,13 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'hashivim/vim-terraform'
 Plug 'dense-analysis/ale'
 Plug 'juliosueiras/vim-terraform-completion'
-" Plug 'airblade/vim-rooter'
 Plug 'junegunn/vim-easy-align'
 Plug 'mileszs/ack.vim'
 Plug 'alvan/vim-closetag', { 'for': 'HTML' }
 
 call plug#end()
+
+runtime macros/sandwich/keymap/surround.vim
 
 " let g:loaded_netrw= 1
 " let g:netrw_loaded_netrwPlugin= 1
@@ -96,6 +122,28 @@ call plug#end()
 """ Python3 VirtualEnv
 let g:python3_host_prog = expand('/usr/local/bin/python3')
 let g:python_host_prog = expand('/usr/bin/python')
+let g:perl_host_prog = expand('/usr/local/bin/perl')
+
+colorscheme gruvbox-material
+let g:gruvbox_material_palette = 'mix'
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_visual = 'green background'
+let g:gruvbox_material_transparent_background = 1
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_current_word = 'bold'
+let g:gruvbox_material_menu_selection_background = 'grey'
+let g:gruvbox_material_sign_column_background = 'default'
+let g:gruvbox_material_diagnostic_line_highlight = 1
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_statusline_style = 'original'
+
+" improve scrolling performance when navigating through large results
+" set lazyredraw
+" use old regexp engine
+" set regexpengine=1
+" ignore case only when the pattern contains no capital letters
+" set ignorecase smartcase
 
 "use clipboard as default register"
 set clipboard=unnamedplus
@@ -117,8 +165,8 @@ set updatetime=300
 set shortmess+=c
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-set signcolumn=yes
-autocmd FileType tagbar,man,floaterm,fzf,qf setlocal signcolumn=no
+set signcolumn=yes:1
+autocmd FileType man,floaterm,fzf,qf setlocal signcolumn=no
 
 " disabled for pairing
 " dynamic hybrid number column (relative outside of insert mode and absolute in insert mode)
@@ -139,11 +187,12 @@ syntax on
 set nocompatible
 filetype plugin on
 set background=dark
-colorscheme gruvbox
+" colorscheme gruvbox-material
+" colorscheme gruvbox
 highlight Comment cterm=italic gui=italic
 highlight Whitespace ctermfg=3 guifg=3
-highlight Normal guibg=NONE ctermbg=NONE
-highlight LineNr guibg=NONE ctermbg=NONE
+" highlight Normal guibg=NONE ctermbg=NONE
+" highlight LineNr guibg=NONE ctermbg=NONE
 
 set cursorline " set cursorcolumn
 set autowrite  " Automatically save before :next, :make etc.
@@ -164,11 +213,12 @@ autocmd BufReadPre,FileReadPre * :hi TrailSpace guifg=#b16286
 autocmd BufReadPre,FileReadPre * :hi Tab guifg=#b16286
 autocmd BufReadPre,FileReadPre * :match Tab "\t"
 autocmd BufReadPre,FileReadPre * :match TrailSpace " *$"
-set fillchars+=vert:\
+set fillchars+=vert:│
 set wrap breakindent
 set encoding=utf-8
 set number
 set title
+  let &titlestring='%t - nvim'
 set diffopt+=vertical
 " disable auto comment on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -194,16 +244,14 @@ autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " Trim Whitespaces
 function! TrimWhitespace()
-    let l:save = winsaveview()
-    %s/\\\@<!\s\+$//e
-    call winrestview(l:save)
+   let l:save = winsaveview()
+   %s/\\\@<!\s\+$//e
+   call winrestview(l:save)
 endfunction
 
 """ Custom Mappings
 
 let mapleader=","
-" nmap <leader>w :TagbarToggle<CR>
-" nmap <leader>ft :TagbarOpen fj<CR>
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
@@ -211,13 +259,10 @@ nmap <leader>t :call TrimWhitespace()<CR>
 nmap <leader>bt :FloatermNew --height=0.4 --wintype=window --autoclose=2<CR>
 xmap <leader>a gaip*
 nmap <leader>a gaip*
-nmap <leader>d <Plug>(pydocstring)
+" nmap <leader>d <Plug>(pydocstring)
 nmap <leader>f :GFiles<CR>
 nmap <leader>F :Files<CR>
 nmap <leader>C :Codi!!
-" disabled in favor of join
-" nmap <leader>j :set filetype=journal<CR>
-" nmap <leader>k :ColorToggle<CR>
 nmap <leader>u :UndotreeToggle<CR>
 nmap <leader>c :BD<CR>
 " nmap <leader>Z :Dash<CR>
@@ -232,7 +277,7 @@ nmap <Leader>W :Windows<CR>
 " nmap \ <leader>q <leader>w
 " nmap <leader>hs <C-w>s<C-w>j:terminal<CR>
 " nmap <leader>vs <C-w>v<C-w>l:terminal<CR>
-" nmap <leader>h :RainbowParentheses!!<CR>
+nmap <leader>h :RainbowParentheses!!<CR>
 
 " fugitive
 nnoremap <leader>gs :Gstatus<CR>
@@ -283,7 +328,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 noremap pumvisible() ? "\" : " "
 
 " vimdiff test
-" highlight! link DiffText MatchParen
+highlight! link DiffText MatchParen
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal foldmethod=syntax
 " set foldcolumn=1 "defines 1 col at window left, to indicate folding
 let javaScript_fold=1 "activate folding by JS syntax
@@ -293,13 +338,15 @@ set foldlevel=99
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+ "\ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+ "\ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " Search current word in google
 nnoremap <silent> <leader>sg :!Open "http://google.com/search?q="<cword><cr>
+
+nmap <leader>fd :call fzf#run(fzf#wrap({'source': 'fasd -d -R', 'sink': { line -> execute('cd '.split(line)[-1]) }}))<CR>
 
 """ plugins options
 source ~/.config/nvim/plugins.vim
