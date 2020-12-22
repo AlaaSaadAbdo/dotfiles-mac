@@ -105,7 +105,8 @@ prompt_lean_precmd() {
     # ZSH_GIT_PROMPT_SHOW_UPSTREAM="full"
     ZSH_GIT_PROMPT_SHOW_STASH=1
     ZSH_GIT_PROMPT_FORCE_BLANK=1
-    ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}⟳"
+    # ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}⟳"
+    ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✔ "
     ZSH_THEME_GIT_PROMPT_BEHIND="↓"
     ZSH_THEME_GIT_PROMPT_AHEAD="↑"
 
