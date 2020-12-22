@@ -529,31 +529,31 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{','}']]
 let g:rainbow#blacklist = [223, 248, 184]
 " }}} Rainbow Paranthesis "
 
-" " startify {{{ "
-"     let g:startify_lists = [
-"           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-"           \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-"           \ { 'type': 'files',     'header': ['   MRU']            },
-"           \ { 'type': 'sessions',  'header': ['   Sessions']       },
-"           \ { 'type': 'commands',  'header': ['   Commands']       },
-"           \ ]
-"
-" let g:startify_bookmarks = [
-"             \ '~/.config/nvim/',
-"             \ '~/porsche/git/pos/',
-"             \ ]
-" " }}} startify "
+" startify {{{ "
+    let g:startify_lists = [
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
 
-" " vista {{{ "
-" " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-" let g:vista#renderer#enable_icon = 1
-"
-" " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
-" let g:vista#renderer#icons = {
-" \   "command" : "",
-" \  }
-" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-" " }}} vista "
+let g:startify_bookmarks = [
+            \ '~/.config/nvim/',
+            \ '~/porsche/git/pos/',
+            \ ]
+" }}} startify "
+
+" vista {{{ "
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\   "command" : "",
+\  }
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" }}} vista "
 
 " close-tag {{{ "
 " filenames like *.xml, *.html, *.xhtml, ...
