@@ -1,86 +1,14 @@
 """ Vim-Plug
 call plug#begin()
 
-Plug 'junegunn/rainbow_parentheses.vim'
-" let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
-Plug 'sheerun/vim-polyglot'
-
-" Presentation
-Plug 'idbrii/vim-remarkjs'
-Plug 'idbrii/vim-gogo'
-
-Plug 'junegunn/gv.vim'
-
-Plug 'sainnhe/gruvbox-material'
-
-" Plug '907th/vim-auto-save'
-
-" Aesthetics - Main
-Plug 'vim-airline/vim-airline'
-Plug 'masukomi/vim-markdown-folding'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'mzlogin/vim-markdown-toc'
-Plug 'tpope/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'clarke/vim-renumber'
-Plug 'dominikduda/vim_current_word'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'junegunn/vim-journal'
-Plug 'Yggdroot/indentLine'
-Plug 'dstein64/vim-startuptime'
-Plug 'airblade/vim-gitgutter'
-Plug 'reedes/vim-lexical'
-
-" Trial
-Plug 'gyim/vim-boxdraw'
-Plug 'vim-scripts/DrawIt'
-Plug 'voldikss/vim-floaterm'
-Plug 'knubie/vim-kitty-navigator'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'thinca/vim-qfreplace'
-Plug 'yegappan/greplace'
-Plug 'psliwka/vim-smoothie'
-Plug 'djoshea/vim-autoread'
-
 " Functionalities
 Plug 'prabirshrestha/async.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-  let g:coc_global_extensions = [
-        \ 'coc-json',
-        \ 'coc-git',
-        \ 'coc-tsserver',
-        \ 'coc-tabnine',
-        \ 'coc-styled-components',
-        \ 'coc-snippets',
-        \ 'coc-prettier',
-        \ 'coc-pairs',
-        \ 'coc-lists',
-        \ 'coc-jest',
-        \ 'coc-highlight',
-        \ 'coc-git',
-        \ 'coc-floaterm',
-        \ 'coc-explorer',
-        \ 'coc-eslint',
-        \ 'coc-cssmodules',
-        \ 'coc-bookmark',
-        \ 'coc-yaml',
-        \ 'coc-solargraph',
-        \ 'coc-python',
-        \ 'coc-markdownlint',
-        \ 'coc-json',
-        \ 'coc-html',
-        \ 'coc-go',
-        \ 'coc-docker',
-        \ 'coc-css'
-        \ ]
 Plug 'antoinemadec/coc-fzf'
-Plug 'towolf/vim-helm'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tbabej/taskwiki'
 Plug 'vimwiki/vimwiki'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neomake/neomake'
 Plug 'qpkorr/vim-bufkill'
 Plug 'haya14busa/incsearch-fuzzy.vim'
@@ -88,36 +16,68 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'brooth/far.vim'
-Plug 'docker/docker'
-Plug 'mbbill/undotree'
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-" Plug 'tpope/vim-surround'
-Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-unimpaired'
+Plug 'airblade/vim-gitgutter'
+Plug 'machakann/vim-sandwich'
 Plug 'will133/vim-dirdiff'
 Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
-Plug 'chrisbra/Colorizer'
 Plug 'heavenshell/vim-pydocstring'
-Plug 'metakirby5/codi.vim'
-Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'tpope/vim-unimpaired'
 Plug 'hashivim/vim-terraform'
 Plug 'dense-analysis/ale'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'junegunn/vim-easy-align'
-Plug 'mileszs/ack.vim'
-Plug 'alvan/vim-closetag', { 'for': 'HTML' }
+Plug 'voldikss/vim-floaterm'
+Plug 'knubie/vim-kitty-navigator'
+Plug 'psliwka/vim-smoothie'
+Plug 'djoshea/vim-autoread'
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'reedes/vim-lexical'
+Plug 'alvan/vim-closetag'
+Plug 'dstein64/vim-startuptime'
+Plug 'HerringtonDarkholme/yats.vim'
+
+""" Currently not used
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'roxma/nvim-yarp'
+
+"" evaluate against coc-docker
+Plug 'docker/docker'
+
+" Presentation
+Plug 'idbrii/vim-remarkjs'
+Plug 'idbrii/vim-gogo'
+
+" Aesthetics - Main
+Plug 'sainnhe/gruvbox-material'
+Plug 'vim-airline/vim-airline'
+Plug 'masukomi/vim-markdown-folding'
+Plug 'tpope/vim-markdown'
+Plug 'dominikduda/vim_current_word'
+Plug 'junegunn/vim-journal'
+Plug 'Yggdroot/indentLine'
+
+" Trial
+Plug 'junegunn/gv.vim'
+Plug 'rhysd/conflict-marker.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'liuchengxu/vista.vim'
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
 runtime macros/sandwich/keymap/surround.vim
 
-" let g:loaded_netrw= 1
-" let g:netrw_loaded_netrwPlugin= 1
+let g:loaded_netrw= 1
+let g:netrw_loaded_netrwPlugin= 1
 
 """ Python3 VirtualEnv
 let g:python3_host_prog = expand('/usr/local/bin/python3')
@@ -138,12 +98,14 @@ let g:gruvbox_material_diagnostic_line_highlight = 1
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_statusline_style = 'original'
 
-" improve scrolling performance when navigating through large results
-" set lazyredraw
-" use old regexp engine
-" set regexpengine=1
-" ignore case only when the pattern contains no capital letters
-" set ignorecase smartcase
+let g:conflict_marker_highlight_group = ''
+let g:conflict_marker_begin = '^<<<<<<< .*$'
+let g:conflict_marker_end   = '^>>>>>>> .*$'
+highlight ConflictMarkerBegin guibg=#2f7366
+highlight ConflictMarkerOurs guibg=#2e5049
+highlight ConflictMarkerTheirs guibg=#344f69
+highlight ConflictMarkerEnd guibg=#2f628e
+highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
 
 "use clipboard as default register"
 set clipboard=unnamedplus
@@ -201,6 +163,11 @@ set splitbelow " Horizontal windows should split to bottom
 set showcmd    " Show me what I'm typing
 set autoread   " Automatically read changed files
 
+" persisten undo without undotree
+set undodir="~/.undodir/"
+set undolevels=1000
+set undoreload=10000
+
 """ Other Configurations
 filetype plugin indent on
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
@@ -217,6 +184,7 @@ set fillchars+=vert:│
 set wrap breakindent
 set encoding=utf-8
 set number
+set numberwidth=2
 set title
   let &titlestring='%t - nvim'
 set diffopt+=vertical
@@ -265,18 +233,9 @@ nmap <leader>F :Files<CR>
 nmap <leader>C :Codi!!
 nmap <leader>u :UndotreeToggle<CR>
 nmap <leader>c :BD<CR>
-" nmap <leader>Z :Dash<CR>
-nmap <leader>NV :NV<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>H :History<CR>
 nmap <Leader>W :Windows<CR>
-" nmap <Leader>z :NERDTreeFocus<cr>R<c-w><c-p>
-" nmap <leader>q :NERDTreeToggle<CR>
-" nmap <leader>fn :NERDTreeFocus<CR>
-" nmap <Leader>fc :NERDTreeFind<CR>
-" nmap \ <leader>q <leader>w
-" nmap <leader>hs <C-w>s<C-w>j:terminal<CR>
-" nmap <leader>vs <C-w>v<C-w>l:terminal<CR>
 nmap <leader>h :RainbowParentheses!!<CR>
 
 " fugitive
@@ -304,8 +263,6 @@ nnoremap <leader>gpl :Dispatch! git pull<CR>
 nnoremap x "_x
 vnoremap x "_xa
 
-
-nnoremap <silent> <leader>j :let p=getpos('.')<bar>join<bar>call setpos('.', p)<cr>
 " replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
@@ -327,8 +284,8 @@ nnoremap <S-L> <C-w>>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 noremap pumvisible() ? "\" : " "
 
-" vimdiff test
-highlight! link DiffText MatchParen
+" " vimdiff test
+" highlight! link DiffText MatchParen
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal foldmethod=syntax
 " set foldcolumn=1 "defines 1 col at window left, to indicate folding
 let javaScript_fold=1 "activate folding by JS syntax

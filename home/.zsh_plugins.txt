@@ -8,7 +8,6 @@ woefe/git-prompt.zsh
 
 softmoth/zsh-vim-mode
 
-
 Aloxaf/fzf-tab
 
 zdharma/fast-syntax-highlighting

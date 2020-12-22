@@ -1,5 +1,36 @@
 " COC {{{1 "
-let g:coc_fzf_preview = 'up:70%'
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \ 'coc-git',
+  \ 'coc-tsserver',
+  \ 'coc-tabnine',
+  \ 'coc-styled-components',
+  \ 'coc-snippets',
+  \ 'coc-prettier',
+  \ 'coc-pairs',
+  \ 'coc-lists',
+  \ 'coc-jest',
+  \ 'coc-highlight',
+  \ 'coc-git',
+  \ 'coc-floaterm',
+  \ 'coc-explorer',
+  \ 'coc-eslint',
+  \ 'coc-cssmodules',
+  \ 'coc-bookmark',
+  \ 'coc-yaml',
+  \ 'coc-solargraph',
+  \ 'coc-python',
+  \ 'coc-markdownlint',
+  \ 'coc-json',
+  \ 'coc-html',
+  \ 'coc-go',
+  \ 'coc-docker',
+  \ 'coc-css',
+  \ 'coc-tag',
+  \ 'coc-styled-components',
+  \ ]
+
+let g:coc_fzf_preview = 'up:70%:sharp'
 inoremap <silent> <C-right> <C-R>=coc#start({'source': 'snippets'})<CR>
 inoremap <silent><expr> <c-space> coc#refresh()
 " nmap ge :CocCommand explorer<CR>
@@ -83,7 +114,7 @@ nnoremap <space>hh :call coc#float#close_all()<CR>
 " 1}}} "
 
 " indentline {{{ "
-let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'tagbar', 'coc-explorer', 'startify', 'man', "fzf", "floaterm", "json", "help", "ranger"]
+let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'tagbar', 'coc-explorer', 'startify', 'man', "fzf", "floaterm", "json", "help", "ranger", "vista"]
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_char = ''
 let g:indentLine_first_char = ''
@@ -260,7 +291,9 @@ let b:ale_linters ={
 \   'ruby': [],
 \ }
 let g:ale_disable_lsp = 1
-" let g:ale_linters_explicit = 1
+let g:ale_linters_explicit = 1
+" let g:ale_sign_error = '✘'
+" let g:ale_sign_warning = ''
 
 let g:airline#extensions#ale#enabeled = 1
 "let g:ale_cursor_detail = 1
@@ -310,7 +343,7 @@ autocmd BufWinEnter,WinEnter term://* set nocursorcolumn
 autocmd BufLeave term://* stopinsert
 " 1}}} "
 
-" fzf {{{1 "
+" vim-fzf {{{1 "
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -331,11 +364,12 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-let g:fzf_layout = { 'down': '~60%' }
+let g:fzf_layout = { 'down': '~70%' }
+let g:fzf_preview_window = ['right:60%:sharp', 'ctrl-/']
 
 " find references with fzf
 noremap <leader>fw :Ag <C-r>=expand('<cword>')<CR>
-" 1}}} "
+" vim-fzf 1}}} "
 
 " undotree {{{1 "
 if has("persistent_undo")
@@ -477,14 +511,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}} == "
 
-" ack {{{ "
-cnoreabbrev Ack Ack!
-nnoremap <Leader>wa :Ack! <C-r>=expand('<cword>')<CR>
-let g:ackprg = 'ag --nogroup --nocolor'
-if executable('ag')
-endif
-" }}} a "
-
 " vim kitty navigation {{{ "
 let g:kitty_navigator_no_mappings = 1
 nnoremap <silent> <c-h> :KittyNavigateLeft<cr>
@@ -504,7 +530,63 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{','}']]
 let g:rainbow#blacklist = [223, 248, 184]
 " }}} Rainbow Paranthesis "
 
-" " auto-save {{{ "
-" let g:auto_save = 1
-" let g:auto_save_events = ["InsertLeave", "TextChanged"]
-" " }}} auto-save "
+" " startify {{{ "
+"     let g:startify_lists = [
+"           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+"           \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+"           \ { 'type': 'files',     'header': ['   MRU']            },
+"           \ { 'type': 'sessions',  'header': ['   Sessions']       },
+"           \ { 'type': 'commands',  'header': ['   Commands']       },
+"           \ ]
+"
+" let g:startify_bookmarks = [
+"             \ '~/.config/nvim/',
+"             \ '~/porsche/git/pos/',
+"             \ ]
+" " }}} startify "
+
+" " vista {{{ "
+" " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+" let g:vista#renderer#enable_icon = 1
+"
+" " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+" let g:vista#renderer#icons = {
+" \   "command" : "",
+" \  }
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" " }}} vista "
+
+" close-tag {{{ "
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.ts,*.tsx'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.ts,*.tsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml,*.ts,*.tsx'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,*.ts,*.tsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 0
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+" }}} close-tag "

@@ -53,7 +53,6 @@ source ~/.zsh_plugins.sh
 
 source $HOME/.zsh/zshalias
 source $HOME/.zsh/func
-source $HOME/.zsh/lf_icons
 
 export KITTY_CONFIG_DIRECTORY=~/.config/kitty
 export NOTES_CLI_HOME="~/notes"
@@ -138,11 +137,12 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
-FORGIT_FZF_DEFAULT_OPTS="
+export FORGIT_FZF_DEFAULT_OPTS="
 --cycle
 --reverse
 --height '80%'
 --ansi
+--preview-window='right:70%:sharp'
 "
 
 # zprof
