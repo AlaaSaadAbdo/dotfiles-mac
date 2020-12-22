@@ -73,6 +73,12 @@
       ],
       "initializationOptions": {},
       "settings": {}
+    },
+    "docker": {
+    "command": "docker-langserver",
+    "args": ["--stdio"],
+    "filetypes":  ["dockerfile"],
+    "rootPatterns": ["Dockerfile"]
     }
   },
   "tsserver.npm": "/Users/amansour/.asdf/shims/npm",

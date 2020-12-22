@@ -24,7 +24,6 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-html',
   \ 'coc-go',
-  \ 'coc-docker',
   \ 'coc-css',
   \ 'coc-tag',
   \ 'coc-styled-components',

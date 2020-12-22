@@ -48,7 +48,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'roxma/nvim-yarp'
 
 "" evaluate against coc-docker
-Plug 'docker/docker'
+" Plug 'docker/docker'
 
 " Presentation
 Plug 'idbrii/vim-remarkjs'
