@@ -45,40 +45,52 @@ command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['
 nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 let g:coc_explorer_global_presets = {
-\   '.vim': {
+\   'mine': {
+\     'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link omitCenter 5]'
+\   },
+\   'nvim': {
 \     'root-uri': expand('~/.config/nvim/'),
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
 \   },
 \   'pos': {
 \     'root-uri': expand('~/porsche/git/pos/'),
 \   },
+\   'cocConfig': {
+\      'root-uri': '~/.config/coc',
+\   },
 \   'floating': {
-\     'position': "floating",
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
 \   },
-\   'simplify': {
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
 \   },
-\   'a': {
-\     'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [filename growRight 1 omitCenter 1][modified]',
-\     'file-child-labeling-template': '[fullpath][size][modified][readonly]',
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
 \   },
-\   'b': {
-\     'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [filename growRight 1 omitCenter 1][size]',
-\     'file-child-labeling-template': '[fullpath][size][created][modified][accessed][readonly]',
-\   }
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'buffer': {
+\     'sources': [{'name': 'buffer', 'expand': v:true}]
+\   },
 \ }
 
-nmap <leader>fc :CocCommand explorer --no-toggle<CR>
-nmap <leader>v  :CocCommand explorer --width=35 --preset .vim<CR>
-nmap <leader>pos  :CocCommand explorer --width=35 --preset pos<CR>
-nmap <leader>ff :CocCommand explorer --width=35 --preset floating<CR>
-nmap <leader>q  :CocCommand explorer --width=35<CR>
+nmap <leader>fc :CocCommand explorer --no-toggle --preset mine<CR>
+nmap <leader>v  :CocCommand explorer --width=40 --preset nvim<CR>
+nmap <leader>pos  :CocCommand explorer --width=40 --preset pos<CR>
+nmap <leader>ff :CocCommand explorer --preset floating<CR>
+nmap <leader>q  :CocCommand explorer --width=40 --preset mine<CR>
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
-" autocmd FileType json set conceallevel=0
-" au BufNewFile,BufRead *.json set conceallevel=0
-
-" highlighg symbol with coc-highlight (slower thant word plugin)
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Use <C-]> for both expand and jump (make expand higher priority.)
 imap <C-]> <Plug>(coc-snippets-expand-jump)
@@ -113,12 +125,26 @@ nnoremap <space>hh :call coc#float#close_all()<CR>
 " 1}}} "
 
 " indentline {{{ "
-let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'tagbar', 'coc-explorer', 'startify', 'man', "fzf", "floaterm", "json", "help", "ranger", "vista"]
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_char = ''
 let g:indentLine_first_char = ''
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_setColors = 0
+let g:indentLine_fileTypeExclude = [
+      \ 'markdown',
+      \ 'vimwiki',
+      \ 'tagbar',
+      \ 'coc-explorer',
+      \ 'startify',
+      \ 'man',
+      \ "fzf",
+      \ "floaterm",
+      \ "json",
+      \ "help",
+      \ "ranger",
+      \ "vista",
+      \ "dashboard"
+      \ ]
 " }}} indentline "
 
 " vim-lexical {{{ "
@@ -147,8 +173,9 @@ let g:vim_current_word#enabled = 1
 let g:vim_current_word#highlight_only_in_focused_window = 1
 hi CurrentWord ctermbg=232 guibg=#444444
 hi CurrentWordTwins ctermbg=237 guibg=#3a3a3a
+autocmd BufEnter *coc-explorer* :let b:vim_current_word_disabled_in_this_buffer = 1
 
-" "=== vim-lsp
+" vim-lsp
 " " config
 let g:lsp_diagnostics_enabled = 0
 let g:go_def_mapping_enabled = 0
@@ -224,19 +251,6 @@ map / <Plug>(incsearch-easymotion-/)
 " map ? <Plug>(incsearch-easymotion-?)
 map g/ <Plug>(incsearch-easymotion-stay)
 
-" incsearch.vim x fuzzy x vim-easymotion
-function! s:config_easyfuzzymotion(...) abort
-  return extend(copy({
-  \   'converters': [incsearch#config#fuzzy#converter()],
-  \   'modules': [incsearch#config#easymotion#module()],
-  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-  \   'is_expr': 0,
-  \   'is_stay': 1
-  \ }), get(a:, 1, {}))
-endfunction
-
-noremap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
-
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
@@ -266,7 +280,7 @@ let g:NERDCustomDelimiters = { 'helm': { 'left': '#','right': '' }, 'json': { 'l
 "Allow vim-terraform to align settings automatically with Tabularize.
 let g:terraform_align=1
 "Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
-" let g:terraform_fold_sections=1
+let g:terraform_fold_sections=1
 "Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
 let g:terraform_fmt_on_save=1
 " 1}}} "
@@ -539,7 +553,6 @@ let g:rainbow#blacklist = [223, 248, 184]
           \ ]
 
 let g:startify_bookmarks = [
-            \ '~/.config/nvim/',
             \ '~/porsche/git/pos/',
             \ ]
 " }}} startify "
@@ -589,3 +602,30 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 " }}} close-tag "
+
+" tree-sitter {{{ "
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
+" }}} tree-sitter "
+
+" vim-sandwich {{{ "
+runtime macros/sandwich/keymap/surround.vim
+" }}} vim-sandwich "

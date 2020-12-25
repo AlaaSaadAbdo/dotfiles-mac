@@ -1,60 +1,61 @@
 """ Vim-Plug
 call plug#begin()
 
-" Functionalities
+""" Functionalities
 Plug 'prabirshrestha/async.vim'
+Plug 'neomake/neomake'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'antoinemadec/coc-fzf'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'vimwiki/vimwiki'
-Plug 'neomake/neomake'
-Plug 'qpkorr/vim-bufkill'
-Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'brooth/far.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-unimpaired'
-Plug 'airblade/vim-gitgutter'
-Plug 'machakann/vim-sandwich'
-Plug 'will133/vim-dirdiff'
-Plug 'scrooloose/nerdcommenter'
-Plug 'honza/vim-snippets'
-Plug 'heavenshell/vim-pydocstring'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'tpope/vim-unimpaired'
-Plug 'hashivim/vim-terraform'
-Plug 'dense-analysis/ale'
-Plug 'juliosueiras/vim-terraform-completion'
-Plug 'junegunn/vim-easy-align'
-Plug 'voldikss/vim-floaterm'
-Plug 'knubie/vim-kitty-navigator'
 Plug 'psliwka/vim-smoothie'
 Plug 'djoshea/vim-autoread'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'reedes/vim-lexical'
-Plug 'alvan/vim-closetag'
+Plug 'qpkorr/vim-bufkill'
+Plug 'knubie/vim-kitty-navigator'
+Plug 'voldikss/vim-floaterm'
 Plug 'dstein64/vim-startuptime'
-Plug 'HerringtonDarkholme/yats.vim'
 
-""" Currently not used
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'roxma/nvim-yarp'
+""" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/conflict-marker.vim'
 
-"" evaluate against coc-docker
-" Plug 'docker/docker'
+""" Code
+Plug 'alvan/vim-closetag'
+Plug 'hashivim/vim-terraform'
+Plug 'dense-analysis/ale'
+Plug 'juliosueiras/vim-terraform-completion'
+Plug 'scrooloose/nerdcommenter'
+Plug 'reedes/vim-lexical'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'junegunn/vim-easy-align'
+Plug 'honza/vim-snippets'
+Plug 'scrooloose/nerdcommenter'
+Plug 'hashivim/vim-terraform'
+Plug 'dense-analysis/ale'
+Plug 'juliosueiras/vim-terraform-completion'
+Plug 'alvan/vim-closetag'
 
-" Presentation
+""" Text editing
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'brooth/far.vim'
+Plug 'machakann/vim-sandwich'
+
+""" Notes
+Plug 'vimwiki/vimwiki'
+
+""" Presentation
 Plug 'idbrii/vim-remarkjs'
 Plug 'idbrii/vim-gogo'
 
-" Aesthetics - Main
+""" Aesthetics - Main
 Plug 'sainnhe/gruvbox-material'
 Plug 'vim-airline/vim-airline'
 Plug 'masukomi/vim-markdown-folding'
@@ -62,19 +63,24 @@ Plug 'tpope/vim-markdown'
 Plug 'dominikduda/vim_current_word'
 Plug 'junegunn/vim-journal'
 Plug 'Yggdroot/indentLine'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'HerringtonDarkholme/yats.vim'
 
-" Trial
+""" Trial
 Plug 'junegunn/gv.vim'
-Plug 'rhysd/conflict-marker.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'mhinz/vim-startify'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+""" Currently not used
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
-
-runtime macros/sandwich/keymap/surround.vim
 
 let g:loaded_netrw= 1
 let g:netrw_loaded_netrwPlugin= 1
@@ -169,8 +175,8 @@ set undolevels=1000
 set undoreload=10000
 
 """ Other Configurations
-filetype plugin indent on
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
+" filetype plugin indent on
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab " autoindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd noshowmode
 set list listchars=trail:·,tab:»-
@@ -199,10 +205,6 @@ set nospell
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType htmldjango inoremap {{ {{  }}<left><left><left>
-autocmd FileType htmldjango inoremap {% {%  %}<left><left><left>
-autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 
 " Markdown and Journal
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
@@ -218,7 +220,6 @@ function! TrimWhitespace()
 endfunction
 
 """ Custom Mappings
-
 let mapleader=","
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme
@@ -227,11 +228,8 @@ nmap <leader>t :call TrimWhitespace()<CR>
 nmap <leader>bt :FloatermNew --height=0.4 --wintype=window --autoclose=2<CR>
 xmap <leader>a gaip*
 nmap <leader>a gaip*
-" nmap <leader>d <Plug>(pydocstring)
 nmap <leader>f :GFiles<CR>
 nmap <leader>F :Files<CR>
-nmap <leader>C :Codi!!
-nmap <leader>u :UndotreeToggle<CR>
 nmap <leader>c :BD<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>H :History<CR>
@@ -255,11 +253,6 @@ nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
 
-
-" search for something in the history of the repo
-" Glog -Stest -- " search for text in history of git
-" Glog -- diff2  " git the history of file diff2
-
 nnoremap x "_x
 vnoremap x "_xa
 
@@ -281,29 +274,19 @@ nnoremap <S-K> <C-w>-
 nnoremap <S-H> <C-w><
 nnoremap <S-L> <C-w>>
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-noremap pumvisible() ? "\" : " "
-
-" " vimdiff test
-" highlight! link DiffText MatchParen
-autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal foldmethod=syntax
-" set foldcolumn=1 "defines 1 col at window left, to indicate folding
-let javaScript_fold=1 "activate folding by JS syntax
-set foldmethod=marker
+autocmd FileType vim setlocal foldmethod=marker
 set foldlevel=99
-
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
- "\ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
- "\ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 " Search current word in google
 nnoremap <silent> <leader>sg :!Open "http://google.com/search?q="<cword><cr>
 
-nmap <leader>fd :call fzf#run(fzf#wrap({'source': 'fasd -d -R', 'sink': { line -> execute('cd '.split(line)[-1]) }}))<CR>
+nnoremap <CR> :noh<CR><CR>:<backspace>
 
 """ plugins options
 source ~/.config/nvim/plugins.vim
+
+" search for something in the history of the repo
+" Glog -Stest -- " search for text in history of git
+" Glog -- diff2  " git the history of file diff2
