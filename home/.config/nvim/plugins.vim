@@ -26,7 +26,6 @@ let g:coc_global_extensions = [
   \ 'coc-go',
   \ 'coc-css',
   \ 'coc-tag',
-  \ 'coc-styled-components',
   \ ]
 
 let g:coc_fzf_preview = 'up:70%:sharp'
