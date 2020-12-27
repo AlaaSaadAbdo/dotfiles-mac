@@ -15,20 +15,6 @@
   "diagnostic.errorSign": ">>",
   "diagnostic.warningSign": "--",
   "diagnostic.infoSign": "·",
-  // "explorer.icon.expanded": "",
-  // "explorer.icon.collapsed": "",
-  // "explorer.icon.customIcons": {
-  //   "icons": {
-  //     "folderClosed": {
-  //       "code": "",
-  //       "color": "#00afaf"
-  //     },
-  //     "folderOpened": {
-  //       "code": "",
-  //       "color": "#00afaf"
-  //     }
-  //   }
-  // },
   "python.jediEnabled": false,
   "explorer.file.showHiddenFiles": false,
   "explorer.sources": [
@@ -100,6 +86,8 @@
   },
   "suggest.snippetIndicator": "~",
   "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"]
+
+  // TO BE TRIED
   // "tabnine.priority": 4,
   // "suggest.languageSourcePriority": 1,
   // "coc.source.buffer.priority": 1,
@@ -142,4 +130,19 @@
   // "explorer.git.icon.rootStatus.modified": "~",
   // "explorer.git.icon.rootStatus.untracked": "?",
   // "explorer.git.icon.rootStatus.conflicted": "=",
+  // "explorer.icon.expanded": "",
+  // "explorer.icon.collapsed": "",
+  // "explorer.icon.customIcons": {
+  //   "icons": {
+  //     "folderClosed": {
+  //       "code": "",
+  //       "color": "#00afaf"
+  //     },
+  //     "folderOpened": {
+  //       "code": "",
+  //       "color": "#00afaf"
+  //     }
+  //   }
+  // },
+
 }

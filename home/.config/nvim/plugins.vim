@@ -83,7 +83,8 @@ let g:coc_explorer_global_presets = {
 \   },
 \ }
 
-nmap <leader>fc :CocCommand explorer --no-toggle --preset mine<CR>
+nmap <leader>ft :CocCommand explorer --no-toggle --preset mine<CR>
+nmap <leader>fc :CocCommand explorer --no-toggle --focus<CR>
 nmap <leader>v  :CocCommand explorer --width=40 --preset nvim<CR>
 nmap <leader>pos  :CocCommand explorer --width=40 --preset pos<CR>
 nmap <leader>ff :CocCommand explorer --preset floating<CR>
@@ -172,7 +173,7 @@ let g:vim_current_word#enabled = 1
 let g:vim_current_word#highlight_only_in_focused_window = 1
 hi CurrentWord ctermbg=232 guibg=#444444
 hi CurrentWordTwins ctermbg=237 guibg=#3a3a3a
-autocmd BufEnter *coc-explorer* :let b:vim_current_word_disabled_in_this_buffer = 1
+" autocmd FileType coc-explorer :let b:vim_current_word_disabled_in_this_buffer = 1
 
 " vim-lsp
 " " config
@@ -543,17 +544,26 @@ let g:rainbow#blacklist = [223, 248, 184]
 " }}} Rainbow Paranthesis "
 
 " startify {{{ "
-    let g:startify_lists = [
-          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-          \ { 'type': 'files',     'header': ['   MRU']            },
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
-          \ { 'type': 'commands',  'header': ['   Commands']       },
-          \ ]
-
 let g:startify_bookmarks = [
             \ '~/porsche/git/pos/',
             \ ]
+let g:startify_lists = [
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+      \ { 'type': 'files',     'header': ['   MRU']            },
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'commands',  'header': ['   Commands']       },
+      \ ]
+
+let g:startify_session_dir = '~/.config/nvim/sessions'
+
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
+let g:startify_session_persistence = 1
+let g:startify_session_autoload = 0
+let g:startify_custom_indices = ['p']
+let g:startify_files_number = 5
+let g:startify_session_delete_buffers = 0
 " }}} startify "
 
 " vista {{{ "
@@ -565,6 +575,8 @@ let g:vista#renderer#icons = {
 \   "command" : "",
 \  }
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+let g:vista_fzf_preview = ['right:70%']
 " }}} vista "
 
 " close-tag {{{ "
@@ -608,6 +620,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
   highlight = {
     enable = true,
+    disable = { "json" },
   },
   indent = {
     enable = true
@@ -628,3 +641,14 @@ EOF
 " vim-sandwich {{{ "
 runtime macros/sandwich/keymap/surround.vim
 " }}} vim-sandwich "
+
+" conflict-marker {{{ "
+let g:conflict_marker_highlight_group = ''
+let g:conflict_marker_begin = '^<<<<<<< .*$'
+let g:conflict_marker_end   = '^>>>>>>> .*$'
+highlight ConflictMarkerBegin guibg=#2f7366
+highlight ConflictMarkerOurs guibg=#2e5049
+highlight ConflictMarkerTheirs guibg=#344f69
+highlight ConflictMarkerEnd guibg=#2f628e
+highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
+" }}} conflict-marker "

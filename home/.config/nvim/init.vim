@@ -15,8 +15,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'psliwka/vim-smoothie'
 Plug 'djoshea/vim-autoread'
-Plug 'mzlogin/vim-markdown-toc'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'mzlogin/vim-markdown-toc', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'markdown'  }
 Plug 'qpkorr/vim-bufkill'
 Plug 'knubie/vim-kitty-navigator'
 Plug 'voldikss/vim-floaterm'
@@ -28,43 +28,39 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/conflict-marker.vim'
 
 """ Code
-Plug 'alvan/vim-closetag'
-Plug 'hashivim/vim-terraform'
+Plug 'alvan/vim-closetag', { 'for': ['html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css'] }
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'dense-analysis/ale'
-Plug 'juliosueiras/vim-terraform-completion'
-Plug 'scrooloose/nerdcommenter'
-Plug 'reedes/vim-lexical'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'junegunn/vim-easy-align'
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform' }
+Plug 'reedes/vim-lexical', { 'for': ['markdown', 'vimwiki', 'journal'] }
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdcommenter'
-Plug 'hashivim/vim-terraform'
-Plug 'dense-analysis/ale'
-Plug 'juliosueiras/vim-terraform-completion'
-Plug 'alvan/vim-closetag'
 
 """ Text editing
+Plug 'junegunn/vim-easy-align'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'brooth/far.vim'
 Plug 'machakann/vim-sandwich'
+Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'vimwiki', 'journal'] }
 
 """ Notes
 Plug 'vimwiki/vimwiki'
 
 """ Presentation
-Plug 'idbrii/vim-remarkjs'
-Plug 'idbrii/vim-gogo'
+Plug 'idbrii/vim-remarkjs', { 'for': ['markdown'] }
+Plug 'idbrii/vim-gogo', { 'for': ['markdown'] }
 
-""" Aesthetics - Main
+""" Aesthetics
 Plug 'sainnhe/gruvbox-material'
 Plug 'vim-airline/vim-airline'
-Plug 'masukomi/vim-markdown-folding'
-Plug 'tpope/vim-markdown'
+Plug 'masukomi/vim-markdown-folding', { 'for': ['markdown'] }
+Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
 Plug 'dominikduda/vim_current_word'
 Plug 'junegunn/vim-journal'
 Plug 'Yggdroot/indentLine'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css'] }
 
 """ Trial
 Plug 'junegunn/gv.vim'
@@ -73,23 +69,18 @@ Plug 'liuchengxu/vista.vim'
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'mhinz/vim-startify'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 
 """ Currently not used
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
-let g:loaded_netrw= 1
-let g:netrw_loaded_netrwPlugin= 1
-
 """ Python3 VirtualEnv
 let g:python3_host_prog = expand('/usr/local/bin/python3')
 let g:python_host_prog = expand('/usr/bin/python')
 let g:perl_host_prog = expand('/usr/local/bin/perl')
 
+" Colorscheme has to be loaded here otherwise it won't respect the options
 colorscheme gruvbox-material
 let g:gruvbox_material_palette = 'mix'
 let g:gruvbox_material_background = 'hard'
@@ -103,15 +94,6 @@ let g:gruvbox_material_sign_column_background = 'default'
 let g:gruvbox_material_diagnostic_line_highlight = 1
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_statusline_style = 'original'
-
-let g:conflict_marker_highlight_group = ''
-let g:conflict_marker_begin = '^<<<<<<< .*$'
-let g:conflict_marker_end   = '^>>>>>>> .*$'
-highlight ConflictMarkerBegin guibg=#2f7366
-highlight ConflictMarkerOurs guibg=#2e5049
-highlight ConflictMarkerTheirs guibg=#344f69
-highlight ConflictMarkerEnd guibg=#2f628e
-highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
 
 "use clipboard as default register"
 set clipboard=unnamedplus
@@ -136,6 +118,9 @@ set shortmess+=c
 set signcolumn=yes:1
 autocmd FileType man,floaterm,fzf,qf setlocal signcolumn=no
 
+" Session config to ignore coc-explorer
+set sessionoptions=buffers,curdir,folds,help,options,tabpages,winsize
+
 " disabled for pairing
 " dynamic hybrid number column (relative outside of insert mode and absolute in insert mode)
 " :set number relativenumber
@@ -146,8 +131,11 @@ autocmd FileType man,floaterm,fzf,qf setlocal signcolumn=no
 " :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 " :augroup END
 
-"This unsets the last search pattern register by hitting return
-"nnoremap <CR> :noh<CR><CR>:<backspace>
+""" Folding
+autocmd FileType vim setlocal foldmethod=marker
+set foldlevel=99
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 """ Coloring
 set termguicolors
@@ -155,12 +143,8 @@ syntax on
 set nocompatible
 filetype plugin on
 set background=dark
-" colorscheme gruvbox-material
-" colorscheme gruvbox
 highlight Comment cterm=italic gui=italic
 highlight Whitespace ctermfg=3 guifg=3
-" highlight Normal guibg=NONE ctermbg=NONE
-" highlight LineNr guibg=NONE ctermbg=NONE
 
 set cursorline " set cursorcolumn
 set autowrite  " Automatically save before :next, :make etc.
@@ -169,13 +153,12 @@ set splitbelow " Horizontal windows should split to bottom
 set showcmd    " Show me what I'm typing
 set autoread   " Automatically read changed files
 
-" persisten undo without undotree
+" persisten undo
 set undodir="~/.undodir/"
 set undolevels=1000
 set undoreload=10000
 
 """ Other Configurations
-" filetype plugin indent on
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab " autoindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd noshowmode
@@ -209,6 +192,10 @@ autocmd FileType xml setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " Markdown and Journal
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" Disable netrw
+let g:loaded_netrw= 1
+let g:netrw_loaded_netrwPlugin= 1
 
 """ Custom Functions
 
@@ -274,14 +261,10 @@ nnoremap <S-K> <C-w>-
 nnoremap <S-H> <C-w><
 nnoremap <S-L> <C-w>>
 
-autocmd FileType vim setlocal foldmethod=marker
-set foldlevel=99
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-
 " Search current word in google
 nnoremap <silent> <leader>sg :!Open "http://google.com/search?q="<cword><cr>
 
+" disable search highlight when pressing <CR> in normal mode
 nnoremap <CR> :noh<CR><CR>:<backspace>
 
 """ plugins options
