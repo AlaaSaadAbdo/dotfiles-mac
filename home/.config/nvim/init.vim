@@ -4,7 +4,6 @@ call plug#begin()
 """ Functionalities
 Plug 'prabirshrestha/async.vim'
 Plug 'neomake/neomake'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -20,7 +19,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'ma
 Plug 'qpkorr/vim-bufkill'
 Plug 'knubie/vim-kitty-navigator'
 Plug 'voldikss/vim-floaterm'
-Plug 'dstein64/vim-startuptime'
+Plug 'dstein64/vim-startuptime', { 'on':  'StartupTime' }
+Plug 'tpope/vim-repeat'
 
 """ Git
 Plug 'tpope/vim-fugitive'
@@ -40,7 +40,6 @@ Plug 'scrooloose/nerdcommenter'
 """ Text editing
 Plug 'junegunn/vim-easy-align'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'brooth/far.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'vimwiki', 'journal'] }
 
@@ -53,27 +52,27 @@ Plug 'idbrii/vim-gogo', { 'for': ['markdown'] }
 
 """ Aesthetics
 Plug 'sainnhe/gruvbox-material'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'josa42/vim-lightline-coc'
+Plug 'sinetoami/lightline-hunks'
+
 Plug 'masukomi/vim-markdown-folding', { 'for': ['markdown'] }
-Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
 Plug 'dominikduda/vim_current_word'
 Plug 'junegunn/vim-journal'
 Plug 'Yggdroot/indentLine'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css'] }
-
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 """ Trial
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
-Plug 'mhinz/vim-startify'
-
-""" Currently not used
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'mhinz/vim-startify'
 
 call plug#end()
+
 
 """ Python3 VirtualEnv
 let g:python3_host_prog = expand('/usr/local/bin/python3')
@@ -95,41 +94,21 @@ let g:gruvbox_material_diagnostic_line_highlight = 1
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_statusline_style = 'original'
 
-"use clipboard as default register"
 set clipboard=unnamedplus
-" live preview
 set inccommand=nosplit
 
-"command ignore case"
-set ignorecase
-set infercase
-set wildignorecase
 set hidden
+set incsearch hlsearch infercase ignorecase
 
-" Give more space for displaying messages.
+set showtabline=2
 set cmdheight=2
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
 set updatetime=300
-" Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
 set signcolumn=yes:1
 autocmd FileType man,floaterm,fzf,qf setlocal signcolumn=no
 
 " Session config to ignore coc-explorer
 set sessionoptions=buffers,curdir,folds,help,options,tabpages,winsize
-
-" disabled for pairing
-" dynamic hybrid number column (relative outside of insert mode and absolute in insert mode)
-" :set number relativenumber
-"
-" :augroup numbertoggle
-" :  autocmd!
-" :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-" :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-" :augroup END
 
 """ Folding
 autocmd FileType vim setlocal foldmethod=marker
@@ -146,12 +125,9 @@ set background=dark
 highlight Comment cterm=italic gui=italic
 highlight Whitespace ctermfg=3 guifg=3
 
-set cursorline " set cursorcolumn
-set autowrite  " Automatically save before :next, :make etc.
-set splitright " Vertical windows should be split to right
-set splitbelow " Horizontal windows should split to bottom
-set showcmd    " Show me what I'm typing
-set autoread   " Automatically read changed files
+set cursorline autowrite
+set splitright splitbelow
+set autoread
 
 " persisten undo
 set undodir="~/.undodir/"
@@ -159,12 +135,20 @@ set undolevels=1000
 set undoreload=10000
 
 """ Other Configurations
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab " autoindent
-set incsearch ignorecase smartcase hlsearch
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
+set backspace=indent,eol,start
+set complete-=i
+set nrformats-=octal
+set ttimeout
+set ttimeoutlen=100
 set ruler laststatus=2 showcmd noshowmode
+set wildmenu
 set list listchars=trail:·,tab:»-
 set linebreak
 set conceallevel=0
+set scrolloff=1
+set sidescrolloff=5
+set display+=lastline
 autocmd BufReadPre,FileReadPre * :hi TrailSpace guifg=#b16286
 autocmd BufReadPre,FileReadPre * :hi Tab guifg=#b16286
 autocmd BufReadPre,FileReadPre * :match Tab "\t"
@@ -176,11 +160,15 @@ set number
 set numberwidth=2
 set title
   let &titlestring='%t - nvim'
+set viminfo^=!
+set tabpagemax=50
+set history=1000
 set diffopt+=vertical
-" disable auto comment on newline
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+set formatoptions+=j
 set shortmess-=S
 set nospell
+set endofline
+autocmd FileType * setlocal formatoptions-=cro
 
 """ Filetype-Specific Configurations
 
@@ -201,9 +189,15 @@ let g:netrw_loaded_netrwPlugin= 1
 
 " Trim Whitespaces
 function! TrimWhitespace()
-   let l:save = winsaveview()
-   %s/\\\@<!\s\+$//e
-   call winrestview(l:save)
+  let l:save = winsaveview()
+  %s/\\\@<!\s\+$//e
+  call winrestview(l:save)
+endfunction
+
+function TrimEndLines()
+  let l:save = winsaveview()
+  silent! %s#\($\n\s*\)\+\%$##
+  call winrestview(l:save)
 endfunction
 
 """ Custom Mappings
@@ -211,7 +205,8 @@ let mapleader=","
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
-nmap <leader>t :call TrimWhitespace()<CR>
+nmap <leader>ts :call TrimWhitespace()<CR>
+nmap <leader>tl :call TrimEndLines()<CR>
 nmap <leader>bt :FloatermNew --height=0.4 --wintype=window --autoclose=2<CR>
 xmap <leader>a gaip*
 nmap <leader>a gaip*
@@ -270,6 +265,58 @@ nnoremap <CR> :noh<CR><CR>:<backspace>
 """ plugins options
 source ~/.config/nvim/plugins.vim
 
+""" Unused but potentially useful
+
 " search for something in the history of the repo
 " Glog -Stest -- " search for text in history of git
 " Glog -- diff2  " git the history of file diff2
+
+" disabled for pairing
+" dynamic hybrid number column (relative outside of insert mode and absolute in insert mode)
+" :set number relativenumber
+"
+" :augroup numbertoggle
+" :  autocmd!
+" :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+" :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" :augroup END
+
+" Make sure nothing opened in coc-explorer buffer
+" autocmd BufEnter * if bufname('#') =~# "\[coc-explorer\]-." && winnr('$') > 1 | b# | endif
+
+" " CoC Explorer Settings
+" augroup MyCocExplorer
+"   autocmd!
+"   autocmd VimEnter * sil! au! F
+"   " set window status line
+"   " autocmd FileType coc-explorer setl statusline=File-Explorer
+"   "quit explorer whein it's the last
+"   autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+"   " Make sure nothing opened in coc-explorer buffer
+"   autocmd BufEnter * if bufname('#') =~# "\[coc-explorer\]-." && winnr('$') > 1 | b# | endif
+"   " open if directory specified or if buffer empty
+"   " autocmd VimEnter * let d = expand('%:p')
+"   "   \ | if argc() == 0
+"   "     \ | exe 'CocCommand explorer --quit-on-open --position floating --sources buffer+,file+'
+"   "   \ | elseif isdirectory(d) || (bufname()=='')
+"   "     \ | silent! bd
+"   "     \ | exe 'CocCommand explorer --quit-on-open --position floating --sources buffer+,file+ ' . d
+"   "     \ | exe 'cd ' . d
+"   "   \ | else
+"   "     \ | cd %:p:h
+"   "   \ | endif
+"   " " cd after open
+"   " autocmd User CocExplorerOpenPost let dir = getcwd() | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]})
+" augroup END
+
+" show long file names in coc
+function! s:ShowFilename()
+    let s:node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+    if exists('s:node_info.fullpath')
+      let s:split_path = split(s:node_info.fullpath, "/")
+      echohl Debug | echo s:split_path[len(s:split_path) - 1]
+    endif
+    " redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
+    " \ 'CoC Explorer: ' . s:node_info.fullpath : '' | echohl None
+endfunction
+autocmd CursorMoved \[coc-explorer\]* :call <SID>ShowFilename()

@@ -43,6 +43,14 @@ prompt_lean_git_dirty() {
     (($? == 0)) && echo '+'
 }
 
+prompt_node_version() {
+    # check if we're in a git repo
+    command git rev-parse --is-inside-work-tree &>/dev/null || return
+    # check if it's dirty
+    echo $(node --version)
+}
+
+
 # displays the exec time of the last command if set threshold was exceeded
 prompt_lean_cmd_exec_time() {
     local stop=$EPOCHSECONDS
@@ -113,7 +121,7 @@ prompt_lean_precmd() {
 
     setopt promptsubst
     local vcs_info_str='$vcs_info_msg_0_' # avoid https://github.com/njhartwell/pw3nage
-    PROMPT='$prompt_lean_user%f@$prompt_lean_host%f:%F{'$COLOR2'}`prompt_lean_pwd`%F{'$COLOR1'}$vcs_info_str%F{'$COLOR4'}%f`gitprompt`
+    PROMPT='$prompt_lean_user%f@$prompt_lean_host%f:%F{'$COLOR2'}`prompt_lean_pwd`%F{'$COLOR1'}$vcs_info_str%F{'$COLOR4'}%f`gitprompt` %F{'$COLOR3'}`prompt_node_version`
 ${MODE_INDICATOR_PROMPT}%f`$PROMPT_LEAN_LEFT`%f%(?.%F{'$COLOR8'}.%B%F{203})❯ %f%k%b'
     RPROMPT='%B%(?.%F{green}.%F{red})%?%f%b%{$fg[green]%} %F{"$COLOR3"}`prompt_lean_cmd_exec_time`%f[%*]%`$PROMPT_LEAN_RIGHT`'
 

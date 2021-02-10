@@ -16,7 +16,6 @@ let g:coc_global_extensions = [
   \ 'coc-explorer',
   \ 'coc-eslint',
   \ 'coc-cssmodules',
-  \ 'coc-bookmark',
   \ 'coc-yaml',
   \ 'coc-solargraph',
   \ 'coc-python',
@@ -45,6 +44,7 @@ nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 let g:coc_explorer_global_presets = {
 \   'mine': {
+\     'sources': [{'name': 'buffer', 'expand': v:false},{'name': 'file','expand': v:true}],
 \     'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link omitCenter 5]'
 \   },
 \   'nvim': {
@@ -85,10 +85,10 @@ let g:coc_explorer_global_presets = {
 
 nmap <leader>ft :CocCommand explorer --no-toggle --preset mine<CR>
 nmap <leader>fc :CocCommand explorer --no-toggle --focus<CR>
-nmap <leader>v  :CocCommand explorer --width=40 --preset nvim<CR>
+nmap <leader>v  :CocCommand explorer --width=35 --preset nvim<CR>
 nmap <leader>pos  :CocCommand explorer --width=40 --preset pos<CR>
 nmap <leader>ff :CocCommand explorer --preset floating<CR>
-nmap <leader>q  :CocCommand explorer --width=40 --preset mine<CR>
+nmap <leader>q  :CocCommand explorer --width=30 --preset mine<CR>
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -119,6 +119,10 @@ nnoremap <silent> <space>p :call CocAction('doHover')<CR>
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+
+" Browse to git repo
+nnoremap <silent> <space>gb :<C-u>CocCommand git.browserOpen<CR>
+
 
 " hide floating windows (in case they are stuck)
 nnoremap <space>hh :call coc#float#close_all()<CR>
@@ -289,16 +293,20 @@ let g:terraform_fmt_on_save=1
 let g:ale_completion_enabled = 0
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\}
-let b:ale_fixers = {
-\   'markdown': ['remove_trailing_lines'],
-\   'typescript' : [],
-\   'terraform' : ['terraform'],
-\}
-let b:ale_linters ={
 \   'markdown': [],
 \   'typescript' : [],
+\   'typescriptreact' : [],
+\}
+let b:ale_fixers = {
+\   'terraform' : ['terraform'],
+\   'sh' : ['bashate', 'language_server', 'shell', 'shellcheck'],
+\}
+let b:ale_linters ={
 \   'terraform' : ['terraform', 'tflint'],
+\   'sh' : ['bashate', 'language_server', 'shell', 'shellcheck'],
+\   'markdown': [],
+\   'typescriptreact' : [],
+\   'typescript' : [],
 \   'yaml' : [],
 \   'yml' : [],
 \   'ruby': [],
@@ -317,34 +325,6 @@ let g:ale_lint_on_text_changed = "Always"
 " highlight link ALEErrorLine error
 " highlight link ALEWarningLine warn
 let g:ale_sign_column_always = 1
-" 1}}} "
-
-" Airline {{{1 "
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n' : 'N',
-      \ 'i' : 'I',
-      \ 'R' : 'R',
-      \ 'c' : 'C',
-      \ 'v' : 'V',
-      \ 'V' : 'V',
-      \ 's' : 'S',
-      \ 'S' : 'S',
-      \ }
-" let g:airline_theme='gruvbox'
-let g:airline_theme = 'gruvbox_material'
-let g:gruvbox_material_statusline_style = 'original'
-let g:airline_powerline_fonts = 1
-" let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
-let g:airline_section_warning = ''
-let g:airline#extensions#tabline#enabled = 1
-"no arrow separators
-let g:airline_right_alt_sep = ' '
-let g:airline_right_sep = ' '
-let g:airline_left_alt_sep= ' '
-let g:airline_left_sep = ' '
-let g:airline#extensions#tabline#left_sep = '|'
-let g:airline#extensions#tabline#left_alt_sep = '|'
 " 1}}} "
 
 " term {{{1 "
@@ -378,10 +358,15 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 let g:fzf_layout = { 'down': '~70%' }
-let g:fzf_preview_window = ['right:60%:sharp', 'ctrl-/']
+let g:fzf_preview_window = ['up:60%:sharp', 'ctrl-/']
+let $FZF_DEFAULT_COMMAND = 'fd --hidden --follow --no-ignore --exclude "node_modules" --exclude ".git" --type f'
 
 " find references with fzf
 noremap <leader>fw :Ag <C-r>=expand('<cword>')<CR>
+
+" hide statusline in fzf window
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 " vim-fzf 1}}} "
 
 " undotree {{{1 "
@@ -557,7 +542,7 @@ let g:startify_lists = [
 
 let g:startify_session_dir = '~/.config/nvim/sessions'
 
-let g:startify_change_to_dir = 0
+let g:startify_change_to_dir = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_persistence = 1
 let g:startify_session_autoload = 0
@@ -570,11 +555,12 @@ let g:startify_session_delete_buffers = 0
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
 
+let g:vista_default_executive = 'ctags'
+
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
 let g:vista#renderer#icons = {
 \   "command" : "",
 \  }
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 let g:vista_fzf_preview = ['right:70%']
 " }}} vista "
@@ -652,3 +638,119 @@ highlight ConflictMarkerTheirs guibg=#344f69
 highlight ConflictMarkerEnd guibg=#2f628e
 highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
 " }}} conflict-marker "
+
+" lightline {{{ "
+
+let g:lightline#coc#indicator_warnings="W:" " Default is •.
+let g:lightline#coc#indicator_errors="E:" " Default is ×.
+let g:lightline#coc#indicator_info="I:" " Default is ~.
+let g:lightline#coc#indicator_hints="H:" " Default is >.
+let g:lightline#coc#indicator_ok="✓" " Default is ✓.
+
+let g:lightline#bufferline#read_only="-"
+let g:lightline#bufferline#modified="+"
+
+command! LightlineReload call LightlineReload()
+
+function! LightlineReload()
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction
+
+" let g:lightline#hunks#only_branch = 1
+let g:lightline#hunks#exclude_filetypes = [ 'startify', 'coc-explorer', 'vista', 'help' ]
+function! LightlineReadonly()
+  return &readonly && &filetype !~# '\v(help|coc-explorer|startify|vista)' ? 'RO' : ''
+endfunction
+
+function! LightlineMode()
+  return &filetype ==# 'coc-explorer' ? 'Coc-Explorer' :
+        \ &filetype ==# 'help' ? 'Help' :
+        \ &filetype ==# 'vista' ? 'vista' :
+        \ &filetype ==# 'startify' ? 'Startify' :
+        \ &filetype ==# 'list' ? 'List' :
+        \ lightline#mode()
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? &fileencoding : ''
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:F') : '[No Name]'
+  if (&ft=='coc-explorer')
+    let filename = ''
+  elseif (&ft=='vista')
+    let filename = ''
+  elseif (&ft=='startify')
+    let filename = ''
+  elseif (&ft=='help')
+    let filename = ''
+  endif
+  let modified = &modified ? '+' : ''
+  return filename . modified
+endfunction
+
+let g:lightline = {}
+let g:lightline.colorscheme = 'gruvbox_material'
+let g:lightline.component_function = {
+      \   'lightline_hunks': 'lightline#hunks#composer',
+      \   'readonly':        'LightlineReadonly',
+      \   'mode':            'LightlineMode',
+      \   'fileformat':      'LightlineFileformat',
+      \   'filetype':        'LightlineFiletype',
+      \   'filename':        'LightlineFilename',
+      \   'fileencoding':    'LightlineFileencoding',
+      \  }
+let g:lightline.component_expand = {
+      \   'buffers':         'lightline#bufferline#buffers',
+      \  }
+
+let g:lightline.component_type = {
+      \   'buffers':         'tabsel',
+      \ }
+let g:lightline.active = {
+      \   'left': [
+      \     [ 'mode', 'paste' ],
+      \     [ 'filename', 'readonly' ],
+      \     [ 'lightline_hunks' ],
+      \   ],
+      \   'right': [
+      \     [ 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings' ],
+      \     [ 'lineinfo' ],
+      \     [ 'percent' ],
+      \     [ 'filetype', 'fileencoding', 'fileformat' ],
+      \   ],
+      \ }
+let g:lightline.inactive = {
+      \   'left': [ [ 'mode' ], [ 'filename'] ],
+      \   'right': [ [ '' ] ],
+      \ }
+let g:lightline.tabline = {
+      \   'left': [ [ 'buffers' ] ],
+      \   'right': [ [ '' ] ]
+      \ }
+let g:lightline.mode_map = {
+      \   'n' : 'N',
+      \   'i' : 'I',
+      \   'R' : 'R',
+      \   'v' : 'V',
+      \   'V' : 'VL',
+      \   "\<C-v>": 'VB',
+      \   'c' : 'C',
+      \   's' : 'S',
+      \   'S' : 'SL',
+      \   "\<C-s>": 'SB',
+      \   't': 'T',
+      \ }
+call lightline#coc#register()
+" }}} lightline "

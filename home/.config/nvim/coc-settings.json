@@ -1,7 +1,7 @@
 {
   "codeLens.enable": true,
-  "typescript.referencesCodeLens.enable": true,
-  "typescript.implementationsCodeLens.enable": true,
+  "typescript.referencesCodeLens.enable": false,
+  "typescript.implementationsCodeLens.enable": false,
   "suggest.maxPreviewWidth": 100,
   "suggest.enablePreselect": false,
   "diagnostic.checkCurrentLine": true,
@@ -14,7 +14,7 @@
   "git.enableGutters": true,
   "diagnostic.errorSign": ">>",
   "diagnostic.warningSign": "--",
-  "diagnostic.infoSign": "·",
+  "diagnostic.infoSign": "··",
   "python.jediEnabled": false,
   "explorer.file.showHiddenFiles": false,
   "explorer.sources": [
@@ -39,7 +39,7 @@
   },
   "explorer.icon.enableNerdfont": true,
   "explorer.file.git.showUntrackedFiles":true,
-    "languageserver": {
+  "languageserver": {
     "terraform": {
       "command": "terraform-ls",
       "args":["serve"],
@@ -63,14 +63,13 @@
   "gosnippets/UltiSnips"
   ],
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.run": "onType",
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact"
   ],
-  "coc.preferences.formatOnInsertLeave": true,
   "tsserver.formatOnType": true,
   // "coc.preferences.formatOnType": true,
   "eslint.packageManager":"yarn",

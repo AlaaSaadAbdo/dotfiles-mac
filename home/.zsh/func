@@ -237,3 +237,11 @@ bccp() {
         fi
     fi
 }
+
+x-cut() {
+    zle kill-region
+    print -rn -- $CUTBUFFER | pbcopy
+}
+zle -N x-cut
+
+vim-mode-bindkey visual -- x-cut    '^X'

@@ -3,13 +3,20 @@
 # autoload compinit && compinit
 
 # load zcompdump only when it's not there
-
 autoload -Uz compinit
 if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
   compinit
 else
   compinit -C
 fi
+
+# autoload -Uz compinit
+#
+# for dump in ~/.zcompdump(N.mh+24); do
+#   compinit
+# done
+#
+# compinit -C
 
 autoload -U colors && colors
 export ZSH=~/.zsh
@@ -83,6 +90,8 @@ export FZF_COMPLETION_TRIGGER='~~'
 # Options to fzf command
 export FZF_COMPLETION_OPTS='+c -x'
 
+export FZF_DEFAULT_OPTS="--bind='?:toggle-preview' --bind='alt-w:toggle-preview-wrap'"
+
 
 # aliases and custom funcs
 # source $HOME/.zsh/keys
@@ -140,9 +149,11 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 export FORGIT_FZF_DEFAULT_OPTS="
 --cycle
 --reverse
---height '80%'
+--height='80%'
 --ansi
 --preview-window='right:70%:sharp'
+--bind='ctrl-/:toggle-preview'
+--bind='alt-w:toggle-preview-wrap'
 "
 
 # zprof

@@ -46,7 +46,7 @@ yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^Meeter$" manage=off
 yabai -m rule --add app="^Snipaste$" manage=off
 yabai -m rule --add app="^App Store$" manage=off
-yabai -m rule --add app="^Firefox$" space=^1
+# yabai -m rule --add app="^Firefox$" space=^1
 yabai -m rule --add app="^Emacs$" manage=on
 yabai -m rule --add app="^mpv$" manage=off
 yabai -m rule --add app="^VOX$" manage=off
@@ -78,8 +78,10 @@ yabai -m rule --add title="Microsoft Teams Call*." mouse_follows_focus=off
 # yabai -m rule --add app="^IntelliJ IDEA$" manage=off
 # yabai -m rule --add app="^IntelliJ IDEA$" title="/Users/amansour/porsche/git/pos/" manage=on
 # yabai -m rule --add app="^IntelliJ IDEA$" manage=off
-yabai -m rule --add title='.*Welcome*.|Checkout*.|.*Configurations|Choose*.|Import*.|.*Charges|Tip*.|Rename*.|IDE*.|Plugins|Create*.|Preferences|Delete|Breakout*.|Library*.|Tip.*|Merge.*|Conflicts|.*Changelist*.|Extract*.|Problems*.|Change*.' manage=off
+yabai -m rule --add title='.*Welcome*.|Checkout*.|.*Configurations|Choose*.|Import*.|.*Charges|Tip*.|Rename*.|IDE*.|Plugins|Create*.|Preferences|Delete|Breakout*.|Library*.|Tip.*|Merge.*|Conflicts|.*Changelist*.|Extract*.|Problems*.|Change*.|Code.*' manage=off
 
+yabai -m rule --add title="^Developer Tools*." manage=off
+yabai -m rule --add title="Library" manage=off
 # yabai -m rule --add app="^Discord$" grid=6:6:1:1:3:3 manage=off
 # yabai -m rule --add app="^kitty$" space=^2
 # yabai -m rule --add app="^Slack$" space=^4

@@ -26,6 +26,10 @@
            #_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action, /* Vimium */
            #ublock0_raymondhill_net-browser-action) { display: none !important; }
 
+
+#tabbrowser-tabs ~ #alltabs-button {display:none!important;}
+toolbarbutton#scrollbutton-up, toolbarbutton#scrollbutton-down {display:none !important;}
+
 /*
  *  Hide tabs if only one tab
  */
@@ -37,7 +41,7 @@
  *  Minimal theme
  */
 #navigator-toolbox {
-    font-family: 'Menlo' !important;
+    font-family: 'JetBrains Mono' !important;
     border-bottom: 1px;
     border-bottom-color: #93a1a1 !important;
     font-size: 10px;
@@ -112,7 +116,7 @@
 }
 
 #navigator-toolbox #urlbar {
-    background: #282828 !important;;
+    background: #282828 !important;
     color: #fdf6e3 !important;
     padding: 0 !important;
     padding-left: 1ch !important;
@@ -144,7 +148,7 @@
 }
 
 #navigator-toolbox .toolbarbutton-1 {
-    width: 22px;
+    width: 20px;
 }
 
 #navigator-toolbox #downloads-button {
@@ -163,7 +167,8 @@
 }
 
 #navigator-toolbox .tabbrowser-tab {
-    font-size: 12px;
+    font-family: 'JetBrains Mono' !important;
+    font-size: 10px !important;
 }
 
 #navigator-toolbox .tab-background {
