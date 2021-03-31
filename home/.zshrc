@@ -74,6 +74,7 @@ export PATH=$PATH:$HOME/.work-lib
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
+export PATH=$PATH:$HOME/.emacs.d/bin
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"

@@ -2,13 +2,14 @@
   "codeLens.enable": true,
   "typescript.referencesCodeLens.enable": false,
   "typescript.implementationsCodeLens.enable": false,
+  "javascript.implementationsCodeLens.enable": false,
+  "javascript.referencesCodeLens.enable": false,
   "suggest.maxPreviewWidth": 100,
   "suggest.enablePreselect": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.maxWindowHeight": 20,
   "git.addGBlameToBufferVar": false,
   "git.addGBlameToVirtualText": false,
-  "explorer.icon.enableVimDevicons": false,
   "explorer.previewAction.onHover": false,
   "explorer.file.autoReveal": true,
   "git.enableGutters": true,
@@ -38,6 +39,7 @@
    }
   },
   "explorer.icon.enableNerdfont": true,
+  "explorer.icon.enableVimDevicons": false,
   "explorer.file.git.showUntrackedFiles":true,
   "languageserver": {
     "terraform": {
@@ -63,7 +65,7 @@
   "gosnippets/UltiSnips"
   ],
   "eslint.autoFixOnSave": true,
-  "eslint.run": "onType",
+  "eslint.run": "onSave",
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
@@ -73,75 +75,9 @@
   "tsserver.formatOnType": true,
   // "coc.preferences.formatOnType": true,
   "eslint.packageManager":"yarn",
-  "go.goplsPath": "/Users/amansour/go/bin/gopls",
-  "go.goplsOptions": {
-    "completeUnimported": true
-  },
   "cssmodules.camelCase":true,
   "cssmodules.hintName": "cssmodules",
-  "markdownlint.config" : {
-    "default": true,
-    "line_length": false
-  },
+  "coc.preferences.enableMarkdown": true,
   "suggest.snippetIndicator": "~",
   "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"]
-
-  // TO BE TRIED
-  // "tabnine.priority": 4,
-  // "suggest.languageSourcePriority": 1,
-  // "coc.source.buffer.priority": 1,
-  // "coc.source.file.priority": 2,
-  // "coc.source.around.priority": 3,
-  // "snippets.priority": 5
-  // "diagnostic.errorSign": "✖",
-  // "diagnostic.warningSign": "",
-  // "diagnostic.infoSign": "",
-  // "git.changedSign.text": "•",
-  // "Modified"  : "⋆",
-  // "Staged"    : "•",
-  // "Untracked" : "∘",
-  // "Renamed"   : "®",
-  // "Dirty"     : "⁖",
-  // "Clean"     : "✔︎",
-  // "Unmerged"  : "≄",
-  // "Deleted"   : "♻",
-  // "Unknown"   : "✗"
-  // "git.changeRemovedSign.text": "⬤",
-  // "git.removedSign.text": "⬤",
-  // "git.conflictedDecorator": "⬤",
-  // "git.addedSign.text": "⬤",
-  // "explorer.git.icon.status.mixed": "*",
-  // "explorer.git.icon.status.added": "✚",
-  // "explorer.git.icon.status.deleted": "D",
-  // "explorer.git.icon.status.copied": "C",
-  // "explorer.git.icon.status.unmerged": "U",
-  // "explorer.git.icon.status.renamed": "R",
-  // "explorer.git.icon.status.ignored": "!",
-  // "explorer.git.icon.status.modified": "M",
-  // "explorer.git.icon.status.untracked": "?",
-  // "explorer.git.icon.status.unmodified": " ",
-  // "explorer.git.icon.rootStatus.ahead": "⇡",
-  // "explorer.git.icon.rootStatus.added": "✚",
-  // "explorer.git.icon.rootStatus.behind": "⇣",
-  // "explorer.git.icon.rootStatus.stashed": "$",
-  // "explorer.git.icon.rootStatus.renamed": "→",
-  // "explorer.git.icon.rootStatus.deleted": "✗",
-  // "explorer.git.icon.rootStatus.modified": "~",
-  // "explorer.git.icon.rootStatus.untracked": "?",
-  // "explorer.git.icon.rootStatus.conflicted": "=",
-  // "explorer.icon.expanded": "",
-  // "explorer.icon.collapsed": "",
-  // "explorer.icon.customIcons": {
-  //   "icons": {
-  //     "folderClosed": {
-  //       "code": "",
-  //       "color": "#00afaf"
-  //     },
-  //     "folderOpened": {
-  //       "code": "",
-  //       "color": "#00afaf"
-  //     }
-  //   }
-  // },
-
 }

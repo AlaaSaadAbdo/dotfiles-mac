@@ -9,7 +9,6 @@ let g:coc_global_extensions = [
   \ 'coc-prettier',
   \ 'coc-pairs',
   \ 'coc-lists',
-  \ 'coc-jest',
   \ 'coc-highlight',
   \ 'coc-git',
   \ 'coc-floaterm',
@@ -17,30 +16,15 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-cssmodules',
   \ 'coc-yaml',
-  \ 'coc-solargraph',
-  \ 'coc-python',
   \ 'coc-markdownlint',
   \ 'coc-json',
   \ 'coc-html',
-  \ 'coc-go',
   \ 'coc-css',
   \ 'coc-tag',
   \ ]
-
 let g:coc_fzf_preview = 'up:70%:sharp'
 inoremap <silent> <C-right> <C-R>=coc#start({'source': 'snippets'})<CR>
 inoremap <silent><expr> <c-space> coc#refresh()
-" nmap ge :CocCommand explorer<CR>
-" nmap gE :CocCommand explorer --position=right<CR>
-
-" Run jest for current project
-command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
-
-" Run jest for current file
-command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
-
-" Run jest for current test
-nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 let g:coc_explorer_global_presets = {
 \   'mine': {
@@ -83,12 +67,11 @@ let g:coc_explorer_global_presets = {
 \   },
 \ }
 
-nmap <leader>ft :CocCommand explorer --no-toggle --preset mine<CR>
 nmap <leader>fc :CocCommand explorer --no-toggle --focus<CR>
 nmap <leader>v  :CocCommand explorer --width=35 --preset nvim<CR>
 nmap <leader>pos  :CocCommand explorer --width=40 --preset pos<CR>
 nmap <leader>ff :CocCommand explorer --preset floating<CR>
-nmap <leader>q  :CocCommand explorer --width=30 --preset mine<CR>
+nmap <leader>q  :CocCommand explorer --width=45 --preset mine<CR>
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -280,14 +263,14 @@ let g:NERDToggleCheckAllLines = 1
 let g:NERDCustomDelimiters = { 'helm': { 'left': '#','right': '' }, 'json': { 'left': '//', 'right': '' } }
 " 1}}} "
 
-" terraform {{{1 "
-"Allow vim-terraform to align settings automatically with Tabularize.
-let g:terraform_align=1
-"Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
-let g:terraform_fold_sections=1
-"Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
-let g:terraform_fmt_on_save=1
-" 1}}} "
+" " terraform {{{1 "
+" "Allow vim-terraform to align settings automatically with Tabularize.
+" let g:terraform_align=1
+" "Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
+" let g:terraform_fold_sections=1
+" "Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
+" let g:terraform_fmt_on_save=1
+" " 1}}} "
 
 " ale {{{1 "
 let g:ale_completion_enabled = 0
@@ -601,27 +584,27 @@ let g:closetag_close_shortcut = '<leader>>'
 " }}} close-tag "
 
 " tree-sitter {{{ "
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-    disable = { "json" },
-  },
-  indent = {
-    enable = true
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-}
-EOF
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"   ensure_installed = "all",
+"   highlight = {
+"     enable = true,
+"     disable = { "json" },
+"   },
+"   indent = {
+"     enable = true
+"   },
+"   incremental_selection = {
+"     enable = true,
+"     keymaps = {
+"       init_selection = "gnn",
+"       node_incremental = "grn",
+"       scope_incremental = "grc",
+"       node_decremental = "grm",
+"     },
+"   },
+" }
+" EOF
 " }}} tree-sitter "
 
 " vim-sandwich {{{ "

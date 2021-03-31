@@ -28,20 +28,19 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/conflict-marker.vim'
 
 """ Code
-Plug 'alvan/vim-closetag', { 'for': ['html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css'] }
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'dense-analysis/ale'
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
-Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform' }
-Plug 'reedes/vim-lexical', { 'for': ['markdown', 'vimwiki', 'journal'] }
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdcommenter'
+Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform' }
+Plug 'alvan/vim-closetag', { 'for': ['html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css'] }
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 
 """ Text editing
 Plug 'junegunn/vim-easy-align'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'vimwiki', 'journal'] }
+Plug 'reedes/vim-lexical', { 'for': ['markdown', 'vimwiki', 'journal'] }
 
 """ Notes
 Plug 'vimwiki/vimwiki'
@@ -57,22 +56,25 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'josa42/vim-lightline-coc'
 Plug 'sinetoami/lightline-hunks'
 
-Plug 'masukomi/vim-markdown-folding', { 'for': ['markdown'] }
 Plug 'dominikduda/vim_current_word'
 Plug 'junegunn/vim-journal'
 Plug 'Yggdroot/indentLine'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'masukomi/vim-markdown-folding', { 'for': ['markdown'] }
+
 """ Trial
-Plug 'junegunn/gv.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'liuchengxu/vista.vim'
-Plug 'Shougo/neco-vim'
-Plug 'neoclide/coc-neco'
-" Plug 'mhinz/vim-startify'
+
+Plug 'Shougo/neco-vim', {'for': ['vim']}
+Plug 'neoclide/coc-neco', {'for': ['vim']}
+
+" " lags on type script
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+" Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 call plug#end()
 
+""" Gopass
+au BufNewFile,BufRead /private/**/gopass** setlocal noswapfile nobackup noundofile
 
 """ Python3 VirtualEnv
 let g:python3_host_prog = expand('/usr/local/bin/python3')
@@ -80,7 +82,6 @@ let g:python_host_prog = expand('/usr/bin/python')
 let g:perl_host_prog = expand('/usr/local/bin/perl')
 
 " Colorscheme has to be loaded here otherwise it won't respect the options
-colorscheme gruvbox-material
 let g:gruvbox_material_palette = 'mix'
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_visual = 'green background'
@@ -93,6 +94,7 @@ let g:gruvbox_material_sign_column_background = 'default'
 let g:gruvbox_material_diagnostic_line_highlight = 1
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_statusline_style = 'original'
+colorscheme gruvbox-material
 
 set clipboard=unnamedplus
 set inccommand=nosplit
@@ -309,14 +311,14 @@ source ~/.config/nvim/plugins.vim
 "   " autocmd User CocExplorerOpenPost let dir = getcwd() | call CocActionAsync("runCommand", "explorer.doAction", "closest", {"name": "cd", "args": [dir]})
 " augroup END
 
-" show long file names in coc
-function! s:ShowFilename()
-    let s:node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
-    if exists('s:node_info.fullpath')
-      let s:split_path = split(s:node_info.fullpath, "/")
-      echohl Debug | echo s:split_path[len(s:split_path) - 1]
-    endif
-    " redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
-    " \ 'CoC Explorer: ' . s:node_info.fullpath : '' | echohl None
-endfunction
-autocmd CursorMoved \[coc-explorer\]* :call <SID>ShowFilename()
+" " show long file names in coc
+" function! s:ShowFilename()
+"     let s:node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+"     if exists('s:node_info.fullpath')
+"       let s:split_path = split(s:node_info.fullpath, "/")
+"       echohl Debug | echo s:split_path[len(s:split_path) - 1]
+"     endif
+"     " redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
+"     " \ 'CoC Explorer: ' . s:node_info.fullpath : '' | echohl None
+" endfunction
+" autocmd CursorMoved \[coc-explorer\]* :call <SID>ShowFilename()
