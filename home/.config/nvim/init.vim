@@ -34,6 +34,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform' }
 Plug 'alvan/vim-closetag', { 'for': ['html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css'] }
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 """ Text editing
 Plug 'junegunn/vim-easy-align'
@@ -63,7 +64,8 @@ Plug 'masukomi/vim-markdown-folding', { 'for': ['markdown'] }
 
 """ Trial
 Plug 'junegunn/rainbow_parentheses.vim'
-
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'sindrets/diffview.nvim'
 Plug 'Shougo/neco-vim', {'for': ['vim']}
 Plug 'neoclide/coc-neco', {'for': ['vim']}
 
@@ -81,10 +83,12 @@ let g:python3_host_prog = expand('/usr/local/bin/python3')
 let g:python_host_prog = expand('/usr/bin/python')
 let g:perl_host_prog = expand('/usr/local/bin/perl')
 
+" source ~/.config/nvim/color-config.vim
+
 " Colorscheme has to be loaded here otherwise it won't respect the options
 let g:gruvbox_material_palette = 'mix'
 let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_visual = 'green background'
+let g:gruvbox_material_visual = 'grey background'
 let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_enable_bold = 1
@@ -95,6 +99,7 @@ let g:gruvbox_material_diagnostic_line_highlight = 1
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_statusline_style = 'original'
 colorscheme gruvbox-material
+
 
 set clipboard=unnamedplus
 set inccommand=nosplit
@@ -321,4 +326,6 @@ source ~/.config/nvim/plugins.vim
 "     " redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
 "     " \ 'CoC Explorer: ' . s:node_info.fullpath : '' | echohl None
 " endfunction
-" autocmd CursorMoved \[coc-explorer\]* :call <SID>ShowFilename()
+" autosource cmd CursorMoved \[coc-explorer\]* :call <SID>ShowFilename()
+
+hi DiffText   ctermfg=234 ctermbg=180 guibg=#314753 guifg=NONE

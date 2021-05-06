@@ -21,6 +21,7 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-tag',
+  \ 'coc-rls'
   \ ]
 let g:coc_fzf_preview = 'up:70%:sharp'
 inoremap <silent> <C-right> <C-R>=coc#start({'source': 'snippets'})<CR>
@@ -69,9 +70,9 @@ let g:coc_explorer_global_presets = {
 
 nmap <leader>fc :CocCommand explorer --no-toggle --focus<CR>
 nmap <leader>v  :CocCommand explorer --width=35 --preset nvim<CR>
-nmap <leader>pos  :CocCommand explorer --width=40 --preset pos<CR>
+nmap <leader>pos  :CocCommand explorer --width=35 --preset pos<CR>
 nmap <leader>ff :CocCommand explorer --preset floating<CR>
-nmap <leader>q  :CocCommand explorer --width=45 --preset mine<CR>
+nmap <leader>q  :CocCommand explorer --width=35 --preset mine<CR>
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -265,17 +266,22 @@ let g:NERDCustomDelimiters = { 'helm': { 'left': '#','right': '' }, 'json': { 'l
 
 " " terraform {{{1 "
 " "Allow vim-terraform to align settings automatically with Tabularize.
-" let g:terraform_align=1
+let g:terraform_align=1
 " "Allow vim-terraform to automatically fold (hide until unfolded) sections of terraform code. Defaults to 0 which is off.
-" let g:terraform_fold_sections=1
+let g:terraform_fold_sections=1
 " "Allow vim-terraform to automatically format *.tf and *.tfvars files with terraform fmt. You can also do this manually with the :TerraformFmt command.
-" let g:terraform_fmt_on_save=1
+let g:terraform_fmt_on_save=1
 " " 1}}} "
+
+" rust  {{{ "
+let g:rustfmt_autosave = 1
+" }}} rust  "
 
 " ale {{{1 "
 let g:ale_completion_enabled = 0
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'rust': ['rustfmt'],
 \   'markdown': [],
 \   'typescript' : [],
 \   'typescriptreact' : [],
@@ -283,10 +289,12 @@ let g:ale_fixers = {
 let b:ale_fixers = {
 \   'terraform' : ['terraform'],
 \   'sh' : ['bashate', 'language_server', 'shell', 'shellcheck'],
+\   'rust': ['rustfmt'],
 \}
 let b:ale_linters ={
 \   'terraform' : ['terraform', 'tflint'],
 \   'sh' : ['bashate', 'language_server', 'shell', 'shellcheck'],
+\   'rust': ['rustfmt'],
 \   'markdown': [],
 \   'typescriptreact' : [],
 \   'typescript' : [],
@@ -737,3 +745,41 @@ let g:lightline.mode_map = {
       \ }
 call lightline#coc#register()
 " }}} lightline "
+
+" diffview {{{ "
+lua <<EOF
+-- Lua
+local cb = require'diffview.config'.diffview_callback
+
+require'diffview'.setup {
+  diff_binaries = false,    -- Show diffs for binaries
+  file_panel = {
+    width = 35,
+    use_icons = false        -- Requires nvim-web-devicons
+  },
+  key_bindings = {
+    -- The `view` bindings are active in the diff buffers, only when the current
+    -- tabpage is a Diffview.
+    view = {
+      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file
+      ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
+      ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
+      ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
+    },
+    file_panel = {
+      ["j"]         = cb("next_entry"),         -- Bring the cursor to the next file entry
+      ["<down>"]    = cb("next_entry"),
+      ["k"]         = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
+      ["<up>"]      = cb("prev_entry"),
+      ["<cr>"]      = cb("select_entry"),       -- Open the diff for the selected entry.
+      ["o"]         = cb("select_entry"),
+      ["R"]         = cb("refresh_files"),      -- Update stats and entries in the file list.
+      ["<tab>"]     = cb("select_next_entry"),
+      ["<s-tab>"]   = cb("select_prev_entry"),
+      ["<leader>e"] = cb("focus_files"),
+      ["<leader>b"] = cb("toggle_files"),
+    }
+  }
+}
+EOF
+" }}} diffview "

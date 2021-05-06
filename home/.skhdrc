@@ -65,6 +65,7 @@ cmd - 0 : yabai -m space --focus 10
 # move space to display 2
 cmd + alt - 1 : yabai -m space --display 1
 cmd + alt - 2 : yabai -m space --display 2
+cmd + alt - 3 : yabai -m space --display 3
 
 # shift + cmd - x : yabai -m window --space recent; yabai -m space --focus recent
 #
@@ -109,9 +110,9 @@ ctrl + alt - 3  : yabai -m display --focus 3
 cmd + alt - x  : yabai -m window --display recent; yabai -m display --focus recent
 cmd + alt - z  : yabai -m window --display prev; yabai -m display --focus prev
 cmd + alt - c  : yabai -m window --display next; yabai -m display --focus next
-cmd + alt - 1  : yabai -m window --display 1; yabai -m display --focus 1
-cmd + alt - 2  : yabai -m window --display 2; yabai -m display --focus 2
-cmd + alt - 3  : yabai -m window --display 3; yabai -m display --focus 3
+# cmd + alt - 1  : yabai -m window --display 1; yabai -m display --focus 1
+# cmd + alt - 2  : yabai -m window --display 2; yabai -m display --focus 2
+# cmd + alt - 3  : yabai -m window --display 3; yabai -m display --focus 3
 
 # move floating window
 shift + ctrl - a : yabai -m window --move rel:-20:0
@@ -223,6 +224,33 @@ cmd + ctrl - left  : yabai -m window west --stack $(yabai -m query --windows --w
 cmd + ctrl - down  : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
 cmd + ctrl - up    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
 cmd + ctrl - right : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
+
+# ctrl - left : index=`yabai -m query --spaces --space | jq '.index'` &&\
+#                         if (($index != 1 && $index != 6 )) then\
+#                             new=$((index-1)); \
+#                             other=$(((new+5)%10));\
+#                             yabai -m space --focus "${other}"; yabai -m space --focus "${new}";\
+#                         fi
+# ctrl - right : index=`yabai -m query --spaces --space | jq '.index'` &&\
+#                         if (($index != 5 && $index != 10 )) then\
+#                             new=$((index+1)); \
+#                             other=$(((index+5)%10+1));\
+#                             yabai -m space --focus "${other}"; yabai -m space --focus "${new}";\
+#                         fi
+
+# Cycle windows forwards
+alt - 0x1E : yabai -m query --spaces --space \
+  | jq -re ".index" \
+  | xargs -I{} yabai -m query --windows --space {} \
+  | jq -sre "add | map(select(.minimized != 1)) | sort_by(.display, .frame.y, .frame.x, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" \
+  | xargs -I{} yabai -m window --focus {}
+
+# Cycle windows backwards
+alt - 0x21 : yabai -m query --spaces --space \
+  | jq -re ".index" \
+  | xargs -I{} yabai -m query --windows --space {} \
+  | jq -sre "add | map(select(.minimized != 1)) | sort_by(.display, .frame.y, .frame.y, .id) | nth(index(map(select(.focused == 1))) - 1).id" \
+  | xargs -I{} yabai -m window --focus {}
 
 .blacklist [
 "intellij idea"

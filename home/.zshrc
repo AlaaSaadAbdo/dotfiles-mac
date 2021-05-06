@@ -91,7 +91,7 @@ export FZF_COMPLETION_TRIGGER='~~'
 # Options to fzf command
 export FZF_COMPLETION_OPTS='+c -x'
 
-export FZF_DEFAULT_OPTS="--bind='?:toggle-preview' --bind='alt-w:toggle-preview-wrap'"
+export FZF_DEFAULT_OPTS="--bind='ctrl-/:toggle-preview' --bind='alt-w:toggle-preview-wrap' --preview-window='right:70%:sharp'"
 
 
 # aliases and custom funcs
@@ -147,6 +147,8 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
+
+
 export FORGIT_FZF_DEFAULT_OPTS="
 --cycle
 --reverse
@@ -158,3 +160,6 @@ export FORGIT_FZF_DEFAULT_OPTS="
 "
 
 # zprof
+
+source /Users/amansour/.config/broot/launcher/bash/br
+# eval "$(starship init zsh)"
