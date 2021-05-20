@@ -184,6 +184,7 @@ gls.right[9] = {
     provider = "ScrollBar",
     separator = " ",
     condition = condition.buffer_not_empty,
+    separator_highlight = {"NONE", colors.bg},
     highlight = {colors.grey, colors.bg}
   }
 }

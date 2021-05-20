@@ -12,6 +12,7 @@ apply_globals(
     loaded_vimball = 1,
     loaded_vimballPlugin = 1,
     loaded_matchit = 1,
+    loaded_matchparen = 1,
     loaded_2html_plugin = 1,
     loaded_logiPat = 1,
     loaded_rrhelper = 1,

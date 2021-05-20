@@ -14,5 +14,6 @@ end
 lspconfig.rust_analyzer.setup {
   cmd = {vim.fn.stdpath("data") .. "/lspinstall/rust/rust-analyzer"},
   on_attach = on_attach,
-  capabilities = capabilities
+  capabilities = capabilities,
+  filetypes = {"rust"}
 }

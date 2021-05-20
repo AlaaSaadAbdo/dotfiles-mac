@@ -41,6 +41,7 @@ local misk = {
   "nvim-lua/popup.nvim",
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-fzy-native.nvim",
+  "tyru/open-browser.vim",
   "scrooloose/nerdcommenter",
   "tweekmonster/startuptime.vim", -- benchmark startup
   "AndrewRadev/tagalong.vim",
@@ -63,14 +64,8 @@ local fzf = {
 }
 
 local test = {
-  {
-    "janko/vim-test",
-    ft = {"typescript", "rust"}
-  },
-  {
-    "rcarriga/vim-ultest",
-    ft = {"typescript", "rust"}
-  } -- pretty test output
+  "janko/vim-test",
+  "rcarriga/vim-ultest" -- pretty test output
 }
 
 -- local langs = {

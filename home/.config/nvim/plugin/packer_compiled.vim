@@ -159,6 +159,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
+  ["open-browser.vim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/open-browser.vim"
+  },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -229,12 +233,14 @@ _G.packer_plugins = {
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-sandwich"
   },
   ["vim-test"] = {
-    loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-test"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/opt/vim-test"
   },
   ["vim-ultest"] = {
-    loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-ultest"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/opt/vim-ultest"
   },
   ["vim-vsnip"] = {
     loaded = true,
@@ -251,6 +257,14 @@ _G.packer_plugins = {
 }
 
 time("Defining packer_plugins", false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time("Defining lazy-load filetype autocommands", true)
+vim.cmd [[au FileType typescript ++once lua require("packer.load")({'vim-test', 'vim-ultest'}, { ft = "typescript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType rust ++once lua require("packer.load")({'vim-test', 'vim-ultest'}, { ft = "rust" }, _G.packer_plugins)]]
+time("Defining lazy-load filetype autocommands", false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 END
