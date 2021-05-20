@@ -21,7 +21,8 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-tag',
-  \ 'coc-rls'
+  \ 'coc-rls',
+  \ 'coc-toml'
   \ ]
 let g:coc_fzf_preview = 'up:70%:sharp'
 inoremap <silent> <C-right> <C-R>=coc#start({'source': 'snippets'})<CR>
@@ -282,6 +283,7 @@ let g:ale_completion_enabled = 0
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'rust': ['rustfmt'],
+\   'html': ['prettier'],
 \   'markdown': [],
 \   'typescript' : [],
 \   'typescriptreact' : [],
@@ -290,6 +292,7 @@ let b:ale_fixers = {
 \   'terraform' : ['terraform'],
 \   'sh' : ['bashate', 'language_server', 'shell', 'shellcheck'],
 \   'rust': ['rustfmt'],
+\   'html': ['prettier'],
 \}
 let b:ale_linters ={
 \   'terraform' : ['terraform', 'tflint'],
@@ -591,10 +594,10 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 " }}} close-tag "
 
-" tree-sitter {{{ "
+" " tree-sitter {{{ "
 " lua <<EOF
 " require'nvim-treesitter.configs'.setup {
-"   ensure_installed = "all",
+"   ensure_installed = "maintained",
 "   highlight = {
 "     enable = true,
 "     disable = { "json" },
@@ -613,7 +616,7 @@ let g:closetag_close_shortcut = '<leader>>'
 "   },
 " }
 " EOF
-" }}} tree-sitter "
+" " }}} tree-sitter "
 
 " vim-sandwich {{{ "
 runtime macros/sandwich/keymap/surround.vim

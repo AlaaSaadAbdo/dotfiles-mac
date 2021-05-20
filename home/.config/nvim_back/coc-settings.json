@@ -1,0 +1,84 @@
+{
+  "codeLens.enable": true,
+  "typescript.referencesCodeLens.enable": false,
+  "typescript.implementationsCodeLens.enable": false,
+  "javascript.implementationsCodeLens.enable": false,
+  "javascript.referencesCodeLens.enable": false,
+  "suggest.maxPreviewWidth": 100,
+  "suggest.enablePreselect": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.maxWindowHeight": 20,
+  "git.addGBlameToBufferVar": false,
+  "git.addGBlameToVirtualText": false,
+  "explorer.previewAction.onHover": false,
+  "explorer.file.autoReveal": true,
+  "git.enableGutters": true,
+  "diagnostic.errorSign": ">>",
+  "diagnostic.warningSign": "--",
+  "diagnostic.infoSign": "··",
+  "python.jediEnabled": false,
+  "explorer.file.showHiddenFiles": false,
+  "explorer.sources": [
+    {
+      "name": "buffer",
+      "expand": false
+    },
+    {
+      "name": "file",
+      "expand": true
+    }
+  ],
+  "explorer.keyMappings.global": {
+    "<space>": "toggleSelection",
+    "C": "cd",
+   "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"]
+  },
+  "explorer.presets": {
+    "floating": {
+      "position": "floating"
+   }
+  },
+  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.enableVimDevicons": false,
+  "explorer.file.git.showUntrackedFiles":true,
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args":["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "docker": {
+    "command": "docker-langserver",
+    "args": ["--stdio"],
+    "filetypes":  ["dockerfile"],
+    "rootPatterns": ["Dockerfile"]
+    }
+  },
+  "tsserver.npm": "/Users/amansour/.asdf/shims/npm",
+  "snippets.ultisnips.directories": [
+  "UltiSnips",
+  "gosnippets/UltiSnips"
+  ],
+  "eslint.autoFixOnSave": true,
+  "eslint.run": "onSave",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "rust"
+  ],
+  "tsserver.formatOnType": true,
+  // "coc.preferences.formatOnType": true,
+  "eslint.packageManager":"yarn",
+  "cssmodules.camelCase":true,
+  "cssmodules.hintName": "cssmodules",
+  "coc.preferences.enableMarkdown": true,
+  "suggest.snippetIndicator": "~",
+  "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"]
+}

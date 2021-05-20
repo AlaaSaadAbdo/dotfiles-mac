@@ -26,8 +26,7 @@ alias kcuc='k config use-context'
 alias l='exa -abghHl'
 alias which-command=whence
 alias ovim="\vim"
-alias nvrc="nvim ~/.config/nvim/init.vim"
-alias nvplug="nvim ~/.config/nvim/plugins.vim"
+alias nvrc="nvim ~/.config/nvim/init.lua"
 alias kssh='kitty +kitten ssh'
 alias weather="curl wttr.in"
 alias lnote="notes ls | fzf --preview 'bat --style=numbers --color=always {}' --preview-window wrap | xargs -o nvim"

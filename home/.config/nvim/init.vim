@@ -1,4 +1,3 @@
-""" Vim-Plug
 call plug#begin()
 
 """ Functionalities
@@ -21,6 +20,7 @@ Plug 'knubie/vim-kitty-navigator'
 Plug 'voldikss/vim-floaterm'
 Plug 'dstein64/vim-startuptime', { 'on':  'StartupTime' }
 Plug 'tpope/vim-repeat'
+Plug 'cespare/vim-toml'
 
 """ Git
 Plug 'tpope/vim-fugitive'
@@ -119,6 +119,7 @@ set sessionoptions=buffers,curdir,folds,help,options,tabpages,winsize
 
 """ Folding
 autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType json setlocal foldmethod=syntax
 set foldlevel=99
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
