@@ -1,7 +1,16 @@
 local actions = require("telescope.actions")
 require("telescope").setup {
   defaults = {
-    find_command = {"rg", "--no-column", "--with-filename", "--line-number", "--smart-case"},
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case"
+    },
+    -- find_command = {"rg", "--no-column", "--with-filename", "--line-number", "--smart-case"},
     prompt_position = "bottom",
     prompt_prefix = " ",
     selection_caret = " ",
@@ -9,7 +18,7 @@ require("telescope").setup {
     initial_mode = "insert",
     selection_strategy = "reset",
     sorting_strategy = "descending",
-    layout_strategy = "vertical",
+    layout_strategy = "flex",
     layout_defaults = {
       horizontal = {mirror = false, preview_width = 0.6},
       vertical = {mirror = false}

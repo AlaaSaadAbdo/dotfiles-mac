@@ -11,8 +11,6 @@ vim.g.nvim_tree_bindings = {
   ["<CR>"] = tree_cb("edit"),
   ["o"] = tree_cb("edit"),
   ["l"] = tree_cb("edit"),
-  ["<2-LeftMouse>"] = tree_cb("edit"),
-  ["<2-RightMouse>"] = tree_cb("cd"),
   ["<C-]>"] = tree_cb("cd"),
   ["v"] = tree_cb("vsplit"),
   ["s"] = tree_cb("split"),
@@ -45,3 +43,16 @@ vim.g.nvim_tree_icons = {
   git = {unstaged = "", staged = "✓", unmerged = "", renamed = "➜", untracked = ""},
   folder = {default = "", open = "", empty = "", empty_open = "", symlink = ""}
 }
+
+-- local events = require("nvim-tree.events")
+-- events.on_file_created(
+--   function(data)
+--     if #vim.api.nvim_list_wins() == 1 then
+--       -- vim.cmd("vsplit " .. data.fname)
+--       vim.cmd("/ " .. data.fname)
+--     else
+--       -- vim.cmd("wincmd l | edit " .. data.fname)
+--       vim.cmd("/ " .. data.fname)
+--     end
+--   end
+-- )

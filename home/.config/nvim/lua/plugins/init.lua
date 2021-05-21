@@ -12,6 +12,6 @@ require "plugins.matchup"
 require "plugins.autopairs"
 require "plugins.telescope"
 require "plugins.lspfuzzy"
-require "plugins.gitsigns"
+require "plugins.signs"
 
 require "colorizer".setup()

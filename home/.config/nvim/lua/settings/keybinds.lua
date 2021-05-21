@@ -10,6 +10,8 @@ map("n", "q:", "<Nop>", {noremap = true})
 vim.api.nvim_set_keymap("n", "x", '"_x', {noremap = true})
 vim.api.nvim_set_keymap("v", "x", '"_xa', {noremap = true})
 
+vim.cmd("tmap <C-o> <C-\\><C-n>")
+
 -- nvimtree
 map("n", "<leader>q", ":NvimTreeToggle<CR>", {noremap = true})
 map("n", "<leader>fc", ":NvimTreeFindFile<CR>", {noremap = true})
