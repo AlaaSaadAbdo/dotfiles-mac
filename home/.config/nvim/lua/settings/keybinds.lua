@@ -52,6 +52,14 @@ local function autocmd(event, triggers, operations)
 end
 
 autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
+vim.cmd(
+  [[
+augroup vimrc-incsearch-highlight 
+  autocmd! 
+  autocmd CmdlineEnter /,\? :set hlsearch 
+autocmd CmdlineLeave /,\? :set nohlsearch 
+]]
+)
 
 -- compe
 vim.cmd("inoremap <silent><expr> <C-Space> compe#complete()")
@@ -62,7 +70,7 @@ vim.cmd("inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })")
 
 -- Telescope
 map("n", "<Leader>bb", ":Telescope buffers<CR>", {noremap = true, silent = true})
-map("n", "<Leader>fa", ":Telescope live_grep<CR>", {noremap = true, silent = true})
+-- map("n", "<Leader>fa", ":Telescope live_grep<CR>", {noremap = true, silent = true})
 map("n", "<Leader>fb", ":Telescope file_browser<CR>", {noremap = true, silent = true})
 map("n", "<Leader>ff", ":Telescope find_files<CR>", {noremap = true, silent = true})
 map("n", "<Leader>fg", ":Telescope git_files<CR>", {noremap = true, silent = true})
@@ -77,6 +85,8 @@ map(
   ":Telescope dotfiles path=/Users/amansour/.config/nvim shorten_path=true<CR>",
   {noremap = true, silent = true}
 )
+vim.cmd("nnoremap <leader>dot :lua require('plugins.telescope').grep_dot_files()<cr>")
+vim.cmd("nnoremap <leader>fa :lua require('plugins.telescope').fzf_live_grep()<cr>")
 
 -- Gitweb
 vim.cmd("nnoremap <leader>gbc :!gitweb -B 'Google Chrome'<cr>")

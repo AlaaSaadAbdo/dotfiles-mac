@@ -6,6 +6,7 @@ local on_attach = function(client, server)
   else
     client.resolved_capabilities.document_formatting = false
   end
+  -- require "illuminate".on_attach(client)
 end
 
 lspconfig.html.setup {

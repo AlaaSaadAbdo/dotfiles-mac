@@ -16,4 +16,5 @@ require "plugins.signs"
 
 require "colorizer".setup()
 
-vim.cmd("nnoremap <leader>dot :lua require('plugins.telescope').grep_dot_files()<cr>")
+-- vim.cmd("nnoremap <leader>dot :lua require('plugins.telescope').grep_dot_files()<cr>")
+-- vim.cmd("nnoremap <leader>vg :lua require('plugins.telescope').fzf_live_grep()<cr>")

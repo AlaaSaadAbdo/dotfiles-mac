@@ -163,10 +163,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
-  ["open-browser.vim"] = {
-    loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/open-browser.vim"
-  },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -191,6 +187,14 @@ _G.packer_plugins = {
   ["tagalong.vim"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/tagalong.vim"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
+  },
+  ["telescope-fzf-writer.nvim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/telescope-fzf-writer.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
@@ -219,6 +223,10 @@ _G.packer_plugins = {
   ["vim-floaterm"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-floaterm"
+  },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-illuminate"
   },
   ["vim-matchtag"] = {
     loaded = true,

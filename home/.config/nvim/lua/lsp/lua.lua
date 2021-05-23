@@ -4,9 +4,19 @@ local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+local on_attach = function(client, server)
+  if server == "efm" then
+    client.resolved_capabilities.document_formatting = true
+  else
+    client.resolved_capabilities.document_formatting = false
+  end
+  -- require "illuminate".on_attach(client)
+end
+
 require "lspconfig".sumneko_lua.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {

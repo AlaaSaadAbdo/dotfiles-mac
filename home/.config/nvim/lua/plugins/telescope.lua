@@ -56,20 +56,25 @@ require("telescope").setup {
     }
   },
   extensions = {
-    fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true
+    fzf = {
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case"
+    },
+    fzf_writer = {
+      use_highlighter = true,
+      minimum_grep_characters = 2
     }
   }
 }
 
-require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("dotfiles")
+require("telescope").load_extension("fzf")
 
 local M = {}
 
 function M.grep_dot_files()
-  require("telescope.builtin").live_grep {
+  require("telescope").extensions.fzf_writer.staged_grep {
     prompt_title = "~ Dotfiles ~",
     shorten_path = true,
     vimgrep_arguments = {
@@ -89,6 +94,19 @@ function M.grep_dot_files()
       vertical = {mirror = false}
     },
     preview_width = 0.6
+  }
+end
+
+function M.fzf_live_grep()
+  require("telescope").extensions.fzf_writer.staged_grep {
+    layout_strategy = "flex",
+    layout_defaults = {
+      horizontal = {mirror = false, preview_width = 0.6},
+      vertical = {mirror = false}
+    },
+    preview_width = 0.6,
+    shorten_path = false,
+    fzf_separator = "|"
   }
 end
 

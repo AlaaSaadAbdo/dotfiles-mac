@@ -41,7 +41,8 @@ local misc = {
   "nvim-lua/popup.nvim",
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-fzy-native.nvim",
-  "tyru/open-browser.vim",
+  "nvim-telescope/telescope-fzf-writer.nvim",
+  {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
   "scrooloose/nerdcommenter",
   "tweekmonster/startuptime.vim", -- benchmark startup
   "AndrewRadev/tagalong.vim",
@@ -55,7 +56,8 @@ local misc = {
   "norcalli/nvim-colorizer.lua",
   "mbbill/undotree",
   "folke/lsp-colors.nvim",
-  {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
+  {"lukas-reineke/indent-blankline.nvim", branch = "lua"},
+  "RRethy/vim-illuminate"
 }
 
 local fzf = {
