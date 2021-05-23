@@ -81,8 +81,8 @@ apply_options(
     redrawtime = 10000,
     numberwidth = 2,
     timeoutlen = 300, -- faster timeout wait time
-    updatetime = 100, -- set faster update time
-    ttimeoutlen = 100,
+    updatetime = 300, -- set faster update time
+    ttimeoutlen = 300,
     formatoptions = "1jql", -- improve editor formatting
     foldmethod = "expr",
     foldexpr = "nvim_treesitter#foldexpr()"

@@ -75,6 +75,7 @@ export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
 export PATH=$PATH:$HOME/.emacs.d/bin
+export PATH=$PATH:$HOME/.asdf/installs/rust/1.51.0/bin
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"

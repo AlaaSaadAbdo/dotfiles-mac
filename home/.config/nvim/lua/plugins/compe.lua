@@ -1,5 +1,3 @@
-local map = require "settings.utils".map
-
 vim.o.completeopt = "menuone,noselect"
 require "compe".setup {
   enabled = true,

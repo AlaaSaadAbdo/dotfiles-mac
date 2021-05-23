@@ -65,3 +65,31 @@ require("telescope").setup {
 
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("dotfiles")
+
+local M = {}
+
+function M.grep_dot_files()
+  require("telescope.builtin").live_grep {
+    prompt_title = "~ Dotfiles ~",
+    shorten_path = true,
+    vimgrep_arguments = {
+      "rg",
+      "--hidden",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case"
+    },
+    cwd = "~/.homesick/repos/dotfiles",
+    layout_strategy = "flex",
+    layout_defaults = {
+      horizontal = {mirror = false, preview_width = 0.6},
+      vertical = {mirror = false}
+    },
+    preview_width = 0.6
+  }
+end
+
+return M

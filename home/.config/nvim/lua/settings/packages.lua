@@ -31,13 +31,13 @@ local lsp = {
 }
 
 local git = {
-  "tpope/vim-fugitive",
+  -- "tpope/vim-fugitive",
   "rhysd/conflict-marker.vim",
   "lewis6991/gitsigns.nvim",
   "sindrets/diffview.nvim"
 }
 
-local misk = {
+local misc = {
   "nvim-lua/popup.nvim",
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-fzy-native.nvim",
@@ -48,13 +48,13 @@ local misk = {
   "AndrewRadev/splitjoin.vim",
   "machakann/vim-sandwich",
   "alvan/vim-closetag",
-  -- "mhartington/formatter.nvim",
   "voldikss/vim-floaterm",
   "andymass/vim-matchup",
   "leafOfTree/vim-matchtag", --highlight matching tags html, xml, js, jsx, vue, svelte.
   "windwp/nvim-autopairs",
   "norcalli/nvim-colorizer.lua",
   "mbbill/undotree",
+  "folke/lsp-colors.nvim",
   {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
 }
 
@@ -67,14 +67,6 @@ local test = {
   "janko/vim-test",
   "rcarriga/vim-ultest" -- pretty test output
 }
-
--- local langs = {
---   "Galooshi/vim-import-js",
---   "pangloss/vim-javascript",
---   "maxmellon/vim-jsx-pretty" -- because treesitter breaks jsx indentation
---   -- "leafOfTree/vim-vue-plugin"
---   -- use "styled-components/vim-styled-components"
--- }
 
 local snippets = {
   "hrsh7th/vim-vsnip",
@@ -101,10 +93,9 @@ packer.startup {
     init,
     lsp,
     git,
-    misk,
+    misc,
     fzf,
     test,
-    -- langs,
     snippets,
     themes,
     ui

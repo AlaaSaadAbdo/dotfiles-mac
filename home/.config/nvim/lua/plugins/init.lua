@@ -15,3 +15,5 @@ require "plugins.lspfuzzy"
 require "plugins.signs"
 
 require "colorizer".setup()
+
+vim.cmd("nnoremap <leader>dot :lua require('plugins.telescope').grep_dot_files()<cr>")

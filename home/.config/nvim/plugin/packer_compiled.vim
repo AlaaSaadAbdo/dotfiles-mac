@@ -107,6 +107,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
+  ["lsp-colors.nvim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/lsp-colors.nvim"
+  },
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
@@ -215,10 +219,6 @@ _G.packer_plugins = {
   ["vim-floaterm"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-floaterm"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
   ["vim-matchtag"] = {
     loaded = true,
