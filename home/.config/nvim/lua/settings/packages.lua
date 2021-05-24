@@ -20,6 +20,7 @@ local init = {
 
 local lsp = {
   "nvim-lua/plenary.nvim",
+  "nvim-lua/popup.nvim",
   "neovim/nvim-lspconfig",
   "kabouzeid/nvim-lspinstall",
   "ojroques/nvim-lspfuzzy",
@@ -27,37 +28,34 @@ local lsp = {
   "glepnir/lspsaga.nvim",
   "tsuyoshicho/vim-efm-langserver-settings", -- auto config efm lsp
   {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
-  "nvim-treesitter/nvim-treesitter-refactor"
+  "nvim-treesitter/nvim-treesitter-refactor",
+  "folke/lsp-colors.nvim"
 }
 
 local git = {
-  -- "tpope/vim-fugitive",
   "rhysd/conflict-marker.vim",
   "lewis6991/gitsigns.nvim",
   "sindrets/diffview.nvim"
 }
 
 local misc = {
-  "nvim-lua/popup.nvim",
-  "nvim-telescope/telescope.nvim",
-  "nvim-telescope/telescope-fzy-native.nvim",
-  "nvim-telescope/telescope-fzf-writer.nvim",
-  {"nvim-telescope/telescope-fzf-native.nvim", run = "make"},
-  "scrooloose/nerdcommenter",
   "tweekmonster/startuptime.vim", -- benchmark startup
+  "voldikss/vim-floaterm",
+  "norcalli/nvim-colorizer.lua",
+  "mbbill/undotree",
+  {"lukas-reineke/indent-blankline.nvim", branch = "lua"},
+  "RRethy/vim-illuminate"
+}
+
+local text = {
+  "scrooloose/nerdcommenter",
   "AndrewRadev/tagalong.vim",
   "AndrewRadev/splitjoin.vim",
   "machakann/vim-sandwich",
   "alvan/vim-closetag",
-  "voldikss/vim-floaterm",
   "andymass/vim-matchup",
   "leafOfTree/vim-matchtag", --highlight matching tags html, xml, js, jsx, vue, svelte.
-  "windwp/nvim-autopairs",
-  "norcalli/nvim-colorizer.lua",
-  "mbbill/undotree",
-  "folke/lsp-colors.nvim",
-  {"lukas-reineke/indent-blankline.nvim", branch = "lua"},
-  "RRethy/vim-illuminate"
+  "windwp/nvim-autopairs"
 }
 
 local fzf = {
@@ -67,7 +65,7 @@ local fzf = {
 
 local test = {
   "janko/vim-test",
-  "rcarriga/vim-ultest" -- pretty test output
+  {"rcarriga/vim-ultest", run = ":UpdateRemotePlugins"} -- pretty test output
 }
 
 local snippets = {
@@ -100,7 +98,8 @@ packer.startup {
     test,
     snippets,
     themes,
-    ui
+    ui,
+    text
   },
   config = {
     display = {

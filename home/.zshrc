@@ -84,7 +84,7 @@ export NVRC="~/.config/nvim/init.vim"
 # # default fzf command
 # # ignored in favour of fzf functions at the bottom of the file
 # # export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g""'
-export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude ".git" --type f'
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 
 # Use ~~ as the trigger sequence instead of the default **
 export FZF_COMPLETION_TRIGGER='~~'

@@ -38,7 +38,7 @@ vim.cmd("nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
 -- lsp saga
-map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", {noremap = true, silent = true})
+-- map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", {noremap = true, silent = true})
 -- show signature help
 map("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", {noremap = true, silent = true})
 -- rename
@@ -68,25 +68,21 @@ vim.cmd("inoremap <silent><expr> <C-e>     compe#close('<C-e>')")
 vim.cmd("inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })")
 vim.cmd("inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })")
 
--- Telescope
-map("n", "<Leader>bb", ":Telescope buffers<CR>", {noremap = true, silent = true})
--- map("n", "<Leader>fa", ":Telescope live_grep<CR>", {noremap = true, silent = true})
-map("n", "<Leader>fb", ":Telescope file_browser<CR>", {noremap = true, silent = true})
-map("n", "<Leader>ff", ":Telescope find_files<CR>", {noremap = true, silent = true})
-map("n", "<Leader>fg", ":Telescope git_files<CR>", {noremap = true, silent = true})
-map("n", "<Leader>fw", ":Telescope grep_string<CR>", {noremap = true, silent = true})
-map("n", "<Leader>fh", ":Telescope oldfiles<CR>", {noremap = true, silent = true})
-map("n", "<Leader>fl", ":Telescope loclist<CR>", {noremap = true, silent = true})
-map("n", "<Leader>fcm", ":Telescope git_commits<CR>", {noremap = true, silent = true})
-map("n", "<Leader>ft", ":Telescope help_tags<CR>", {noremap = true, silent = true})
-map(
-  "n",
-  "<Leader>fd",
-  ":Telescope dotfiles path=/Users/amansour/.config/nvim shorten_path=true<CR>",
-  {noremap = true, silent = true}
+-- FZF
+vim.cmd(
+  "command! -bang -nargs=* DRg call fzf#vim#grep('rg --column --line-number --hidden --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': '~/.homesick/repos/dotfiles/home'}), <bang>0)"
 )
-vim.cmd("nnoremap <leader>dot :lua require('plugins.telescope').grep_dot_files()<cr>")
-vim.cmd("nnoremap <leader>fa :lua require('plugins.telescope').fzf_live_grep()<cr>")
+
+vim.cmd(
+  "command! -bang -nargs=* HRg call fzf#vim#grep('rg --column --line-number --hidden --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)"
+)
+
+map("n", "<Leader>bb", ":Buffers<CR>", {noremap = true, silent = true})
+map("n", "<Leader>ff", ":Files<CR>", {noremap = true, silent = true})
+map("n", "<Leader>fg", ":GFiles<CR>", {noremap = true, silent = true})
+vim.cmd("nnoremap <leader>df :Files ~/.homesick/repos/dotfiles/home<CR>")
+vim.cmd("nnoremap <leader>dot :DRg<CR>")
+vim.cmd("nnoremap <leader>fa :HRg<CR>")
 
 -- Gitweb
 vim.cmd("nnoremap <leader>gbc :!gitweb -B 'Google Chrome'<cr>")

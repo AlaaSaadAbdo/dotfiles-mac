@@ -1,16 +1,16 @@
 local g = vim.g
 local fn = vim.fn
 
-g.fzf_nvim_statusline=0
-g.fzf_action={
+g.fzf_nvim_statusline = 0
+g.fzf_action = {
   ["ctrl-s"] = "split",
-  ["ctrl-v"] = "vsplit",
+  ["ctrl-v"] = "vsplit"
 }
 
-g.fzf_layout = { ['down']= '~70%' }
-g.fzf_preview_window = {'up:60%:sharp', 'ctrl-/'}
+g.fzf_layout = {["down"] = "~70%"}
+g.fzf_preview_window = {"up:60%:sharp", "ctrl-/"}
 
-fn.setenv("FZF_DEFAULT_COMMAND", 'fd --hidden --follow --no-ignore --exclude "node_modules" --exclude ".git" --type f')
+fn.setenv("FZF_DEFAULT_COMMAND", 'rg --hidden -l ""')
 
 -- Try later
 -- let g:fzf_colors =
@@ -27,7 +27,3 @@ fn.setenv("FZF_DEFAULT_COMMAND", 'fd --hidden --follow --no-ignore --exclude "no
 --   \ 'marker':  ['fg', 'Keyword'],
 --   \ 'spinner': ['fg', 'Label'],
 --   \ 'header':  ['fg', 'Comment'] }
-
-
-
-

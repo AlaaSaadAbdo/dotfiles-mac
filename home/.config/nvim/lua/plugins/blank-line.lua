@@ -14,8 +14,5 @@ g.indent_blankline_filetype_exclude = {
   "NvimTree",
   "popup",
   "packer",
-  "telescope",
-  "Telescope",
   "terminal"
 }
-g.indent_blankline_buftype_exclude = {"terminal", "popup"}

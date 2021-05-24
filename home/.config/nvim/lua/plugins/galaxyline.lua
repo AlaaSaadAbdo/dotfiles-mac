@@ -1,8 +1,9 @@
 local gl = require("galaxyline")
 local colors = {
   bg = "#262727",
+  fg = "#ebdbb2",
   yellow = "#fabd2f",
-  dark_yellow = "d79921",
+  dark_yellow = "#d79921",
   cyan = "#8ec07c",
   green = "#98971a",
   light_green = "#b8bb26",
@@ -67,7 +68,7 @@ gls.left[1] = {
         t = colors.blue
       }
       vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()])
-      return "▊ " .. alias[vim.fn.mode()]
+      return "▊" .. alias[vim.fn.mode()]
     end,
     highlight = {colors.red, colors.bg}
   }
@@ -76,6 +77,22 @@ print(vim.fn.getbufvar(0, "ts"))
 vim.fn.getbufvar(0, "ts")
 
 gls.left[2] = {
+  FileIcon = {
+    provider = "FileIcon",
+    condition = condition.buffer_not_empty,
+    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.bg}
+  }
+}
+gls.left[3] = {
+  FileName = {
+    provider = "FileName",
+    condition = condition.buffer_not_empty,
+    separator_highlight = {"NONE", colors.bg},
+    highlight = {colors.fg, colors.bg, "bold"}
+  }
+}
+
+gls.left[4] = {
   GitIcon = {
     provider = function()
       return " "
@@ -87,7 +104,7 @@ gls.left[2] = {
   }
 }
 
-gls.left[3] = {
+gls.left[5] = {
   GitBranch = {
     provider = "GitBranch",
     condition = condition.check_git_workspace,
@@ -97,7 +114,7 @@ gls.left[3] = {
   }
 }
 
-gls.left[4] = {
+gls.left[6] = {
   DiffAdd = {
     provider = "DiffAdd",
     -- condition = condition.hide_in_width,
@@ -105,7 +122,7 @@ gls.left[4] = {
     highlight = {colors.green, colors.bg}
   }
 }
-gls.left[5] = {
+gls.left[7] = {
   DiffModified = {
     provider = "DiffModified",
     -- condition = condition.hide_in_width,
@@ -113,7 +130,7 @@ gls.left[5] = {
     highlight = {colors.blue, colors.bg}
   }
 }
-gls.left[6] = {
+gls.left[8] = {
   DiffRemove = {
     provider = "DiffRemove",
     -- condition = condition.hide_in_width,
@@ -185,7 +202,7 @@ gls.right[9] = {
     separator = " ",
     condition = condition.buffer_not_empty,
     separator_highlight = {"NONE", colors.bg},
-    highlight = {colors.grey, colors.bg}
+    highlight = {colors.blue, colors.bg}
   }
 }
 
