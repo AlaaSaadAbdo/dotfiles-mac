@@ -1,12 +1,14 @@
-local fn = vim.fn
 local cmd = vim.cmd
 local exec = vim.api.nvim_exec
+local function autocmd(event, triggers, operations)
+  local fncmd = string.format("autocmd %s %s %s", event, triggers, operations)
+  vim.cmd(fncmd)
+end
 
 -- Auto save files when focus is lost
 cmd "au TermOpen * setlocal signcolumn=no nonumber norelativenumber"
 cmd "au BufNewFile,BufRead .eslintignore,.prettierignore,.aliases setf conf"
 cmd "au BufNewFile,BufRead .eslintrc,.prettierrc,tsconfig.json setf json"
-
 
 -- auto format on write
 cmd "au BufWritePre * lua vim.lsp.buf.formatting()"
@@ -39,4 +41,20 @@ exec(
  endif
 ]],
   ""
+)
+
+autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
+vim.cmd(
+  [[
+augroup vimrc-incsearch-highlight 
+  autocmd! 
+  autocmd CmdlineEnter /,\? :set hlsearch 
+autocmd CmdlineLeave /,\? :set nohlsearch 
+]]
+)
+
+vim.cmd(
+  [[
+autocmd! FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+]]
 )

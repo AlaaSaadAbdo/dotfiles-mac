@@ -46,21 +46,6 @@ map("n", "grn", "<cmd>lua require('lspsaga.rename').rename()<CR>", {noremap = tr
 -- preview definition
 map("n", "gds", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", {noremap = true, silent = true})
 
-local function autocmd(event, triggers, operations)
-  local cmd = string.format("autocmd %s %s %s", event, triggers, operations)
-  vim.cmd(cmd)
-end
-
-autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
-vim.cmd(
-  [[
-augroup vimrc-incsearch-highlight 
-  autocmd! 
-  autocmd CmdlineEnter /,\? :set hlsearch 
-autocmd CmdlineLeave /,\? :set nohlsearch 
-]]
-)
-
 -- compe
 vim.cmd("inoremap <silent><expr> <C-Space> compe#complete()")
 vim.cmd("inoremap <silent><expr> <CR>      compe#confirm('<CR>')")
@@ -87,3 +72,7 @@ vim.cmd("nnoremap <leader>fa :HRg<CR>")
 -- Gitweb
 vim.cmd("nnoremap <leader>gbc :!gitweb -B 'Google Chrome'<cr>")
 vim.cmd("nnoremap <leader>gbf :!gitweb -B 'Firefox'<cr>")
+
+-- Bufferline
+vim.cmd("nnoremap <silent>]b :BufferLineCycleNext<CR>")
+vim.cmd("nnoremap <silent>[b :BufferLineCyclePrev<CR>")
