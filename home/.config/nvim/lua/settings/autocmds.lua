@@ -1,8 +1,8 @@
 local cmd = vim.cmd
 local exec = vim.api.nvim_exec
 local function autocmd(event, triggers, operations)
-	local fncmd = string.format("autocmd %s %s %s", event, triggers, operations)
-	vim.cmd(fncmd)
+  local fncmd = string.format("autocmd %s %s %s", event, triggers, operations)
+  vim.cmd(fncmd)
 end
 
 -- Auto save files when focus is lost
@@ -31,7 +31,7 @@ cmd("command! LSPLog lua open_lsp_log()")
 
 -- Startuptime
 exec(
-	[[
+  [[
   if has('vim_starting') && has('reltime')
    let g:startuptime = reltime()
    augroup vimrc-startuptime
@@ -40,7 +40,7 @@ exec(
    augroup END
  endif
 ]],
-	""
+  ""
 )
 
 autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
@@ -55,9 +55,12 @@ vim.cmd([[
 autocmd! FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 ]])
 
-exec([[
+exec(
+  [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
+  autocmd BufWritePost *.js,*.rs,*.lua,*.ts,*.tsx,*.js,*.jsx,*.css,*.scss,*.html FormatWrite
 augroup END
-]], true)
+]],
+  true
+)
