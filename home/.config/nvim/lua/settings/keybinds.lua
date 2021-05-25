@@ -1,33 +1,33 @@
-local map = require "settings.utils".map
+local map = require("settings.utils").map
 local g = vim.g
 
 -- vim
-map("n", ",", "<Nop>", {noremap = true})
+map("n", ",", "<Nop>", { noremap = true })
 g.mapleader = ","
 vim.cmd("nnoremap <CR> :noh<CR><CR>:<backspace>")
-map("n", "Q", "<Nop>", {noremap = true})
-map("n", "q:", "<Nop>", {noremap = true})
-vim.api.nvim_set_keymap("n", "x", '"_x', {noremap = true})
-vim.api.nvim_set_keymap("v", "x", '"_xa', {noremap = true})
+map("n", "Q", "<Nop>", { noremap = true })
+map("n", "q:", "<Nop>", { noremap = true })
+vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true })
+vim.api.nvim_set_keymap("v", "x", '"_xa', { noremap = true })
 
 vim.cmd("tmap <C-o> <C-\\><C-n>")
 
 vim.cmd("nnoremap <leader>r :lua reload()<CR>")
 
 -- nvimtree
-map("n", "<leader>q", ":NvimTreeToggle<CR>", {noremap = true})
-map("n", "<leader>fc", ":NvimTreeFindFile<CR>", {noremap = true})
+map("n", "<leader>q", ":NvimTreeToggle<CR>", { noremap = true })
+map("n", "<leader>fc", ":NvimTreeFindFile<CR>", { noremap = true })
 
 -- lsp
-map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", {noremap = true, silent = true})
-map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true, silent = true})
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", {noremap = true, silent = true})
-map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", {noremap = true, silent = true})
-map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", {noremap = true, silent = true})
-map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", {noremap = true, silent = true})
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", {noremap = true, silent = true})
-map("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", {noremap = true, silent = true})
-map("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", {noremap = true, silent = true})
+map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
+map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { noremap = true, silent = true })
+map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
+map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { noremap = true, silent = true })
+map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
+map("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", { noremap = true, silent = true })
+map("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", { noremap = true, silent = true })
 
 vim.cmd("nnoremap <silent> ca :Lspsaga code_action<CR>")
 vim.cmd("nnoremap <silent> gK :Lspsaga hover_doc<CR>")
@@ -40,11 +40,11 @@ vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").
 -- lsp saga
 -- map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", {noremap = true, silent = true})
 -- show signature help
-map("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", {noremap = true, silent = true})
+map("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", { noremap = true, silent = true })
 -- rename
-map("n", "grn", "<cmd>lua require('lspsaga.rename').rename()<CR>", {noremap = true, silent = true})
+map("n", "grn", "<cmd>lua require('lspsaga.rename').rename()<CR>", { noremap = true, silent = true })
 -- preview definition
-map("n", "gds", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", {noremap = true, silent = true})
+map("n", "gds", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", { noremap = true, silent = true })
 
 -- compe
 vim.cmd("inoremap <silent><expr> <C-Space> compe#complete()")
@@ -54,18 +54,16 @@ vim.cmd("inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })")
 vim.cmd("inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })")
 
 -- FZF
-vim.cmd(
-  "command! -bang -nargs=* DRg call fzf#vim#grep('rg --column --line-number --hidden --no-heading --color=always --smart-case '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': '~/.homesick/repos/dotfiles/home'}), <bang>0)"
-)
+vim.cmd("command! -bang -nargs=* DRg call fzf#vim#grep('rg --column --line-number --hidden --no-heading --color=always --smart-case --no-ignore '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': '~/.homesick/repos/dotfiles/home'}), <bang>0)")
 
-vim.cmd(
-  "command! -bang -nargs=* HRg call fzf#vim#grep('rg --column --line-number --hidden --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)"
-)
+vim.cmd("command! -bang -nargs=? -complete=dir DFiles call fzf#vim#files('~/.homesick/repos/dotfiles/home', fzf#vim#with_preview(), <bang>0)")
 
-map("n", "<Leader>bb", ":Buffers<CR>", {noremap = true, silent = true})
-map("n", "<Leader>ff", ":Files<CR>", {noremap = true, silent = true})
-map("n", "<Leader>fg", ":GFiles<CR>", {noremap = true, silent = true})
-vim.cmd("nnoremap <leader>df :Files ~/.homesick/repos/dotfiles/home<CR>")
+vim.cmd("command! -bang -nargs=* HRg call fzf#vim#grep('rg --column --line-number --hidden --no-ignore --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)")
+
+map("n", "<Leader>bb", ":Buffers<CR>", { noremap = true, silent = true })
+map("n", "<Leader>ff", ":Files<CR>", { noremap = true, silent = true })
+map("n", "<Leader>fg", ":GFiles<CR>", { noremap = true, silent = true })
+vim.cmd("nnoremap <leader>df :DFiles<CR>")
 vim.cmd("nnoremap <leader>dot :DRg<CR>")
 vim.cmd("nnoremap <leader>fa :HRg<CR>")
 
@@ -76,3 +74,9 @@ vim.cmd("nnoremap <leader>gbf :!gitweb -B 'Firefox'<cr>")
 -- Bufferline
 vim.cmd("nnoremap <silent>]b :BufferLineCycleNext<CR>")
 vim.cmd("nnoremap <silent>[b :BufferLineCyclePrev<CR>")
+
+-- Colorizer
+vim.cmd("nnoremap <leader>ck :ColorizerToggle<CR>")
+
+-- Formatter
+vim.cmd("nnoremap <Leader>gf :Format<CR>")

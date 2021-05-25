@@ -79,6 +79,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/diffview.nvim"
   },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/formatter.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/friendly-snippets"
@@ -114,6 +118,10 @@ _G.packer_plugins = {
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
+  neogit = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/neogit"
   },
   nerdcommenter = {
     loaded = true,
@@ -199,10 +207,6 @@ _G.packer_plugins = {
   ["vim-closetag"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-closetag"
-  },
-  ["vim-efm-langserver-settings"] = {
-    loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-efm-langserver-settings"
   },
   ["vim-floaterm"] = {
     loaded = true,

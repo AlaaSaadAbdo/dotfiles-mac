@@ -10,4 +10,3 @@ g.NERDToggleCheckAllLines = 1
 
 -- figure out why this doesn't work
 cmd("let g:NERDCustomDelimiters = { 'json': { 'left': '//', 'right': '' } }")
-
