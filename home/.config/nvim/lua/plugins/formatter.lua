@@ -17,6 +17,14 @@ end
 --   }
 -- end
 
+local terraform = function()
+  return {
+    exe = "terraform",
+    args = { "fmt", "-" },
+    stdin = true,
+  }
+end
+
 local rustfmt = function()
   return {
     exe = "rustfmt",
@@ -51,6 +59,7 @@ require("formatter").setup({
     html = { prettier },
     rust = { rustfmt },
     lua = { stylua },
+    terraform = { terraform },
   },
 })
 

@@ -200,6 +200,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
   },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/trouble.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/undotree"
@@ -207,6 +211,10 @@ _G.packer_plugins = {
   ["vim-closetag"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-closetag"
+  },
+  ["vim-efm-langserver-settings"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-efm-langserver-settings"
   },
   ["vim-floaterm"] = {
     loaded = true,
@@ -227,6 +235,10 @@ _G.packer_plugins = {
   ["vim-sandwich"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-sandwich"
+  },
+  ["vim-terraform"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-terraform"
   },
   ["vim-test"] = {
     loaded = true,

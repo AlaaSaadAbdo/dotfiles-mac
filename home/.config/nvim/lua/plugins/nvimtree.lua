@@ -1,6 +1,6 @@
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_auto_open = 1
+vim.g.nvim_tree_auto_open = 0
 vim.g.nvim_tree_hide_dotfiles = 1 -- 0 by default, this option hides files and folders starting with a dot `.`
 vim.g.nvim_tree_follow = 1 -- "0 by default, this option allows the cursor to be updated when entering a buffer
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
@@ -12,7 +12,7 @@ vim.g.nvim_tree_bindings = {
   ["<CR>"] = tree_cb("edit"),
   ["o"] = tree_cb("edit"),
   ["l"] = tree_cb("edit"),
-  ["<C-]>"] = tree_cb("cd"),
+  ["C"] = tree_cb("cd"),
   ["v"] = tree_cb("vsplit"),
   ["s"] = tree_cb("split"),
   ["<C-t>"] = tree_cb("tabnew"),

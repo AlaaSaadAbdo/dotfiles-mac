@@ -5,13 +5,12 @@ local function autocmd(event, triggers, operations)
   vim.cmd(fncmd)
 end
 
--- Auto save files when focus is lost
-cmd("au TermOpen * setlocal signcolumn=no nonumber norelativenumber")
+cmd("au TermOpen * setlocal signcolumn=no nonumber")
 cmd("au BufNewFile,BufRead .eslintignore,.prettierignore,.aliases setf conf")
 cmd("au BufNewFile,BufRead .eslintrc,.prettierrc,tsconfig.json setf json")
 
 -- auto format on write
-cmd("au BufWritePre * lua vim.lsp.buf.formatting()")
+-- cmd("au BufWritePre * lua vim.lsp.buf.formatting()")
 
 -- after write to file keep current unfolded
 cmd("au BufWritePost * normal! zv")
