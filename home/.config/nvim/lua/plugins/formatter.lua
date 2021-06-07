@@ -45,6 +45,31 @@ local stylua = function()
   }
 end
 
+local shfmt = function()
+  return {
+    exe = "shfmt",
+    args = {
+      "-ci",
+      "-s",
+      "-bn",
+    },
+    stdin = true,
+  }
+end
+
+-- local pandoc = function()
+--   return {
+--     exe = "pandoc",
+--     args = {
+--       "-f markdown",
+--       "-t gfm",
+--       "-sp",
+--       "--tab-stop=2",
+--     },
+--     stdin = true,
+--   }
+-- end
+
 require("formatter").setup({
   logging = true,
   filetype = {
@@ -60,6 +85,8 @@ require("formatter").setup({
     rust = { rustfmt },
     lua = { stylua },
     terraform = { terraform },
+    sh = { shfmt },
+    markdown = { prettier },
   },
 })
 

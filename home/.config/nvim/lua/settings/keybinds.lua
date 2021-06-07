@@ -80,3 +80,13 @@ vim.cmd("nnoremap <leader>ck :ColorizerToggle<CR>")
 
 -- Formatter
 vim.cmd("nnoremap <Leader>gf :Format<CR>")
+
+-- Search in google MacOs
+vim.cmd("nnoremap <silent> <leader>sg :!Open 'http://google.com/search?q='<cword><cr>")
+
+-- use 0 for beginning and end of line
+vim.api.nvim_set_keymap("n", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", {
+  silent = true,
+  noremap = true,
+  expr = true,
+})

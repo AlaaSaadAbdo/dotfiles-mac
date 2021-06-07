@@ -28,17 +28,18 @@ local lsp = {
   "glepnir/lspsaga.nvim",
   "tsuyoshicho/vim-efm-langserver-settings", -- trying to use it for linting
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-  "nvim-treesitter/nvim-treesitter-refactor",
+  -- "nvim-treesitter/nvim-treesitter-refactor",
   "folke/lsp-colors.nvim",
   "folke/trouble.nvim",
   "mfussenegger/nvim-lint",
+  "jose-elias-alvarez/nvim-lsp-ts-utils",
 }
 
 local git = {
   "rhysd/conflict-marker.vim",
   "lewis6991/gitsigns.nvim",
   "sindrets/diffview.nvim",
-  "TimUntersberger/neogit",
+  -- "TimUntersberger/neogit",
 }
 
 local misc = {
@@ -47,7 +48,9 @@ local misc = {
   "norcalli/nvim-colorizer.lua",
   "mbbill/undotree",
   { "lukas-reineke/indent-blankline.nvim", branch = "lua" },
-  "RRethy/vim-illuminate",
+  "dominikduda/vim_current_word",
+  "phaazon/hop.nvim",
+  "ethanholz/nvim-lastplace",
 }
 
 local text = {
@@ -60,6 +63,7 @@ local text = {
   "leafOfTree/vim-matchtag",
   "windwp/nvim-autopairs",
   "mhartington/formatter.nvim",
+  "vimwiki/vimwiki",
 }
 
 local fzf = {
@@ -81,7 +85,11 @@ local snippets = {
 
 local themes = {
   "sainnhe/gruvbox-material",
+  -- "eddyekofo94/gruvbox-flat.nvim",
   "folke/tokyonight.nvim",
+  -- "shaunsingh/nord.nvim",
+  -- "shaunsingh/moonlight.nvim",
+  -- "marko-cerovac/material.nvim",
 }
 
 local ui = {
@@ -89,10 +97,12 @@ local ui = {
   "glepnir/galaxyline.nvim",
   "kyazdani42/nvim-tree.lua",
   "akinsho/nvim-bufferline.lua",
+  "p00f/nvim-ts-rainbow", -- this changes the highlight of definitions and todo to black text, maybe it should be loaded before the colorscheme
 }
 
 local lang = {
   "hashivim/vim-terraform",
+  "cespare/vim-toml",
 }
 
 -- nothing under developement

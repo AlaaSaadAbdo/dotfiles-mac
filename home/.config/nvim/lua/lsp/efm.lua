@@ -10,6 +10,17 @@ local eslint_d = {
   -- formatStdin = true,
 }
 
+local markdownlint = {
+  lintCommand = "markdownlint -s",
+  lintStdin = true,
+  -- lintFormats = { "%f:%l %m", "%f:%l:%c %m", "%f: %l: %m" },
+}
+
+local shellcheck = {
+  LintCommand = "shellcheck -f gcc -x",
+  lintFormats = { "%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m", "%f:%l:%c: %tote: %m" },
+}
+
 lspconfig.efm.setup({
   root_dir = util.root_pattern(".git", vim.fn.getcwd()),
   init_options = {
@@ -21,6 +32,9 @@ lspconfig.efm.setup({
     "typescript",
     "typescriptreact",
     "javascriptreact",
+    "sh",
+    "zsh",
+    "markdown",
   },
   settings = {
     rootMarkers = { "package.json", ".git" },
@@ -30,6 +44,9 @@ lspconfig.efm.setup({
       javascript = { eslint_d },
       typescriptreact = { eslint_d },
       javascriptreact = { eslint_d },
+      markdown = { markdownlint },
+      sh = { shellcheck },
+      -- zsh = { shellcheck },
     },
   },
 })

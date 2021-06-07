@@ -107,6 +107,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/gruvbox-material"
   },
+  ["hop.nvim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/hop.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
@@ -118,10 +122,6 @@ _G.packer_plugins = {
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
-  },
-  neogit = {
-    loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/neogit"
   },
   nerdcommenter = {
     loaded = true,
@@ -143,6 +143,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
+  ["nvim-lastplace"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-lastplace"
+  },
+  ["nvim-lint"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-lint"
+  },
+  ["nvim-lsp-ts-utils"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
@@ -163,9 +175,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
-  ["nvim-treesitter-refactor"] = {
+  ["nvim-ts-rainbow"] = {
     loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -220,10 +232,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
-  ["vim-illuminate"] = {
-    loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-illuminate"
-  },
   ["vim-matchtag"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-matchtag"
@@ -255,6 +263,14 @@ _G.packer_plugins = {
   ["vim-vsnip-integ"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
+  },
+  vim_current_word = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim_current_word"
+  },
+  vimwiki = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vimwiki"
   },
   ["vue-vscode-snippets"] = {
     loaded = true,

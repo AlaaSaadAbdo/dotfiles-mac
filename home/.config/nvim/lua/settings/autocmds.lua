@@ -13,7 +13,7 @@ cmd("au BufNewFile,BufRead .eslintrc,.prettierrc,tsconfig.json setf json")
 -- cmd("au BufWritePre * lua vim.lsp.buf.formatting()")
 
 -- after write to file keep current unfolded
-cmd("au BufWritePost * normal! zv")
+-- cmd("au BufWritePost * normal! zv")
 
 cmd("au FileType gitcommit setl spell")
 
@@ -22,7 +22,7 @@ cmd("au BufEnter *.txt lua require('settings.utils').help_tab()")
 cmd([[au BufEnter *.png,*.jpg,*.gif,*.ico exec "silent !open ".expand("%") | :bw"]])
 
 -- Return to last edited line
-cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' | exe "normal! g'\"" | endif]])
+-- cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") && &filetype != 'gitcommit' | exe "normal! g'\"" | endif]])
 
 cmd("command! LSPReload lua reload_lsp()")
 cmd("command! LSPDebug lua print(vim.inspect(vim.lsp.get_active_clients()))")
@@ -58,8 +58,11 @@ exec(
   [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua,*.ts,*.tsx,*.js,*.jsx,*.css,*.scss,*.html,*.json FormatWrite
+  autocmd BufWritePost *.js,*.rs,*.lua,*.ts,*.tsx,*.js,*.jsx,*.css,*.scss,*.html,*.json,*.tf FormatWrite
 augroup END
 ]],
   true
 )
+
+-- current word blacklist
+cmd("autocmd FileType NvimTree :let b:vim_current_word_disabled_in_this_buffer = 1")

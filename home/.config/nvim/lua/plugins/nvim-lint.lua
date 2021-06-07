@@ -1,6 +1,6 @@
 require("lint").linters_by_ft = {
   sh = { "shellcheck" },
-  -- markdown = { "vale" },
+  markdown = { "vale" },
   -- typescriptreact = { "eslint" },
 }
 
