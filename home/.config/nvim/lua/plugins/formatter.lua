@@ -17,13 +17,13 @@ end
 --   }
 -- end
 
-local terraform = function()
-  return {
-    exe = "terraform",
-    args = { "fmt", "-" },
-    stdin = true,
-  }
-end
+-- local terraform = function()
+--   return {
+--     exe = "terraform",
+--     args = { "fmt", "-" },
+--     stdin = true,
+--   }
+-- end
 
 local rustfmt = function()
   return {
@@ -84,7 +84,7 @@ require("formatter").setup({
     html = { prettier },
     rust = { rustfmt },
     lua = { stylua },
-    terraform = { terraform },
+    -- terraform = { terraform }, -- opted for vim-terraform instead
     sh = { shfmt },
     markdown = { prettier },
   },

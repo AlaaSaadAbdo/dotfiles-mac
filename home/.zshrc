@@ -10,14 +10,6 @@ else
   compinit -C
 fi
 
-# autoload -Uz compinit
-#
-# for dump in ~/.zcompdump(N.mh+24); do
-#   compinit
-# done
-#
-# compinit -C
-
 autoload -U colors && colors
 export ZSH=~/.zsh
 export ZSH_CACHE_DIR=$ZSH/cache
@@ -161,6 +153,3 @@ export FORGIT_FZF_DEFAULT_OPTS="
 "
 
 # zprof
-
-source /Users/amansour/.config/broot/launcher/bash/br
-# eval "$(starship init zsh)"

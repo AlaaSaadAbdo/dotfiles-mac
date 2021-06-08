@@ -42,3 +42,12 @@ vim.lsp.protocol.CompletionItemKind = {
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
 })
+
+---@diagnostic disable-next-line: lowercase-global
+function install_servers(servers)
+  for _, server in pairs(servers) do
+    require("lspinstall").install_server(server)
+  end
+end
+
+-- install_servers({ "css", "rust", "lua", "terraform", "efm", "typescript", "json", "dockerfile", "bash" })
