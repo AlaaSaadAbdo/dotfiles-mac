@@ -6,14 +6,11 @@ local eslint_d = {
   lintStdin = true,
   lintFormats = { "%f:%l:%c: %m" },
   lintIgnoreExitCode = true,
-  -- formatCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT} --fix-to-stdout",
-  -- formatStdin = true,
 }
 
 local markdownlint = {
   lintCommand = "markdownlint -s",
   lintStdin = true,
-  -- lintFormats = { "%f:%l %m", "%f:%l:%c %m", "%f: %l: %m" },
 }
 
 local shellcheck = {

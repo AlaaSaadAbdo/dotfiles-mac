@@ -79,6 +79,10 @@ toolbarbutton#scrollbutton-up, toolbarbutton#scrollbutton-down {display:none !im
     display: none;
 }
 
+#page-action-buttons {
+    display: none;
+}
+
 #navigator-toolbox #pageActionSeparator {
     display: none;
 }

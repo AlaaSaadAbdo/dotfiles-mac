@@ -23,23 +23,24 @@ local lsp = {
   "nvim-lua/popup.nvim",
   "neovim/nvim-lspconfig",
   "kabouzeid/nvim-lspinstall",
-  "ojroques/nvim-lspfuzzy",
   "hrsh7th/nvim-compe",
-  "glepnir/lspsaga.nvim",
   "tsuyoshicho/vim-efm-langserver-settings", -- trying to use it for linting
   { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-  -- "nvim-treesitter/nvim-treesitter-refactor",
+  "nvim-treesitter/nvim-treesitter-refactor",
   "folke/lsp-colors.nvim",
   "folke/trouble.nvim",
-  "mfussenegger/nvim-lint",
-  "jose-elias-alvarez/nvim-lsp-ts-utils",
+  "glepnir/lspsaga.nvim",
+  "gfanto/fzf-lsp.nvim",
+  -- "ojroques/nvim-lspfuzzy",
+  -- { "ray-x/navigator.lua", requires = { "ray-x/guihua.lua", run = "cd lua/fzy && make" } },
+  -- "mfussenegger/nvim-lint",
 }
 
 local git = {
   "rhysd/conflict-marker.vim",
   "lewis6991/gitsigns.nvim",
   "sindrets/diffview.nvim",
-  -- "TimUntersberger/neogit",
+  "TimUntersberger/neogit",
 }
 
 local misc = {
@@ -51,12 +52,13 @@ local misc = {
   "dominikduda/vim_current_word",
   "phaazon/hop.nvim",
   "ethanholz/nvim-lastplace",
+  "tpope/vim-unimpaired",
+  "AndrewRadev/splitjoin.vim",
 }
 
 local text = {
   "scrooloose/nerdcommenter",
   "AndrewRadev/tagalong.vim",
-  "AndrewRadev/splitjoin.vim",
   "machakann/vim-sandwich",
   "alvan/vim-closetag",
   "andymass/vim-matchup",
@@ -85,11 +87,7 @@ local snippets = {
 
 local themes = {
   "sainnhe/gruvbox-material",
-  -- "eddyekofo94/gruvbox-flat.nvim",
   "folke/tokyonight.nvim",
-  -- "shaunsingh/nord.nvim",
-  -- "shaunsingh/moonlight.nvim",
-  -- "marko-cerovac/material.nvim",
 }
 
 local ui = {
@@ -125,9 +123,9 @@ packer.startup({
     lang,
     -- localplugins
   },
-  config = {
-    display = {
-      open_fn = require("packer.util").float,
-    },
-  },
+  -- config = {
+  --   display = {
+  --     open_fn = require("packer.util").float,
+  --   },
+  -- },
 })

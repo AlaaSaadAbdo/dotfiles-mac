@@ -93,6 +93,8 @@ alias de_corona_status_a="curl 'https://corona-stats.online/germany?source=2'"
 alias de_corona_status_b="curl -s -L 'covid19.trackercli.com/germany'"
 alias vpnc='cd /Applications/PorscheVPN && sudo ./connect.sh -u UJG32WX'
 
+# ealias pull_all="find . -maxdepth 2 -name .git -type d | rev | cut -c 6- | rev | xargs -i sh -c 'echo " "  && git -C {} config --get remote.origin.url && git -C {} pull --rebase'"
+
 # alias  rm='echo "This is not the command you are looking for."; false'
 # ealias hs="homeshick"
 # ealias ydaily="nvim ~/notes/prsh/daily/\[daily\]-$(date -v -1d +%A-%d-%B%y).md"

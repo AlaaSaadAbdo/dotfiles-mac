@@ -19,15 +19,24 @@ map("n", "<leader>q", ":NvimTreeToggle<CR>", { noremap = true })
 map("n", "<leader>fc", ":NvimTreeFindFile<CR>", { noremap = true })
 
 -- lsp
-map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
-map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { noremap = true, silent = true })
-map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
-map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { noremap = true, silent = true })
+vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
+
+-- map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
+-- map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+-- map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { noremap = true, silent = true })
+-- map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
+-- map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { noremap = true, silent = true })
 map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
+-- map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
 map("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", { noremap = true, silent = true })
 map("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", { noremap = true, silent = true })
+
+-- fzf-lsp
+vim.cmd("nnoremap <silent> gD :Declarations<CR>")
+vim.cmd("nnoremap <silent> gd :Definitions<CR>")
+vim.cmd("nnoremap <silent> gi :Implmentations<CR>")
+vim.cmd("nnoremap <silent> gt :TypeDefinitions<CR>")
+vim.cmd("nnoremap <silent> gr :References<CR>")
 
 vim.cmd("nnoremap <silent> ca :Lspsaga code_action<CR>")
 vim.cmd("nnoremap <silent> gK :Lspsaga hover_doc<CR>")
@@ -35,16 +44,15 @@ vim.cmd("nnoremap <silent> [d :Lspsaga diagnostic_jump_prev<CR>")
 vim.cmd("nnoremap <silent> ]d :Lspsaga diagnostic_jump_next<CR>")
 vim.cmd("nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
 vim.cmd("nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>")
-vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
 -- lsp saga
--- map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", {noremap = true, silent = true})
+-- map("n", "gh", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", { noremap = true, silent = true })
 -- show signature help
 map("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", { noremap = true, silent = true })
 -- rename
 map("n", "grn", "<cmd>lua require('lspsaga.rename').rename()<CR>", { noremap = true, silent = true })
 -- preview definition
-map("n", "gds", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", { noremap = true, silent = true })
+-- map("n", "gds", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", { noremap = true, silent = true })
 
 -- compe
 vim.cmd("inoremap <silent><expr> <C-Space> compe#complete()")
@@ -90,3 +98,9 @@ vim.api.nvim_set_keymap("n", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$'
   noremap = true,
   expr = true,
 })
+
+-- vim-test
+vim.cmd("nmap <silent> <leader>tn :TestNearest<CR>")
+vim.cmd("nmap <silent> <leader>tf :TestFile<CR>")
+vim.cmd("nmap <silent> <leader>ts :TestSuite<CR>")
+vim.cmd("nmap <silent> <leader>tl :TestLast<CR>")

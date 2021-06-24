@@ -43,6 +43,7 @@ exec(
 )
 
 autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
+
 vim.cmd([[
 augroup vimrc-incsearch-highlight 
   autocmd! 
