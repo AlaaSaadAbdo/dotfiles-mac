@@ -3,7 +3,7 @@ local ts = require("nvim-treesitter.configs")
 ts.setup({
   ensure_installed = "maintained",
   highlight = {
-    enable = false,
+    enable = true,
     use_languagetree = false,
   },
   indent = {

@@ -164,6 +164,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
+  ["nvim-spectre"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-spectre"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
@@ -256,10 +260,6 @@ _G.packer_plugins = {
   ["vim-toml"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-toml"
-  },
-  ["vim-ultest"] = {
-    loaded = true,
-    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/vim-ultest"
   },
   ["vim-unimpaired"] = {
     loaded = true,

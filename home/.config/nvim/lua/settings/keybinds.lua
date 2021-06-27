@@ -104,3 +104,9 @@ vim.cmd("nmap <silent> <leader>tn :TestNearest<CR>")
 vim.cmd("nmap <silent> <leader>tf :TestFile<CR>")
 vim.cmd("nmap <silent> <leader>ts :TestSuite<CR>")
 vim.cmd("nmap <silent> <leader>tl :TestLast<CR>")
+
+-- spectre
+map("n", "<leader>S", ":lua require('spectre').open()<CR>", { noremap = true, silent = true })
+map("n", "<leader>sw", "viw:lua require('spectre').open_visual()<CR>", { noremap = true, silent = true })
+map("v", "<leader>s", ":lua require('spectre').open_visual()<CR>", { noremap = true, silent = true })
+map("n", "<leader>sp", "viw:lua require('spectre').open_file_search()<CR>", { noremap = true, silent = true })

@@ -75,7 +75,7 @@ local fzf = {
 
 local test = {
   "janko/vim-test",
-  { "rcarriga/vim-ultest", run = ":UpdateRemotePlugins" }, -- pretty test output
+  -- { "rcarriga/vim-ultest", run = ":UpdateRemotePlugins" }, -- pretty test output
 }
 
 local snippets = {
@@ -103,6 +103,10 @@ local lang = {
   "cespare/vim-toml",
 }
 
+local trial = {
+  "windwp/nvim-spectre",
+}
+
 -- nothing under developement
 -- local localplugins = {
 -- }
@@ -115,17 +119,18 @@ packer.startup({
     git,
     misc,
     fzf,
-    test,
     snippets,
     themes,
     ui,
     text,
     lang,
+    trial,
+    test,
     -- localplugins
   },
   -- config = {
   --   display = {
-  --     open_fn = require("packer.util").float,
+  --     open_fn = require("packer.util"),
   --   },
   -- },
 })
