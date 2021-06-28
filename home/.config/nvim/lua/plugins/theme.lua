@@ -11,6 +11,8 @@ vim.g.gruvbox_material_diagnostic_line_highlight = 1
 vim.g.gruvbox_material_better_performance = 1
 vim.cmd("colorscheme gruvbox-material")
 
+-- vim.cmd("highlight NvimTreeNormal ctermfg=223 ctermbg=234 guifg=#e2cca9 guibg=#191b1c")
+
 -- vim.cmd("hi TSCurrentScope guibg=#101010")
 
 -- LUA gruvbox MAterial

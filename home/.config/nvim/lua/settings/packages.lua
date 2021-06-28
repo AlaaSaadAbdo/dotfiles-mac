@@ -88,6 +88,8 @@ local snippets = {
 local themes = {
   "sainnhe/gruvbox-material",
   "folke/tokyonight.nvim",
+  "Th3Whit3Wolf/one-nvim",
+  "romgrk/doom-one.vim",
 }
 
 local ui = {
@@ -96,6 +98,7 @@ local ui = {
   "kyazdani42/nvim-tree.lua",
   "akinsho/nvim-bufferline.lua",
   "p00f/nvim-ts-rainbow", -- this changes the highlight of definitions and todo to black text, maybe it should be loaded before the colorscheme
+  -- "yamatsum/nvim-nonicons",
 }
 
 local lang = {

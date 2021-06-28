@@ -188,6 +188,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
+  ["one-nvim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/one-nvim"
+  },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
