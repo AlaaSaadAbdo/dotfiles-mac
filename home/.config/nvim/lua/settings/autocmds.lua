@@ -28,20 +28,6 @@ cmd("command! LSPReload lua reload_lsp()")
 cmd("command! LSPDebug lua print(vim.inspect(vim.lsp.get_active_clients()))")
 cmd("command! LSPLog lua open_lsp_log()")
 
--- Startuptime
-exec(
-  [[
-  if has('vim_starting') && has('reltime')
-   let g:startuptime = reltime()
-   augroup vimrc-startuptime
-     autocmd!
-     autocmd VimEnter * echomsg 'startuptime:' . reltimestr(reltime(g:startuptime))
-   augroup END
- endif
-]],
-  ""
-)
-
 autocmd("CursorHold", "<buffer>", "lua require'lspsaga.diagnostic'.show_line_diagnostics()")
 
 vim.cmd([[
@@ -67,3 +53,17 @@ augroup END
 
 -- current word blacklist
 cmd("autocmd FileType NvimTree :let b:vim_current_word_disabled_in_this_buffer = 1")
+
+-- -- Startuptime
+-- exec(
+--   [[
+--   if has('vim_starting') && has('reltime')
+--    let g:startuptime = reltime()
+--    augroup vimrc-startuptime
+--      autocmd!
+--      autocmd VimEnter * echomsg 'startuptime:' . reltimestr(reltime(g:startuptime))
+--    augroup END
+--  endif
+-- ]],
+--   ""
+-- )

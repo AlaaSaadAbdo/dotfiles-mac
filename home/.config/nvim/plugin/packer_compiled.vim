@@ -80,6 +80,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/diffview.nvim"
   },
+  ["doom-one.vim"] = {
+    loaded = true,
+    path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/doom-one.vim"
+  },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/Users/amansour/.local/share/nvim/site/pack/packer/start/formatter.nvim"

@@ -23,5 +23,5 @@ require("plugins.terraform")
 -- require("plugins.nvim-lint")
 
 require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-
 require("fzf_lsp").setup()
+require("which-key").setup()

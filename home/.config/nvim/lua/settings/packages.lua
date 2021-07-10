@@ -48,7 +48,7 @@ local misc = {
   "voldikss/vim-floaterm",
   "norcalli/nvim-colorizer.lua",
   "mbbill/undotree",
-  { "lukas-reineke/indent-blankline.nvim", branch = "lua" },
+  "lukas-reineke/indent-blankline.nvim",
   "dominikduda/vim_current_word",
   "phaazon/hop.nvim",
   "ethanholz/nvim-lastplace",
@@ -108,6 +108,7 @@ local lang = {
 
 local trial = {
   "windwp/nvim-spectre",
+  "folke/which-key.nvim",
 }
 
 -- nothing under developement
